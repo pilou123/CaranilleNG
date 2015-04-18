@@ -532,6 +532,17 @@
 	$AConfiguration_5 = "Mise à jour effectuée";
 	$AConfiguration_6 = "Continuer";
 	$AConfiguration_7 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+
+	//TRADUCTION OF DESIGN ADMIN
+	$ADesign_0 = "Code CSS de votre MMORPG";
+	$ADesign_1 = "En tête du MMORPG";
+	$ADesign_2 = "Pied de page du MMORPG";
+	$ADesign_3 = "Colone de Gauche (Menu du MMORPG)";
+	$ADesign_4 = "Colone de droit (Statistiques)";
+	$ADesign_5 = "Terminer";
+	$ADesign_6 = "Le design vient d'être mis à jour";
+	$ADesign_7 = "Continuer";
+	$ADesign_8 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
 	
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
@@ -567,6 +578,7 @@
 	$MWarning_6 = "Avertissement ajoutée";
 	$MWarning_7 = "Tous les champs n'ont pas été remplis";
 	$MWarning_8 = "Vous ne possèdez pas les droits d'accès nécessaire pour accèder à cette partie du site";
+
 	
 //END OF THE /MODERATOR/ TRADUCTION
 ?>
