@@ -10,10 +10,10 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$AEquipment_0<br />";
 			echo '<form method="POST" action="Equipment.php">';
-			echo '<input type="submit" name="Add" value="Ajouter un équipement">';
-			echo '<input type="submit" name="Edit" value="Modifier un équipement">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$AEquipment_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$AEquipment_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
@@ -21,12 +21,12 @@
 			$Equipment_List_Query = $bdd->query("SELECT * FROM Caranille_Items WHERE Item_Type = 'Armor' || Item_Type = 'Boots' || Item_Type = 'Gloves' || Item_Type = 'Helmet' || Item_Type = 'Weapon'");
 			while ($Equipment_List = $Equipment_List_Query->fetch())
 			{
-				echo 'Nom: ' .stripslashes($Equipment_List['Item_Name']). '<br />';
+				echo "$AEquipment_3" .stripslashes($Equipment_List['Item_Name']). '<br />';
 				$Item_ID = stripslashes($Equipment_List['Item_ID']);
 				echo '<form method="POST" action="Equipment.php">';
 				echo "<input type=\"hidden\" name=\"Item_ID\" value=\"$Item_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="modifier">';
-				echo '<input type="submit" name="Delete" value="supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$AEquipment_4\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$AEquipment_5\">";
 				echo '</form>';
 			}
 			$Equipment_List_Query->closeCursor();
@@ -63,31 +63,31 @@
 
 			echo '<br /><br />';
 			echo '<form method="POST" action="Equipment.php">';
-			echo "Image (Adresse)<br /> <input type=\"text\" name=\"Item_Image\" value=\"$Item_Image\"><br /><br />";
-			echo '<div class="important">Quel est le type de cet objet ?<br /></div>';
+			echo "$AEquipment_6<br /> <input type=\"text\" name=\"Item_Image\" value=\"$Item_Image\"><br /><br />";
+			echo "<div class=\"important\">$AEquipment_7<br /></div>";
 			echo '<select name="Item_Type" ID="Item_Type">';
-				echo '<option value="Weapon">Arme</option>';
-				echo '<option value="Armor">Armure</option>';
-				echo '<option value="Helmet">Casque</option>';
-				echo '<option value="Boots">Bottes</option>';
-				echo '<option value="Gloves">Gants</option>';
-				echo '<option value="Parchment">Parchemins</option>';
+				echo "<option value=\"Weapon\">$AEquipment_8</option>";
+				echo "<option value=\"Armor\">$AEquipment_9</option>";
+				echo "<option value=\"Helmet\">$AEquipment_10</option>";
+				echo "<option value=\"Boots\">$AEquipment_11</option>";
+				echo "<option value=\"Gloves\">$AEquipment_12</option>";
+				echo "<option value=\"Parchment\">$AEquipment_13</option>";
 			echo '</select><br /><br />';
-			echo "Niveau requis<br /> <input type=\"text\" name=\"Item_Level_Required\" value=\"$Item_Level_Required\"><br /><br />";
-			echo "Nom<br /> <input type=\"text\" name=\"Item_Name\" value=\"$Item_Name\"><br /><br />";
-			echo "description<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Item_Description</textarea><br /><br />";
-			echo "HP +<br /> <input type=\"text\" name=\"Item_HP_Effect\" value=\"$Item_HP_Effect\"><br /><br />";
-			echo "MP +<br /> <input type=\"text\" name=\"Item_MP_Effect\" value=\"$Item_MP_Effect\"><br /><br />";
-			echo "Force +<br /> <input type=\"text\" name=\"Item_Strength_Effect\" value=\"$Item_Strength_Effect\"><br /><br />";
-			echo "Magie +<br /> <input type=\"text\" name=\"Item_Magic_Effect\" value=\"$Item_Magic_Effect\"><br /><br />";
-			echo "Agilité +<br /> <input type=\"text\" name=\"Item_Agility_Effect\" value=\"$Item_Agility_Effect\"><br /><br />";
-			echo "Defense +<br /> <input type=\"text\" name=\"Item_Defense_Effect\" value=\"$Item_Defense_Effect\"><br /><br />";
-			echo "Sagesse +<br /> <input type=\"text\" name=\"Item_Sagesse_Effect\" value=\"$Item_Sagesse_Effect\"><br /><br />";
-			echo "Prix d'achat de l'objet<br /> <input type=\"text\" name=\"Item_Purchase_Price\" value=\"$Item_Purchase_Price\"><br /><br />";
-			echo "Prix de vente de l'objet<br /> <input type=\"text\" name=\"Item_Sale_Price\" value=\"$Item_Sale_Price\"><br /><br />";
-			echo '<div class="important">Dans quelle ville se trouve t\'il ?<br /></div>';
+			echo "$AEquipment_14<br /> <input type=\"text\" name=\"Item_Level_Required\" value=\"$Item_Level_Required\"><br /><br />";
+			echo "$AEquipment_3<br /> <input type=\"text\" name=\"Item_Name\" value=\"$Item_Name\"><br /><br />";
+			echo "$AEquipment_15<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Item_Description</textarea><br /><br />";
+			echo "$AEquipment_16<br /> <input type=\"text\" name=\"Item_HP_Effect\" value=\"$Item_HP_Effect\"><br /><br />";
+			echo "$AEquipment_17<br /> <input type=\"text\" name=\"Item_MP_Effect\" value=\"$Item_MP_Effect\"><br /><br />";
+			echo "$AEquipment_18<br /> <input type=\"text\" name=\"Item_Strength_Effect\" value=\"$Item_Strength_Effect\"><br /><br />";
+			echo "$AEquipment_19<br /> <input type=\"text\" name=\"Item_Magic_Effect\" value=\"$Item_Magic_Effect\"><br /><br />";
+			echo "$AEquipment_20<br /> <input type=\"text\" name=\"Item_Agility_Effect\" value=\"$Item_Agility_Effect\"><br /><br />";
+			echo "$AEquipment_21<br /> <input type=\"text\" name=\"Item_Defense_Effect\" value=\"$Item_Defense_Effect\"><br /><br />";
+			echo "$AEquipment_22<br /> <input type=\"text\" name=\"Item_Sagesse_Effect\" value=\"$Item_Sagesse_Effect\"><br /><br />";
+			echo "$AEquipment_23<br /> <input type=\"text\" name=\"Item_Purchase_Price\" value=\"$Item_Purchase_Price\"><br /><br />";
+			echo "$AEquipment_24<br /> <input type=\"text\" name=\"Item_Sale_Price\" value=\"$Item_Sale_Price\"><br /><br />";
+			echo "<div class=\"important\">$AEquipment_25<br /></div>";
 			echo '<select name="Item_Town" ID="Item_Town">';
-			echo '<option value="Aucune ville">Aucune ville</option>';
+			echo "<option value=\"No_Town\">$AEquipment_26</option>";
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
 			{
@@ -97,7 +97,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$AEquipment_27\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -120,7 +120,7 @@
 				$Item_Purchase_Price = htmlspecialchars(addslashes($_POST['Item_Purchase_Price']));
 				$Item_Sale_Price = htmlspecialchars(addslashes($_POST['Item_Sale_Price']));
 				$Item_Town = htmlspecialchars(addslashes($_POST['Item_Town']));
-				if ($Item_Town == "Aucune ville")
+				if ($Item_Town == "No_Town")
 				{
 					$Town_ID = 0;
 				}
@@ -172,11 +172,11 @@
 				'Item_Purchase_Price'=> $Item_Purchase_Price, 
 				'Item_Sale_Price'=> $Item_Sale_Price, 
 				'Item_ID'=> $Item_ID));
-				echo 'Equipement mis à jour';
+				echo $AEquipment_28;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AEquipment_29;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -185,37 +185,37 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_Items WHERE Item_ID= ?");
 			$Delete->execute(array($Item_ID));
 
-			echo 'L\'équipement a bien été supprimé';
+			echo $AEquipment_30;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Equipment.php">';
-			echo 'Image (Adresse)<br /> <input type="text" name="Item_Image"><br /><br />';
-			echo '<div class=\"important\">Quel est le type de cet objet ?<br /></div>';
+			echo "$AEquipment_6<br /> <input type=\"text\" name=\"Item_Image\"><br /><br />";
+			echo "<div class=\"important\">$AEquipment_7<br /></div>";
 			echo '<select name="Item_Type" ID="Item_Type">';
-				echo '<option value="Weapon">Arme</option>';
-				echo '<option value="Armor">Armure</option>';
-				echo '<option value="Helmet">Casque</option>';
-				echo '<option value="Boots">Bottes</option>';
-				echo '<option value="Gloves">Gants</option>';
-				echo '<option value="Parchment">Parchemins</option>';
+				echo "<option value=\"Weapon\">$AEquipment_8</option>";
+				echo "<option value=\"Armor\">$AEquipment_9</option>";
+				echo "<option value=\"Helmet\">$AEquipment_10</option>";
+				echo "<option value=\"Boots\">$AEquipment_11</option>";
+				echo "<option value=\"Gloves\">$AEquipment_12</option>";
+				echo "<option value=\"Parchment\">$AEquipment_13</option>";
 			echo '</select><br /><br />';
-			echo 'Niveau requis<br /> <input type="text" name="Item_Level_Required"><br /><br />';
-			echo 'Nom<br /> <input type="text" name="Item_Name"><br /><br />';
-			echo 'description<br /><textarea name="Item_Description" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'HP +<br /> <input type="text" name="Item_HP_Effect"><br /><br />';
-			echo 'MP +<br /> <input type="text" name="Item_MP_Effect"><br /><br />';
-			echo 'Force +<br /> <input type="text" name="Item_Strength_Effect"><br /><br />';
-			echo 'Magie +<br /> <input type="text" name="Item_Magic_Effect"><br /><br />';
-			echo 'Agilité +<br /> <input type="text" name="Item_Agility_Effect"><br /><br />';
-			echo 'Defense +<br /> <input type="text" name="Item_Defense_Effect"><br /><br />';
-			echo 'Sagesse +<br /> <input type="text" name="Item_Sagesse_Effect"><br /><br />';
-			echo 'Prix d\'achat de l\'objet<br /> <input type="text" name="Item_Purchase_Price"><br /><br />';
-			echo 'Prix de vente de l\'objet<br /> <input type="text" name="Item_Sale_Price"><br /><br />';
-			echo '<div class="important">Dans quelle ville se trouve t\'il ?<br /></div>';
+			echo "$AEquipment_14<br /> <input type=\"text\" name=\"Item_Level_Required\"><br /><br />";
+			echo "$AEquipment_3<br /> <input type=\"text\" name=\"Item_Name\"><br /><br />";
+			echo "$AEquipment_15<br /><textarea name=\"Item_Description\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
+			echo "$AEquipment_16<br /> <input type=\"text\" name=\"Item_HP_Effect\"><br /><br />";
+			echo "$AEquipment_17<br /> <input type=\"text\" name=\"Item_MP_Effect\"><br /><br />";
+			echo "$AEquipment_18<br /> <input type=\"text\" name=\"Item_Strength_Effect\"><br /><br />";
+			echo "$AEquipment_19<br /> <input type=\"text\" name=\"Item_Magic_Effect\"><br /><br />";
+			echo "$AEquipment_20<br /> <input type=\"text\" name=\"Item_Agility_Effect\"><br /><br />";
+			echo "$AEquipment_21<br /> <input type=\"text\" name=\"Item_Defense_Effect\"><br /><br />";
+			echo "$AEquipment_22<br /> <input type=\"text\" name=\"Item_Sagesse_Effect\"><br /><br />";
+			echo "$AEquipment_23<br /> <input type=\"text\" name=\"Item_Purchase_Price\"><br /><br />";
+			echo "$AEquipment_24<br /> <input type=\"text\" name=\"Item_Sale_Price\"><br /><br />";
+			echo "<div class=\"important\">$AEquipment_25<br /></div>";
 			echo '<select name="Item_Town" ID="Item_Town">';
-			echo '<option value="Aucune ville">Aucune ville</option>';
+			echo "<option value=\"No_Town\">$AEquipment_26</option>";
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
 			{
@@ -225,7 +225,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AEquipment_27\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -247,7 +247,7 @@
 				$Item_Purchase_Price = htmlspecialchars(addslashes($_POST['Item_Purchase_Price']));
 				$Item_Sale_Price = htmlspecialchars(addslashes($_POST['Item_Sale_Price']));
 				$Item_Town = htmlspecialchars(addslashes($_POST['Item_Town']));
-				if ($Item_Town == "Aucune ville" || $Item_Town=="")
+				if ($Item_Town == "No_Town" || $Item_Town=="")
 				{
 					$Town_ID = 0;
 				}
@@ -299,11 +299,11 @@
 				'Item_Purchase_Price'=> $Item_Purchase_Price, 
 				'Item_Sale_Price'=> $Item_Sale_Price));
 	
-				echo "Equipement crée";
+				echo $AEquipment_30;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AEquipment_31;
 			}
 		}
 	}

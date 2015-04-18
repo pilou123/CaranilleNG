@@ -497,7 +497,7 @@
 	$AAccounts_26 = "Le compte a bien été modifié";
 	$AAccounts_27 = "Tous les champs n'ont pas été remplis";
 	$AAccounts_28 = "Le compte a bien été supprimé";
-	$AAccounts_29 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+	$AAccounts_29 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 
 	//TRADUCTION OF THE CHAPTERS ADMIN
 	$AChapters_0 = "Que souhaitez-vous faire ?";
@@ -521,7 +521,7 @@
 	$AChapters_18 = "Ajout d'un chapitre";
 	$AChapters_19 = "chapitre ajouté";
 	$AChapters_20 = "Tous les champs n'ont pas été remplis";
-	$AChapters_21 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+	$AChapters_21 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 
 	//TRADUCTION OF CONFIGURATION ADMIN
 	$AConfiguration_0 = "Le MMORPG est actuellement fermé aux joueurs";
@@ -531,7 +531,7 @@
 	$AConfiguration_4 = "Terminer";
 	$AConfiguration_5 = "Mise à jour effectuée";
 	$AConfiguration_6 = "Continuer";
-	$AConfiguration_7 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+	$AConfiguration_7 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 
 	//TRADUCTION OF DESIGN ADMIN
 	$ADesign_0 = "Code CSS de votre MMORPG";
@@ -542,8 +542,44 @@
 	$ADesign_5 = "Terminer";
 	$ADesign_6 = "Le design vient d'être mis à jour";
 	$ADesign_7 = "Continuer";
-	$ADesign_8 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
-	
+	$ADesign_8 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+
+	//TRADUCTION OF EQUIPMENT ADMIN
+	$AEquipment_0 = "Que souhaitez-vous faire ?";
+	$AEquipment_1 = "Ajouter un équipement";
+	$AEquipment_2 = "Modifier un équipement";
+	$AEquipment_3 = "Nom";
+	$AEquipment_4 = "Modifier";
+	$AEquipment_5 = "Supprimer";
+	$AEquipment_6 = "Image (Adresse)";
+	$AEquipment_7 = "Quel est le type de cet objet ?";
+	$AEquipment_8 = "Arme";
+	$AEquipment_9 = "Armure";
+	$AEquipment_10 = "Casque";
+	$AEquipment_11 = "Bottes";
+	$AEquipment_12 = "Gants";
+	$AEquipment_13 = "Parchemins";
+	$AEquipment_14 = "Niveau requis";
+	$AEquipment_15 = "description";
+	$AEquipment_16 = "HP +";
+	$AEquipment_17 = "MP +";
+	$AEquipment_18 = "Force +";
+	$AEquipment_19 = "Magie +";
+	$AEquipment_20 = "Agilité +";	
+	$AEquipment_21 = "Defense +";
+	$AEquipment_22 = "Sagesse +";
+	$AEquipment_23 = "Prix d'achat de l'objet";
+	$AEquipment_24 = "Prix de vente de l'objet";
+	$AEquipment_25 = "Dans quelle ville se trouve t'il ?";
+	$AEquipment_26 = "Aucune ville";
+	$AEquipment_27 = "Terminer";
+	$AEquipment_28 = "Equipement mis à jour";
+	$AEquipment_29 = "Tous les champs n'ont pas été remplis";
+	$AEquipment_30 = "L'équipement a bien été supprimé";
+	$AEquipment_30 = "Equipement crée";
+	$AEquipment_31 = "Tous les champs n'ont pas été rempli";
+	$AEquipment_32 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
 //TRADUCTION OF /MODERATOR/ DIRECTORY
