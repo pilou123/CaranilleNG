@@ -10,24 +10,24 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$AChapters_0<br />";
 			echo '<form method="POST" action="Chapters.php">';
-			echo '<input type="submit" name="Add" value="Ajouter un chapitre">';
-			echo '<input type="submit" name="Edit" value="Modifier un chapitre">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$AChapters_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$AChapters_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
 		{
-			echo 'Voici la liste des chapitres du MMORPG<br /><br />';
+			echo "$AChapters_3<br /><br />";
 			$Chapter_List_Query = $bdd->query("SELECT * FROM Caranille_Chapters");
 			while ($Chapter_List = $Chapter_List_Query->fetch())
 			{
-				echo 'Titre du Chapter_List: ' .stripslashes($Chapter_List['Chapter_Name']). '<br />';
+				echo "$AChapters_4" .stripslashes($Chapter_List['Chapter_Name']). '<br />';
 				$Chapter_ID = stripslashes($Chapter_List['Chapter_ID']);
 				echo '<form method="POST" action="Chapters.php">';
 				echo "<input type=\"hidden\" name=\"Chapter_ID\" value=\"$Chapter_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="Modifier">';
-				echo '<input type="submit" name="Delete" value="supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$AChapters_5\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$AChapters_6\">";
 				echo '</form>';
 			}
 			$Chapter_List_Query->closeCursor();
@@ -53,13 +53,13 @@
 
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Chapters.php">';
-			echo 'Modification du Chapitre<br /><br />';
-			echo "Numéro du chapitre : <br /> <input type=\"text\" name=\"Chapter_Number\" value=\"$Chapter_Number\"><br /><br />";
-			echo "Nom du chapitre : <br /><input type=\"text\" name=\"Chapter_Name\" value=\"$Chapter_Name\"><br /><br />";
-			echo "Début du chapitre : <br /><textarea name=\"Chapter_Opening\" ID=\"message\" rows=\"10\" cols=\"50\">$Chapter_Opening</textarea><br /><br />";
-			echo "Fin du chapitre : <br /><textarea name=\"Chapter_Ending\" ID=\"message\" rows=\"10\" cols=\"50\">$Chapter_Ending</textarea><br /><br />";
-			echo "Message en cas de défaite : <br /><textarea name=\"Chapter_Defeate\" ID=\"message\" rows=\"10\" cols=\"50\">$Chapter_Defeate</textarea><br /><br />";
-			echo '<br /> Monstre du chapitre : <br />';
+			echo "$AChapters_7<br /><br />";
+			echo "$AChapters_8<br /> <input type=\"text\" name=\"Chapter_Number\" value=\"$Chapter_Number\"><br /><br />";
+			echo "$AChapters_9<br /><input type=\"text\" name=\"Chapter_Name\" value=\"$Chapter_Name\"><br /><br />";
+			echo "$AChapters_10<br /><textarea name=\"Chapter_Opening\" ID=\"message\" rows=\"10\" cols=\"50\">$Chapter_Opening</textarea><br /><br />";
+			echo "$AChapters_11<br /><textarea name=\"Chapter_Ending\" ID=\"message\" rows=\"10\" cols=\"50\">$Chapter_Ending</textarea><br /><br />";
+			echo "$AChapters_12<br /><textarea name=\"Chapter_Defeate\" ID=\"message\" rows=\"10\" cols=\"50\">$Chapter_Defeate</textarea><br /><br />";
+			echo "<br />$AChapters_13<br />";
 			echo '<select name="Chapter_Monster" ID="Chapter_Monster">';
 
 			$Monster_List_Query = $bdd->query("SELECT * FROM Caranille_Monsters
@@ -72,7 +72,7 @@
 			$Monster_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$AChapters_14\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -87,24 +87,24 @@
 				$Chapter_Defeate = htmlspecialchars(addslashes($_POST['Chapter_Defeate']));
 				$Chapter_Monster = htmlspecialchars(addslashes($_POST['Chapter_Monster']));
 
-				$recherche_Monster_ID = $bdd->prepare("SELECT * FROM Caranille_Monsters
+				$Monster_ID_Query = $bdd->prepare("SELECT * FROM Caranille_Monsters
 				WHERE Monster_Name = ?");
-				$recherche_Monster_ID->execute(array($Chapter_Monster));
+				$Monster_ID_Query->execute(array($Chapter_Monster));
 
-				while ($Monster_ID = $recherche_Monster_ID->fetch())
+				while ($Monster_ID = $Monster_ID_Query->fetch())
 				{
-					$Monster_ID_choisit = $Monster_ID['Monster_ID'];
+					$Monster_ID_Choice = $Monster_ID['Monster_ID'];
 				}
-				$recherche_Monster_ID->closeCursor();
+				$Monster_ID_Query->closeCursor();
 
 				$Update = $bdd->prepare("UPDATE Caranille_Chapters SET Chapter_Number= :Chapter_Number, Chapter_Name= :Chapter_Name, Chapter_Opening= :Chapter_Opening, Chapter_Ending= :Chapter_Ending, Chapter_Defeate= :Chapter_Defeate, Chapter_Monster= :Monster_ID_choisit WHERE Chapter_ID= :Chapter_ID");
-				$Update->execute(array('Chapter_Number'=> $Chapter_Number, 'Chapter_Name'=> $Chapter_Name, 'Chapter_Opening'=> $Chapter_Opening, 'Chapter_Ending'=> $Chapter_Ending, 'Chapter_Defeate'=> $Chapter_Defeate, 'Monster_ID_choisit'=> $Monster_ID_choisit, 'Chapter_ID'=> $Chapter_ID));
+				$Update->execute(array('Chapter_Number'=> $Chapter_Number, 'Chapter_Name'=> $Chapter_Name, 'Chapter_Opening'=> $Chapter_Opening, 'Chapter_Ending'=> $Chapter_Ending, 'Chapter_Defeate'=> $Chapter_Defeate, 'Monster_ID_choisit'=> $Monster_ID_Choice, 'Chapter_ID'=> $Chapter_ID));
 
-				echo 'Chapitre mis à jour';
+				echo $AChapters_15;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AChapters_16;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -114,19 +114,19 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_Chapters WHERE Chapter_ID= :Chapter_ID");
 			$Delete->execute(array('Chapter_ID'=> $Chapter_ID));
 
-			echo 'Le chapitre a bien été supprimée';
+			echo $AChapters_17;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Chapters.php">';
-			echo 'Ajout d\'un chapitre<br /><br />';
-			echo 'Numéro du chapitre : <br /> <input type="text" name="Chapter_Number"><br /><br />';
-			echo 'Nom du chapitre : <br /> <input type="text" name="Chapter_Name"><br /><br />';
-			echo 'Début du chapitre : <br /><textarea name="Chapter_Opening" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'Fin du chapitre : <br /><textarea name="Chapter_Ending" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'Message en cas de défaite : <br /><textarea name="Chapter_Defeate" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'Monstre du chapitre : <br />';
+			echo "$AChapters_18<br /><br />";
+			echo "$AChapters_8<br /> <input type=\"text\" name=\"Chapter_Number\"><br /><br />";
+			echo "$AChapters_9<br /> <input type=\"text\" name=\"Chapter_Name\"><br /><br />";
+			echo "$AChapters_10<br /><textarea name=\"Chapter_Opening\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
+			echo "$AChapters_11<br /><textarea name=\"Chapter_Ending\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
+			echo "$AChapters_12<br /><textarea name=\"Chapter_Defeate\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
+			echo "$AChapters_13<br />";
 			echo '<select name="Chapter_Monster" ID="Chapter_Monster">';
 
 			$Monster_List_Query = $bdd->query("SELECT * FROM Caranille_Monsters
@@ -140,7 +140,7 @@
 			$Monster_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AChapters_14\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -154,32 +154,32 @@
 				$Chapter_Defeate = htmlspecialchars(addslashes($_POST['Chapter_Defeate']));
 				$Chapter_Monster = htmlspecialchars(addslashes($_POST['Chapter_Monster']));
 
-				$recherche_Monster_ID = $bdd->prepare("SELECT * FROM Caranille_Monsters
+				$Monster_ID_Query = $bdd->prepare("SELECT * FROM Caranille_Monsters
 				WHERE Monster_Name = ?");
-				$recherche_Monster_ID->execute(array($Chapter_Monster));
+				$Monster_ID_Query->execute(array($Chapter_Monster));
 
-				while ($Monster_ID = $recherche_Monster_ID->fetch())
+				while ($Monster_ID = $Monster_ID_Query->fetch())
 				{
-					$Monster_ID_choisit = $Monster_ID['Monster_ID'];
+					$Monster_ID_Choice = $Monster_ID['Monster_ID'];
 				}
 
-				$recherche_Monster_ID->closeCursor();
+				$Monster_ID_Query->closeCursor();
 
 				$Add = $bdd->prepare("INSERT INTO Caranille_Chapters VALUES('', :Chapter_Number, :Chapter_Name, :Chapter_Opening, :Chapter_Ending, :Chapter_Defeate, :Monster_ID_choisit)");
-				$Add->execute(array('Chapter_Number'=> $Chapter_Number, 'Chapter_Name'=> $Chapter_Name, 'Chapter_Opening'=> $Chapter_Opening, 'Chapter_Ending'=> $Chapter_Ending, 'Chapter_Defeate'=> $Chapter_Defeate, 'Monster_ID_choisit'=> $Monster_ID_choisit)); 
+				$Add->execute(array('Chapter_Number'=> $Chapter_Number, 'Chapter_Name'=> $Chapter_Name, 'Chapter_Opening'=> $Chapter_Opening, 'Chapter_Ending'=> $Chapter_Ending, 'Chapter_Defeate'=> $Chapter_Defeate, 'Monster_ID_choisit'=> $Monster_ID_Choice)); 
 				
-				echo 'chapitre ajouté';
+				echo $AChapters_19;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AChapters_20;
 			}	
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site';
+		echo $AChapters_21;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';

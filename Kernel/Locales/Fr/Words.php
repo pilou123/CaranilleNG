@@ -498,6 +498,30 @@
 	$AAccounts_27 = "Tous les champs n'ont pas été remplis";
 	$AAccounts_28 = "Le compte a bien été supprimé";
 	$AAccounts_29 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+
+	//TRADUCTION OF THE CHAPTERS ADMIN
+	$AChapters_0 = "Que souhaitez-vous faire ?";
+	$AChapters_1 = "Ajouter un chapitre";
+	$AChapters_2 = "Modifier un chapitre";
+	$AChapters_3 = "Voici la liste des chapitres du MMORPG";
+	$AChapters_4 = "Titre du chapitre";
+	$AChapters_5 = "Modifier";
+	$AChapters_6 = "Supprimer";
+	$AChapters_7 = "Modification du Chapitre";
+	$AChapters_8 = "Numéro du chapitre";
+	$AChapters_9 = "Nom du chapitre ";
+	$AChapters_10 = "Début du chapitre";
+	$AChapters_11 = "Fin du chapitre"; 
+	$AChapters_12 = "Message en cas de défaite"; 
+	$AChapters_13 = "Monstre du chapitre";
+	$AChapters_14 = "Terminer";
+	$AChapters_15 = "Chapitre mis à jour";
+	$AChapters_16 = "Tous les champs n'ont pas été remplis";
+	$AChapters_17 = "Le chapitre a bien été supprimée";
+	$AChapters_18 = "Ajout d'un chapitre";
+	$AChapters_19 = "chapitre ajouté";
+	$AChapters_20 = "Tous les champs n'ont pas été remplis";
+	$AChapters_21 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
 	
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 

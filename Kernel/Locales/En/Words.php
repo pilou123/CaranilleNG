@@ -446,15 +446,15 @@
 
 	//TRADUCTION OF INDEX ADMIN
 	$AIndex_0 = "Administration du MMORPG";
-	$AIndex_1 =	"Gestion des Comptes";
-	$AIndex_2 =	"Gestion du MMORPG";
-	$AIndex_3 =	"Contenu du MMORPG";
-	$AIndex_4 =	"Gestion des Chapitres";
-	$AIndex_5 =	"Gestion des Chimères";
-	$AIndex_6 =	"Gestion des Equipements";
-	$AIndex_7 =	"Gestion des Magies";
-	$AIndex_8 =	"Gestion des Missions";
-	$AIndex_9 =	"Gestion des Monstres";
+	$AIndex_1 = "Gestion des Comptes";
+	$AIndex_2 = "Gestion du MMORPG";
+	$AIndex_3 = "Contenu du MMORPG";
+	$AIndex_4 = "Gestion des Chapitres";
+	$AIndex_5 = "Gestion des Chimères";
+	$AIndex_6 = "Gestion des Equipements";
+	$AIndex_7 = "Gestion des Magies";
+	$AIndex_8 = "Gestion des Missions";
+	$AIndex_9 = "Gestion des Monstres";
 	$AIndex_10 = "Gestion des News";
 	$AIndex_11 = "Gestion des Objets";
 	$AIndex_12 = "Gestion des Parchemins";
@@ -465,6 +465,66 @@
 		
 //END OF THE /ADMIN/ TRADUCTION
 
+//TRADUCTION OF /ADMIN/MODULES/ DIRECTORY
+
+	//TRADUCTION OF ACCOUNTS ADMIN
+	$AAccounts_0 = "Que souhaitez-vous faire ?";
+	$AAccounts_1 = "Modifier un Compte";
+	$AAccounts_2 = "Nom";
+	$AAccounts_3 = "modifier";
+	$AAccounts_4 = "supprimer";
+	$AAccounts_5 = "Pseudo";
+	$AAccounts_6 = "Email";
+	$AAccounts_7 = "Niveau";
+	$AAccounts_8 = "HP restant";
+	$AAccounts_9 = "HP Bonus";
+	$AAccounts_10 = "MP restant";
+	$AAccounts_11 = "MP Bonus";
+	$AAccounts_12 = "Force Bonus";
+	$AAccounts_13 = "Magie Bonus";
+	$AAccounts_14 = "Agilité Bonus";
+	$AAccounts_15 = "Defense Bonus";
+	$AAccounts_16 = "Sagesse Bonus";
+	$AAccounts_17 = "Experience (XP)";
+	$AAccounts_18 = "Pièces d'or (PO)";
+	$AAccounts_19 = "Niveau chapitre";
+	$AAccounts_20 = "Niveau Mission";
+	$AAccounts_21 = "Accès du compte";
+	$AAccounts_22 = "Modo";
+	$AAccounts_23 = "Admin";
+	$AAccounts_24 = "Member";
+	$AAccounts_25 = "Terminer";
+	$AAccounts_26 = "Le compte a bien été modifié";
+	$AAccounts_27 = "Tous les champs n'ont pas été remplis";
+	$AAccounts_28 = "Le compte a bien été supprimé";
+	$AAccounts_29 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+
+	//TRADUCTION OF THE CHAPTERS ADMIN
+	$AChapters_0 = "Que souhaitez-vous faire ?";
+	$AChapters_1 = "Ajouter un chapitre";
+	$AChapters_2 = "Modifier un chapitre";
+	$AChapters_3 = "Voici la liste des chapitres du MMORPG";
+	$AChapters_4 = "Titre du chapitre";
+	$AChapters_5 = "Modifier";
+	$AChapters_6 = "Supprimer";
+	$AChapters_7 = "Modification du Chapitre";
+	$AChapters_8 = "Numéro du chapitre";
+	$AChapters_9 = "Nom du chapitre ";
+	$AChapters_10 = "Début du chapitre";
+	$AChapters_11 = "Fin du chapitre"; 
+	$AChapters_12 = "Message en cas de défaite"; 
+	$AChapters_13 = "Monstre du chapitre";
+	$AChapters_14 = "Terminer";
+	$AChapters_15 = "Chapitre mis à jour";
+	$AChapters_16 = "Tous les champs n'ont pas été remplis";
+	$AChapters_17 = "Le chapitre a bien été supprimée";
+	$AChapters_18 = "Ajout d'un chapitre";
+	$AChapters_19 = "chapitre ajouté";
+	$AChapters_20 = "Tous les champs n'ont pas été remplis";
+	$AChapters_21 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+	
+//END OF THE /ADMIN/MODULES/ TRADUCTION
+
 //TRADUCTION OF /MODERATOR/ DIRECTORY
 
 	//TRADUCTION OF INDEX MODERATOR
@@ -473,7 +533,6 @@
 	$MIndex_2 = "Aucun privilège";
 	
 //END OF THE /MODERATOR/ TRADUCTION
-
 
 //TRADUCTION OF /MODERATOR/MODULES/DIRECTORY
 
