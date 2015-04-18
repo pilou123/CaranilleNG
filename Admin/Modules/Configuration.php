@@ -19,16 +19,16 @@
 				echo '<form method="POST" action="Configuration.php">';
 				if ($Configuration_Access == 'No')
 				{
-					echo '<div class="important"><br />Le RPG est actuellement fermé aux joueurs</div><br />';
+					echo "<div class=\"important\"><br />$AConfiguration_0</div><br />";
 				}
 				else
 				{
-					echo '<div class="important"><br />Le RPG est actuellement ouvert aux joueurs</div><br />';
+					echo "<div class=\"important\"><br />$AConfiguration_1</div><br />";
 				}
-				echo '<input type="radio" name="Configuration_Access" value="Yes" ID="Yes" /> <label for="Yes">Ouvrir le mmorpg aux joueurs</label><br />';
-				echo '<input type="radio" name="Configuration_Access" value="No" ID="No" /> <label for="No">Fermer le rpg aux joueurs</label><br /><br />';
+				echo "<input type=\"radio\" name=\"Configuration_Access\" value=\"Yes\" ID=\"Yes\" /> <label for=\"Yes\">$AConfiguration_2</label><br />";
+				echo "<input type=\"radio\" name=\"Configuration_Access\" value=\"No\" ID=\"No\" /> <label for=\"No\">$AConfiguration_3</label><br /><br />";
 				echo "Présentation : <br /><textarea name=\"Configuration_Presentation\" ID=\"message\" rows=\"10\" cols=\"50\">$Configuration_Presentation</textarea><br /><br />";
-				echo '<input type="submit" name="End_Edit" value="Terminer">';
+				echo "<input type=\"submit\" name=\"End_Edit\" value=\"$AConfiguration_4\">";
 				echo '</form>';
 			}
 			$Configuration_Query->closeCursor();
@@ -49,16 +49,16 @@
 
 			$Update = $bdd->prepare("UPDATE Caranille_Configuration SET Configuration_Presentation= :Configuration_Presentation, Configuration_Access= :Configuration_Access WHERE Configuration_ID= :Configuration_ID");
 			$Update->execute(array('Configuration_Presentation'=> $Configuration_Presentation, 'Configuration_Access'=> $Configuration_Access, 'Configuration_ID'=> $Configuration_ID));
-			echo 'Mise à jour effectuée';
+			echo $AConfiguration_5;
 			echo '<form method="POST" action="Configuration.php">';
-			echo '<input type="submit" name="accueil_configuration" value="Continuer">';
+			echo "<input type=\"submit\" name=\"accueil_configuration\" value=\"$AConfiguration_6\">";
 			echo '</form>';
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site';
+		echo $AConfiguration_7;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';

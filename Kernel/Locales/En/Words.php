@@ -522,6 +522,16 @@
 	$AChapters_19 = "chapitre ajouté";
 	$AChapters_20 = "Tous les champs n'ont pas été remplis";
 	$AChapters_21 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
+
+	//TRADUCTION OF CONFIGURATION ADMIN
+	$AConfiguration_0 = "Le MMORPG est actuellement fermé aux joueurs";
+	$AConfiguration_1 = "Le MMORPG est actuellement ouvert aux joueurs";
+	$AConfiguration_2 = "Ouvrir le mmorpg aux joueurs";
+	$AConfiguration_3 = "Fermer le rpg aux joueurs";
+	$AConfiguration_4 = "Terminer";
+	$AConfiguration_5 = "Mise à jour effectuée";
+	$AConfiguration_6 = "Continuer";
+	$AConfiguration_7 = "Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site";
 	
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
