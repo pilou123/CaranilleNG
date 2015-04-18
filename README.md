@@ -1,6 +1,6 @@
-CARANILLE
+CARANILLENG
 
-Voici un projet qui me tient à cœur et que j'ai commencé il y a de cela presque 5 ans : ce projet se nomme Caranille. Pourquoi un tel nom ? Caranille est la contraction de Caramel et Vanille qui sont deux animaux que j'ai perdus il y a longtemps mais que j'ai énormément adorés.
+CaranilleNG est la suite de Caranille qui est un projet qui me tient à cœur et que j'ai commencé il y a de cela presque 5 ans : ce projet se nomme Caranille. Pourquoi un tel nom ? Caranille est la contraction de Caramel et Vanille qui sont deux animaux que j'ai perdus il y a longtemps mais que j'ai énormément adorés.
 
 Pour vous présenter Caranille sachez que c'est un logiciel/programme/script qui a pour but de vous aider à bâtir rapidement et gratuitement votre propre RPG ( role-playing game, c'est-à-dire jeu de rôle en ligne ) pour votre site web personnel, pour une animation ou autres… Étant une personne qui utilise uniquement GNU/Linux et appréciant sa façon d'être (à savoir le partage des sources), j'ai décidé de mettre Caranille sous licence GNU GPL, ce qui permettra aux utilisateurs avancés de le modifier, de rajouter des modules et de les redistribuer selon la licence Creative Commons.
 
