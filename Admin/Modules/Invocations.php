@@ -10,10 +10,10 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && empty($_POST['End_Edit']) && (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$AInvocations_0<br />";
 			echo '<form method="POST" action="Invocations.php">';
-			echo '<input type="submit" name="Add" value="Ajouter une invocation">';
-			echo '<input type="submit" name="Edit" value="Modifier une invocation">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$AInvocations_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$AInvocations_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
@@ -21,12 +21,12 @@
 			$Invocations_List_Query = $bdd->query("SELECT * FROM Caranille_Invocations");
 			while ($Invocations_List = $Invocations_List_Query->fetch())
 			{
-				echo 'Nom: ' .stripslashes($Invocations_List['Invocation_Name']). '<br />';
+				echo "$AInvocations_3" .stripslashes($Invocations_List['Invocation_Name']). '<br />';
 				$Invocation_ID = stripslashes($Invocations_List['Invocation_ID']);
 				echo '<form method="POST" action="Invocations.php">';
 				echo "<input type=\"hidden\" name=\"Invocation_ID\" value=\"$Invocation_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="modifier">';
-				echo '<input type="submit" name="supprimer_Invocations_List" value="supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$AInvocations_4\">";
+				echo "<input type=\submit\" name=\"Delete_Invocations_List\" value=\"$AInvocations_5\">";
 				echo '</form>';
 			}
 			$Invocations_List_Query->closeCursor();
@@ -53,11 +53,11 @@
 			$Invocations_List_Query->closeCursor();
 
 			echo '<form method="POST" action="Invocations.php">';
-			echo "Image (Adresse)<br /> <input type=\"text\" name=\"Invocation_Image\" value=\"$Invocation_Image\"><br /><br />";
-			echo "Nom<br /> <input type=\"text\" name=\"Invocation_Name\" value=\"$Invocation_Name\"><br /><br />";
-			echo "description<br /><textarea name=\"Invocation_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Invocation_Description</textarea><br /><br />";
-			echo "Dégat de base<br /> <input type=\"text\" name=\"Invocation_Damage\" value=\"$Invocation_Damage\"><br /><br />";					
-			echo "Prix d'achat<br /> <input type=\"text\" name=\"Invocation_Price\" value=\"$Invocation_Price\"><br /><br />";
+			echo "$AInvocations_6<br /> <input type=\"text\" name=\"Invocation_Image\" value=\"$Invocation_Image\"><br /><br />";
+			echo "$AInvocations_7<br /> <input type=\"text\" name=\"Invocation_Name\" value=\"$Invocation_Name\"><br /><br />";
+			echo "$AInvocations_8<br /><textarea name=\"Invocation_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Invocation_Description</textarea><br /><br />";
+			echo "$AInvocations_9<br /> <input type=\"text\" name=\"Invocation_Damage\" value=\"$Invocation_Damage\"><br /><br />";					
+			echo "$AInvocations_10<br /> <input type=\"text\" name=\"Invocation_Price\" value=\"$Invocation_Price\"><br /><br />";
 			echo '<select name="Invocation_Town" ID="Invocation_Town">';
 
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
@@ -71,7 +71,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Edit" value="Modifier"><br /><br />';
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$AInvocations_4\"><br /><br />";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -101,31 +101,31 @@
 				$Edit = $bdd->prepare("UPDATE Caranille_Invocations SET Invocation_Image= :Invocation_Image, Invocation_Name= :Invocation_Name, Invocation_Description= :Invocation_Description, Invocation_Damage= :Invocation_Damage, Invocation_Town= :Town_ID, Invocation_Price= :Invocation_Price WHERE Invocation_ID= :Invocation_ID");
 				$Edit->execute(array('Invocation_Image'=> $Invocation_Image, 'Invocation_Name'=> $Invocation_Name, 'Invocation_Description'=> $Invocation_Description, 'Invocation_Damage'=> $Invocation_Damage, 'Town_ID'=> $Town_ID, 'Invocation_Price'=> $Invocation_Price, 'Invocation_ID'=> $Invocation_ID));
 				
-				echo "Invocations mis à jour";
+				echo $AInvocations_11;
 			}
 			else
 			{
-				echo "Tous les champs n'ont pas été remplis";
+				echo $AInvocations_12;
 			}
 		}
-		if (isset($_POST['supprimer_Invocations_List']))
+		if (isset($_POST['Delete_Invocations_List']))
 		{
 			$Invocation_ID = htmlspecialchars(addslashes($_POST['Invocation_ID']));
 
-			$supprimer_Invocations_List = $bdd->prepare("DELETE FROM Caranille_Invocations WHERE Invocation_ID= :Invocation_ID");
-			$supprimer_Invocations_List->execute(array('Invocation_ID'=> $Invocation_ID));
+			$Delete_Invocations_List = $bdd->prepare("DELETE FROM Caranille_Invocations WHERE Invocation_ID= :Invocation_ID");
+			$Delete_Invocations_List->execute(array('Invocation_ID'=> $Invocation_ID));
 
-			echo "L'invocation a bien été supprimé";
+			echo $AInvocations_13;
 		}
 		if (isset($_POST['Add']))
 		{
-			echo "Ajout d'un Invocations_List<br />";
+			echo "$AInvocations_14<br />";
 			echo "<form method=\"POST\" action=\"Invocations.php\">";
-			echo "Image (Adresse)<br /> <input type=\"text\" name=\"Invocation_Image\"><br /><br />";
-			echo "Nom<br /> <input type=\"text\" name=\"Invocation_Name\"><br /><br />";
-			echo "description<br /><textarea name=\"Invocation_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
-			echo "Dégat de base<br /> <input type=\"text\" name=\"Invocation_Damage\"><br /><br />";					
-			echo "Prix d'achat<br /> <input type=\"text\" name=\"Invocation_Price\"><br /><br />";
+			echo "$AInvocations_6<br /> <input type=\"text\" name=\"Invocation_Image\"><br /><br />";
+			echo "$AInvocations_7<br /> <input type=\"text\" name=\"Invocation_Name\"><br /><br />";
+			echo "$AInvocations_8<br /><textarea name=\"Invocation_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AInvocations_9<br /> <input type=\"text\" name=\"Invocation_Damage\"><br /><br />";					
+			echo "$AInvocations_10<br /> <input type=\"text\" name=\"Invocation_Price\"><br /><br />";
 			echo "<select name=\"Invocation_Town\" ID=\"Invocation_Town\">";
 
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
@@ -138,7 +138,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo "</select><br /><br />";
-			echo "<input type=\"submit\" name=\"ajouter_fin_Invocations_List\" value=\"Ajouter\"><br /><br />";
+			echo "<input type=\"submit\" name=\"ajouter_fin_Invocations_List\" value=\"$AInvocations_15\"><br /><br />";
 			echo "</form>";
 		}
 		if (isset($_POST['ajouter_fin_Invocations_List']))
@@ -167,18 +167,18 @@
 				$Add = $bdd->prepare("INSERT INTO Caranille_Invocations VALUES('', :Invocation_Image, :Invocation_Name, :Invocation_Description, :Invocation_Damage, :Town_ID, :Invocation_Price)");
 				$Add->execute(array('Invocation_Image'=> $Invocation_Image, 'Invocation_Name'=> $Invocation_Name, 'Invocation_Description'=> $Invocation_Description, 'Invocation_Damage'=> $Invocation_Damage, 'Town_ID'=> $Town_ID, 'Invocation_Price'=> $Invocation_Price));
 				
-				echo 'Invocations ajouté';
+				echo $AInvocations_16;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AInvocations_17;
 			}
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas les accès nécessaire pour accèder à cette partie du site';
+		echo $AInvocations_18;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';

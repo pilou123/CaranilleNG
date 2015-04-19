@@ -580,6 +580,27 @@
 	$AEquipment_31 = "Tous les champs n'ont pas été rempli";
 	$AEquipment_32 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 
+	//TRADUCTION OF INVOCATIONS ADMIN
+	$AInvocations_0 = "Que souhaitez-vous faire ?";
+	$AInvocations_1 = "Ajouter une invocation";
+	$AInvocations_2 = "Modifier une invocation";
+	$AInvocations_3 = "Nom";
+	$AInvocations_4 = "Modifier";
+	$AInvocations_5 = "Supprimer";
+	$AInvocations_6 = "Image (Adresse)";
+	$AInvocations_7 = "Nom";
+	$AInvocations_8 = "Description";
+	$AInvocations_9 = "Dégats de base";
+	$AInvocations_10 = "Prix d'achat";
+	$AInvocations_11 = "Invocations mis à jour";
+	$AInvocations_12 = "Tous les champs n'ont pas été remplis";
+	$AInvocations_13 = "L'invocation a bien été supprimée";
+	$AInvocations_14 = "Ajout d'un Invocations";
+	$AInvocations_15 = "Ajouter";
+	$AInvocations_16 = "Invocations ajouté";
+	$AInvocations_17 = "Tous les champs n'ont pas été remplis";
+	$AInvocations_18 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
 //TRADUCTION OF /MODERATOR/ DIRECTORY
