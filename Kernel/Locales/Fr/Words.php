@@ -600,7 +600,129 @@
 	$AInvocations_16 = "Invocations ajouté";
 	$AInvocations_17 = "Tous les champs n'ont pas été remplis";
 	$AInvocations_18 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
-
+	
+	//TRADUCTION OF ITEMS MODULES
+	$AItems_0 = "Que souhaitez-vous faire ?";
+	$AItems_1 = "Ajouter un objet";
+	$AItems_2 = "Modifier un objet";
+	$AItems_3 = "Nom";
+	$AItems_4 = "Modifier";
+	$AItems_5 = "Supprimer";
+	$AItems_6 = "Image (Adresse)";
+	$AItems_7 = "Quel est le type de cet objet ?";
+	$AItems_8 = "Potion de Vie";
+	$AItems_9 = "Potion de Magie";
+	$AItems_10 = "Niveau requis";
+	$AItems_11 = "Nom";
+	$AItems_12 = "Description";
+	$AItems_13 = "HP +";
+	$AItems_14 = "MP +";
+	$AItems_15 = "Prix d'achat de l'objet";
+	$AItems_16 = "Prix de vente de l'objet";
+	$AItems_17 = "Dans quelle ville se trouve t'il ?";
+	$AItems_18 = "Aucune ville";
+	$AItems_19 = "Terminer";
+	$AItems_20 = "Objet mit à jour";
+	$AItems_21 = "Tous les champs n'ont pas été remplis";
+	$AItems_22 = "L'objet a bien été supprimé";
+	$AItems_23 = "Tous les champs n'ont pas été remplis";
+	$AItems_24 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	
+	//TRADUCTION OF MAGICS MODULES
+	$AMagics_0 = "Que souhaitez-vous faire ?";
+	$AMagics_1 = "Ajouter une magie";
+	$AMagics_2 = "Modifier une magie";
+	$AMagics_3 = "Nom";
+	$AMagics_4 = "Modifier";
+	$AMagics_5 = "Supprimer";
+	$AMagics_6 = "Image (Adresse)";
+	$AMagics_7 = "Nom";
+	$AMagics_8 = "Description";
+	$AMagics_9 = "Type de la magie";
+	$AMagics_10 = "Soin";
+	$AMagics_11 = "Attaque";
+	$AMagics_12 = "Effet de la magie";
+	$AMagics_13 = "Cout de la magie";
+	$AMagics_14 = "Pièce d'or";
+	$AMagics_15 = "Ville de la magie";
+	$AMagics_16 = "Magie mise à jour";
+	$AMagics_17 = "Tous les champs n'ont pas été remplis";
+	$AMagics_18 = "La magie a bien été supprimée";
+	$AMagics_19 = "Ajout d'une magie";
+	$AMagics_20 = "Ajouter";
+	$AMagics_21 = "Magie ajouté";
+	$AMagics_22 = "Tous les champs n'ont pas été remplis";
+	$AMagics_23 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	
+	//TRADUCTION OF MISSIONS MODULES
+	$AMissions_0 = "Que souhaitez-vous faire ?";
+	$AMissions_1 = "Ajouter une mission";
+	$AMissions_2 = "Modifier une mission";
+	$AMissions_3 = "Voici la liste des missions du MMORPG";
+	$AMissions_4 = "Ville";
+	$AMissions_5 = "N°";
+	$AMissions_6 = "Titre de la mission";
+	$AMissions_7 = "Modifier";
+	$AMissions_8 = "Supprimer";
+	$AMissions_9 = "Paramètre de la mission";
+	$AMissions_10 = "Ville où se trouve la Mission";
+	$AMissions_11 = "Numéro de la mission";
+	$AMissions_12 = "Nom de la mission";
+	$AMissions_13 = "Introduction de la mission";
+	$AMissions_14 = "Message en cas de victoire";
+	$AMissions_15 = "Message en cas de défaite";
+	$AMissions_16 = "Monstre de la mission";
+	$AMissions_17 = "Terminer";
+	$AMissions_18 = "Mission mise à jour";
+	$AMissions_19 = "Tous les champs n'ont pas été remplis";
+	$AMissions_20 = "La mission a bien été supprimée";
+	$AMissions_21 = "Mission ajoutée";
+	$AMissions_22 = "Tous les champs n\'ont pas été remplis";
+	$AMissions_23 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	
+	//TRADUCTION OF MONSTERS MODULES
+	$AMonsters_0 = "Que souhaitez-vous faire ?";
+	$AMonsters_1 = "Ajouter un monstre";
+	$AMonsters_2 = "Modifier un monstre";
+	$AMonsters_3 = "Nom";
+	$AMonsters_4 = "Modifier";
+	$AMonsters_5 = "Supprimer";
+	$AMonsters_6 = "Image (Adresse)";
+	$AMonsters_7 = "Nom";
+	$AMonsters_8 = "Description";
+	$AMonsters_9 = "Niveau";
+	$AMonsters_10 = "Force";
+	$AMonsters_11 = "Défense";
+	$AMonsters_12 = "HP";
+	$AMonsters_13 = "MP";
+	$AMonsters_14 = "Experience";
+	$AMonsters_15 = "Pièce d'or";
+	$AMonsters_16 = "Ville du monstre";
+	$AMonsters_17 = "Choisissez les objets que le monstre est suceptible de faire gagner en cas de victoire du joueur";
+	$AMonsters_18 = "Objet N°1";
+	$AMonsters_19 = "Aucun objet";
+	$AMonsters_20 = "Taux d'obtention de l'objet";
+	$AMonsters_21 = "Objet N°2";
+	$AMonsters_22 = "Objet N°3";
+	$AMonsters_23 = "Objet N°4";
+	$AMonsters_24 = "Objet N°5";
+	$AMonsters_25 = "Quel est le type du monstre ?";
+	$AMonsters_26 = "Combat";
+	$AMonsters_27 = "Mission";
+	$AMonsters_28 = "Monstre de chapitre";
+	$AMonsters_29 = "Monstre de mission";
+	$AMonsters_30 = "Monstre de combat";
+	$AMonsters_30 = "Terminer";
+	$AMonsters_31 = "Monstre mis à jour";
+	$AMonsters_32 = "Tous les champs n'ont pas été remplis";
+	$AMonsters_33 = "Le monstre a bien été supprimé";
+	$AMonsters_34 = "Ajout d'un monstre";
+	$AMonsters_35 = "Ajouter";
+	$AMonsters_36 = "Monstre ajouté";
+	$AMonsters_37 = "Tous les champs n'ont pas été remplis";
+	$AMonsters_38 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	
+	
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
 //TRADUCTION OF /MODERATOR/ DIRECTORY
