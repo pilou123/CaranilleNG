@@ -10,29 +10,29 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && empty($_POST['End_Edit'])&& (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$AMissions_0<br />";
 			echo '<form method="POST" action="Missions.php">';
-			echo '<input type="submit" name="Add" value="Ajouter une mission">';
-			echo '<input type="submit" name="Edit" value="Modifier une mission">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$AMissions_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$AMissions_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
 		{
-			echo 'Voici la liste des missions du MMORPG<br /><br />';
+			echo "$AMissions_3<br /><br />";
 			$Missions_List_Query = $bdd->query("SELECT * 
 			FROM Caranille_Missions, Caranille_Towns
 			WHERE Mission_Town = Town_ID
 			ORDER BY Town_Name ASC");
 			while ($Missions_List = $Missions_List_Query->fetch())
 			{
-				echo "<br /><div class=\"important\">Ville: </div>" .$Missions_List['Town_Name']. "<br />";
-				echo "<div class=\"important\">N°: </div>" .$Missions_List['Mission_Number']. "<br />";
-				echo "<div class=\"important\">Titre de la mission : </div>" .$Missions_List['Mission_Name']. "<br />";
+				echo "<br /><div class=\"important\">$AMissions_4</div>" .$Missions_List['Town_Name']. "<br />";
+				echo "<div class=\"important\">$AMissions_5</div>" .$Missions_List['Mission_Number']. "<br />";
+				echo "<div class=\"important\">$AMissions_6</div>" .$Missions_List['Mission_Name']. "<br />";
 				$Mission_ID = stripslashes($Missions_List['Mission_ID']);
 				echo '<form method="POST" action="Missions.php">';
 				echo "<input type=\"hidden\" name=\"Mission_ID\" value=\"$Mission_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="Modifier">';
-				echo '<input type="submit" name="Delete" value="Supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$AMissions_7\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$AMissions_8\">";
 				echo '</form>';
 			}
 			$Missions_List_Query->closeCursor();
@@ -57,8 +57,8 @@
 			}
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Missions.php">';
-			echo 'Paramètre de la mission<br /><br />';
-			echo '<br /> Ville où se trouve la Mission :<br />';
+			echo "$AMissions_9<br /><br />";
+			echo "<br />$AMissions_10<br />";
 			echo '<select name="Mission_Town" ID="Mission_Town">';
 			
 			$Town_List_Query = $bdd->query("SELECT * 
@@ -83,12 +83,12 @@
 			$Town_List_Query->closeCursor();
 
 			echo "</select><br /><br />";
-			echo "Numéro de la mission<br /> <input type=\"text\" name=\"Mission_Number\" value=\"$Mission_Number\"><br /><br />";
-			echo "Nom de la mission<br /><input type=\"text\" name=\"Mission_Name\" value=\"$Mission_Name\"><br /><br />";
-			echo "Introduction de la mission<br /><textarea name=\"Mission_Introduction\" ID=\"message\" rows=\"10\" cols=\"50\">$Mission_Introduction</textarea><br /><br />";
-			echo "Message en cas de victoire<br /><textarea name=\"Mission_Victory\" ID=\"message\" rows=\"10\" cols=\"50\">$Mission_Victory</textarea><br /><br />";
-			echo "Message en cas de défaite<br /><textarea name=\"Mission_Defeate\" ID=\"message\" rows=\"10\" cols=\"50\">$Mission_Defeate</textarea><br />";
-			echo "<br /> Monstre de la mission :<br />";
+			echo "$AMissions_11<br /> <input type=\"text\" name=\"Mission_Number\" value=\"$Mission_Number\"><br /><br />";
+			echo "$AMissions_12<br /><input type=\"text\" name=\"Mission_Name\" value=\"$Mission_Name\"><br /><br />";
+			echo "$AMissions_13<br /><textarea name=\"Mission_Introduction\" ID=\"message\" rows=\"10\" cols=\"50\">$Mission_Introduction</textarea><br /><br />";
+			echo "$AMissions_14<br /><textarea name=\"Mission_Victory\" ID=\"message\" rows=\"10\" cols=\"50\">$Mission_Victory</textarea><br /><br />";
+			echo "$AMissions_15<br /><textarea name=\"Mission_Defeate\" ID=\"message\" rows=\"10\" cols=\"50\">$Mission_Defeate</textarea><br />";
+			echo "<br />$AMissions_16<br />";
 			echo "<select name=\"Mission_Monster\" ID=\"Mission_Monster\">";
 			$Monster_List_Query = $bdd->query("SELECT * FROM Caranille_Monsters
 			WHERE Monster_Access = 'Mission'");
@@ -100,7 +100,7 @@
 			$Monster_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$AMissions_17\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -140,25 +140,25 @@
 				$Edit = $bdd->prepare("UPDATE Caranille_Missions SET Mission_Town= :Town_ID, Mission_Number= :Mission_Number, Mission_Name= :Mission_Name, Mission_Introduction= :Mission_Introduction, Mission_Victory= :Mission_Victory, Mission_Defeate= :Mission_Defeate, Mission_Monster= :Monster_ID WHERE Mission_ID= :Mission_ID");	
 				$Edit->execute(array('Town_ID'=> $Town_ID, 'Mission_Number'=> $Mission_Number, 'Mission_Name'=> $Mission_Name, 'Mission_Introduction'=> $Mission_Introduction, 'Mission_Victory'=> $Mission_Victory, 'Mission_Defeate'=> $Mission_Defeate, 'Monster_ID'=> $Monster_ID, 'Mission_ID'=> $Mission_ID));
 				
-				echo 'Mission mise à jour';
+				echo $AMissions_18;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AMissions_19;
 			}
 		}
 		if (isset($_POST['Delete']))
 		{
 			$Mission_ID = htmlspecialchars(addslashes($_POST['Mission_ID']));
 			$bdd->exec("DELETE FROM Caranille_Missions WHERE Mission_ID='$Mission_ID'");
-			echo 'La mission a bien été supprimée';
+			echo $AMissions_20;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Missions.php">';
-			echo 'Paramètre de la mission<br /><br />';
-			echo '<br /> Ville où se trouve la mission :<br />';
+			echo "$AMissions_9<br /><br />";
+			echo "<br />$AMissions_10<br />";
 			echo '<select name="Mission_Town" ID="Mission_Town">';
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
@@ -169,12 +169,12 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo 'Numéro de la mission<br /> <input type="text" name="Mission_Number"><br /><br />';
-			echo 'Nom de la mission<br /> <input type="text" name="Mission_Name"><br /><br />';
-			echo 'Introduction de la mission<br /><textarea name="Mission_Introduction" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'Message en cas de victoire<br /><textarea name="Mission_Victory" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'Message en cas de défaite<br /><textarea name="Mission_Defeate" ID="message" rows="10" cols="50"></textarea><br />';
-			echo 'Monstre de la mission :<br />';
+			echo "$AMissions_11<br /> <input type=\"text\" name=\"Mission_Number\"><br /><br />";
+			echo "$AMissions_12<br /> <input type=\"text\" name=\"Mission_Name\"><br /><br />";
+			echo "$AMissions_13<br /><textarea name=\"Mission_Introduction\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AMissions_14<br /><textarea name=\"Mission_Victory\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AMissions_15<br /><textarea name=\"Mission_Defeate\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br />";
+			echo "$AMissions_16<br />";
 			echo '<select name="Mission_Monster" ID="Mission_Monster">';
 			$Monster_List_Query = $bdd->query("SELECT * FROM Caranille_Monsters
 			WHERE Monster_Access = 'Mission'");
@@ -186,7 +186,7 @@
 			$Monster_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AMissions_17\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -225,18 +225,18 @@
 				$Add = $bdd->prepare("INSERT INTO Caranille_Missions VALUES('', :Town_ID, :Mission_Number, :Mission_Name, :Mission_Introduction, :Mission_Victory, :Mission_Defeate, :Monster_ID)");
 				$Add->execute(array('Town_ID'=> $Town_ID, 'Mission_Number'=> $Mission_Number, 'Mission_Name'=> $Mission_Name, 'Mission_Introduction'=> $Mission_Introduction, 'Mission_Victory'=> $Mission_Victory, 'Mission_Defeate'=> $Mission_Defeate, 'Monster_ID'=> $Monster_ID));
 				
-				echo 'Mission ajoutée';
+				echo $AMissions_21;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AMissions_22;
 			}	
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas le Access nécessaire pour accèder à cette partie du site';
+		echo $AMissions_23;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
