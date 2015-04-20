@@ -10,15 +10,15 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && empty($_POST['Add']) && empty($_POST['End_Add']))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$ANews_0<br />";
 			echo '<form method="POST" action="News.php">';
-			echo '<input type="submit" name="Add" value="Ajouter une News">';
-			echo '<input type="submit" name="Edit" value="Modifier une News">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$ANews_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$ANews_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
 		{
-			echo 'Voici la liste des news du MMORPG<br /><br />';
+			echo "$ANews_3<br /><br />";
 			$News_List_Query = $bdd->query("SELECT * FROM Caranille_News");
 			while ($News_List = $News_List_Query->fetch())
 			{
@@ -26,8 +26,8 @@
 				$News_ID = stripslashes($News_List['News_ID']);
 				echo '<form method="POST" action="News.php">';
 				echo "<input type=\"hidden\" name=\"News_ID\" value=\"$News_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="Modifier la News">';
-				echo '<input type="submit" name="Delete" value="supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$ANews_4\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$ANews_5\">";
 				echo '</form>';
 			}
 
@@ -52,9 +52,9 @@
 
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="News.php">';
-			echo "Titre de la News_List<br /> <input type=\"text\" name=\"News_Title\" value=\"$News_Title\"><br /><br />";
-			echo "Message de la News_List<br /><textarea name=\"News_Message\" ID=\"message\" rows=\"10\" cols=\"50\">$News_Message</textarea><br /><br />";
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "$ANews_6<br /> <input type=\"text\" name=\"News_Title\" value=\"$News_Title\"><br /><br />";
+			echo "$ANews_7<br /><textarea name=\"News_Message\" ID=\"message\" rows=\"10\" cols=\"50\">$News_Message</textarea><br /><br />";
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$ANews_8\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -68,11 +68,11 @@
 				$Update = $bdd->prepare("UPDATE Caranille_News SET News_Title='$News_Title', News_Message='$News_Message' WHERE News_ID='$News_ID'");
 				$Update->execute(array('News_Title'=> $News_Title, 'News_Message'=> $News_Message, 'News_ID'=> $News_ID));
 				
-				echo 'News mise à jour';
+				echo $ANews_9;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $ANews_10;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -82,15 +82,15 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_News WHERE News_ID= :News_ID");
 			$Delete->execute(array('News_ID'=> $News_ID));
 
-			echo 'La News à bien été supprimée';
+			echo $ANews_11;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="News.php">';
-			echo 'Titre de la News<br /> <input type="text" name="News_Title"><br /><br />';
-			echo 'Message de la News<br /><textarea name="News_Message" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "$ANews_6<br /> <input type=\"text\" name=\"News_Title\"><br /><br />";
+			echo "$ANews_7<br /><textarea name=\"News_Message\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$ANews_8\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -105,18 +105,18 @@
 				$Add = $bdd->prepare("INSERT INTO Caranille_News VALUES('', :News_Title, :News_Message, :News_Account_Pseudo, :News_Date)");
 				$Add->execute(array('News_Title'=> $News_Title, 'News_Message'=> $News_Message, 'News_Account_Pseudo' => $Pseudo, 'News_Date' => $Date));
 
-				echo 'News ajoutée';
+				echo $ANews_12;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $ANews_13;
 			}
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas les droits nécessaire pour accèder à cette partie du site';
+		echo $ANews_14;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
