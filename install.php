@@ -7,7 +7,7 @@ require_once("Kernel/Config/SQL.php");
 if (isset($_SESSION['Language']))
 {
 	$Language = $_SESSION['Language'];
-	require_once("/Kernel/Locales/" .$Language. "/Words.php");
+	require_once("Kernel/Locales/" .$Language. "/Words.php");
 }
 ?>
 <!DOCTYPE html>
