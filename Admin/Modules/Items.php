@@ -10,10 +10,10 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$AItems_0<br />";
 			echo '<form method="POST" action="Items.php">';
-			echo '<input type="submit" name="Add" value="Ajouter un objet">';
-			echo '<input type="submit" name="Edit" value="Modifier un objet">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$AItems_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$AItems_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
@@ -21,12 +21,12 @@
 			$Items_List_Query = $bdd->query("SELECT * FROM Caranille_Items WHERE Item_Type = 'Health' || Item_Type = 'Magic'");
 			while ($Items_List = $Items_List_Query->fetch())
 			{
-				echo 'Nom: ' .stripslashes($Items_List['Item_Name']). '<br />';
+				echo "$AItems_3" .stripslashes($Items_List['Item_Name']). '<br />';
 				$Item_ID = stripslashes($Items_List['Item_ID']);
 				echo '<form method="POST" action="Items.php">';
 				echo "<input type=\"hidden\" name=\"Item_ID\" value=\"$Item_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="modifier">';
-				echo '<input type="submit" name="Delete" value="supprimer">';
+				echo "<input type=\"submit\" name\"Second_Edit\" value=\"$AItems_4\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$AItems_5\">";
 				echo '</form>';
 			}
 			$Items_List_Query->closeCursor();
@@ -58,22 +58,22 @@
 
 			echo '<br /><br />';
 			echo '<form method="POST" action="Items.php">';
-			echo "Image (Adresse)<br /> <input type=\"text\" name=\"Item_Image\" value=\"$Item_Image\"><br /><br />";
-			echo '<div class="important">Quel est le type de cet objet ?<br /></div>';
+			echo "$AItems_6<br /> <input type=\"text\" name=\"Item_Image\" value=\"$Item_Image\"><br /><br />";
+			echo '<div class="important">$AItems_7<br /></div>';
 			echo '<select name="Item_Type" ID="Item_Type">';
-				echo '<option value="Health">Potion de Vie</option>';
-				echo '<option value="Magic">Potion de Magie</option>';
+				echo '<option value="Health">$AItems_8</option>';
+				echo '<option value="Magic">$AItems_9</option>';
 			echo '</select><br /><br />';
-			echo "Niveau requis<br /> <input type=\"text\" name=\"Item_Level_Required\" value=\"$Item_Level_Required\"><br /><br />";
-			echo "Nom<br /> <input type=\"text\" name=\"Item_Name\" value=\"$Item_Name\"><br /><br />";
-			echo "description<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Item_Description</textarea><br /><br />";
-			echo "HP +<br /> <input type=\"text\" name=\"Item_HP_Effect\" value=\"$Item_HP_Effect\"><br /><br />";
-			echo "MP +<br /> <input type=\"text\" name=\"Item_MP_Effect\" value=\"$Item_MP_Effect\"><br /><br />";
-			echo "Prix d'achat de l'objet<br /> <input type=\"text\" name=\"Item_Purchase_Price\" value=\"$Item_Purchase_Price\"><br /><br />";
-			echo "Prix de vente de l'objet<br /> <input type=\"text\" name=\"Item_Sale_Price\" value=\"$Item_Sale_Price\"><br /><br />";
-			echo '<div class="important">Dans quelle ville se trouve t\'il ?<br /></div>';
+			echo "$AItems_10<br /> <input type=\"text\" name=\"Item_Level_Required\" value=\"$Item_Level_Required\"><br /><br />";
+			echo "$AItems_11<br /> <input type=\"text\" name=\"Item_Name\" value=\"$Item_Name\"><br /><br />";
+			echo "$AItems_12<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Item_Description</textarea><br /><br />";
+			echo "$AItems_13<br /> <input type=\"text\" name=\"Item_HP_Effect\" value=\"$Item_HP_Effect\"><br /><br />";
+			echo "$AItems_14<br /> <input type=\"text\" name=\"Item_MP_Effect\" value=\"$Item_MP_Effect\"><br /><br />";
+			echo "$AItems_15<br /> <input type=\"text\" name=\"Item_Purchase_Price\" value=\"$Item_Purchase_Price\"><br /><br />";
+			echo "$AItems_16<br /> <input type=\"text\" name=\"Item_Sale_Price\" value=\"$Item_Sale_Price\"><br /><br />";
+			echo '<div class="important">$AItems_17<br /></div>';
 			echo '<select name="Item_Town" ID="Item_Town">';
-			echo '<option value="Aucune ville">Aucune ville</option>';
+			echo '<option value="No_Town">$AItems_18</option>';
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
 			{
@@ -83,7 +83,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "<input type\"submit\" name=\"End_Edit\" value=\"$AItems_19\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -101,7 +101,7 @@
 				$Item_Purchase_Price = htmlspecialchars(addslashes($_POST['Item_Purchase_Price']));
 				$Item_Sale_Price = htmlspecialchars(addslashes($_POST['Item_Sale_Price']));
 				$Item_Town = htmlspecialchars(addslashes($_POST['Item_Town']));
-				if ($Item_Town == "Aucune ville")
+				if ($Item_Town == "No_Town")
 				{
 					$Town_ID = 0;
 				}
@@ -120,11 +120,11 @@
 				}
 				$Edit = $bdd->prepare("UPDATE Caranille_Items SET Item_Image= :Item_Image, Item_Type= :Item_Type, Item_Level_Required= :Item_Level_Required, Item_Name= :Item_Name, Item_Description= :Item_Description, Item_HP_Effect= :Item_HP_Effect, Item_MP_Effect= :Item_MP_Effect, Item_Town= :Town_ID, Item_Purchase_Price= :Item_Purchase_Price, Item_Sale_Price= :Item_Sale_Price WHERE Item_ID= :Item_ID");
 				$Edit->execute(array('Item_Image'=> $Item_Image, 'Item_Type'=> $Item_Type, 'Item_Level_Required'=> $Item_Level_Required, 'Item_Name'=> $Item_Name, 'Item_Description'=> $Item_Description, 'Item_HP_Effect'=> $Item_HP_Effect, 'Item_MP_Effect'=> $Item_MP_Effect, 'Town_ID'=> $Town_ID, 'Item_Purchase_Price'=> $Item_Purchase_Price, 'Item_Sale_Price'=> $Item_Sale_Price, 'Item_ID'=> $Item_ID));
-				echo 'Objet mis à jour';
+				echo $AItems_20;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AItems_21;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -133,31 +133,28 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_Items WHERE Item_ID= ?");
 			$Delete->execute(array($Item_ID));
 
-			echo 'L\'objet a bien été supprimé';
+			echo $AItems_22;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Items.php">';
-			echo 'Image (Adresse)<br /> <input type="text" name="Item_Image"><br /><br />';
-			echo '<div class=\"important\">Quel est le type de cet objet ?<br /></div>';
+			echo "$AItems_6 <br /> <input type=\"text\" name=\"Item_Image\"><br /><br />";
+			echo "<div class=\"important\">$AItems_7<br /></div";
 			echo '<select name="Item_Type" ID="Item_Type">';
-				echo '<option value="Health">Potion de Vie</option>';
-				echo '<option value="Magic">Potion de Magie</option>';
-				/*
-				echo '<option value="Parchment">Parchemins</option>';
-				*/
+				echo "<option value=\"Health\">$AItems_8</option"
+				echo "<option value=\"Magic\">$AItems_9</option>";
 			echo '</select><br /><br />';
-			echo 'Niveau requis<br /> <input type="text" name="Item_Level_Required"><br /><br />';
-			echo 'Nom<br /> <input type="text" name="Item_Name"><br /><br />';
-			echo 'description<br /><textarea name="Item_Description" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'HP +<br /> <input type="text" name="Item_HP_Effect"><br /><br />';
-			echo 'MP +<br /> <input type="text" name="Item_MP_Effect"><br /><br />';
-			echo 'Prix d\'achat de l\'objet<br /> <input type="text" name="Item_Purchase_Price"><br /><br />';
-			echo 'Prix de vente de l\'objet<br /> <input type="text" name="Item_Sale_Price"><br /><br />';
-			echo '<div class="important">Dans quelle ville se trouve t\'il ?<br /></div>';
+			echo "$AItems_10<br /> <input type=\"text\" name=\"Item_Level_Required\"><br /><br />";
+			echo "$AItems_11<br /> <input type=\"text\" name=\"Item_Name\"><br /><br />";
+			echo "$AItems_12<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AItems_13br /> <input type=\"text\" name=\"Item_HP_Effect\"><br /><br />";
+			echo "$AItems_14<br /> <input type=\"text\" name=\"Item_MP_Effect\"><br /><br />";
+			echo "$AItems_15<br /> <input type=\"text\" name=\"Item_Purchase_Price\"><br /><br />";
+			echo "$AItems_16<br /> <input type=\"text\" name=\"Item_Sale_Price\"><br /><br />";
+			echo "<div class=\"important\">$AItems_17<br /></div>";
 			echo '<select name="Item_Town" ID="Item_Town">';
-			echo '<option value="Aucune ville">Aucune ville</option>';
+			echo "<option value=\"No_Town\">$AItems_18</option>";
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
 			{
@@ -167,7 +164,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AItems_19\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -184,7 +181,7 @@
 				$Item_Purchase_Price = htmlspecialchars(addslashes($_POST['Item_Purchase_Price']));
 				$Item_Sale_Price = htmlspecialchars(addslashes($_POST['Item_Sale_Price']));
 				$Item_Town = htmlspecialchars(addslashes($_POST['Item_Town']));
-				if ($Item_Town == "Aucune ville" || $Item_Town=="")
+				if ($Item_Town == "No_Town" || $Item_Town=="")
 				{
 					$Town_ID = 0;
 				}
@@ -206,14 +203,14 @@
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AItems_23;
 			}
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas le Access nécessaire pour accèder à cette partie du site';
+		echo $AItems_24;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
