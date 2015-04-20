@@ -722,6 +722,23 @@
 	$AMonsters_37 = "Tous les champs n'ont pas été remplis";
 	$AMonsters_38 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 	
+	//TRADUCTION OF NEWS MODULES
+	$ANews_0 = "Que souhaitez-vous faire ?";
+	$ANews_1 = "Ajouter une News";
+	$ANews_2 = "Modifier une News";
+	$ANews_3 = "Voici la liste des news du MMORPG";
+	$ANews_4 = "Modifier";
+	$ANews_5 = "Supprimer";
+	$ANews_6 = "Titre de la News";
+	$ANews_7 = "Message de la News";
+	$ANews_8 = "Terminer";
+	$ANews_9 = "News mise à jour";
+	$ANews_10 = "Tous les champs n'ont pas été remplis";
+	$ANews_11 = "La News à bien été supprimée";
+	$ANews_12 = "News ajoutée";
+	$ANews_13 = "Tous les champs n'ont pas été remplis";
+	$ANews_14 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	
 	
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
