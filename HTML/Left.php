@@ -19,13 +19,13 @@ if (isset($_SESSION['ID']))
 	if ($_SESSION['Access'] == "Modo" || $_SESSION['Access'] == "Admin")
 	{
 		?>
-		<a href="<?php echo $_SESSION['Link_Root'] ."Moderator/index.php"; ?>"><div class="important"><?php echo $Left_11; ?></div></a><br />
+		<a href="<?php echo $_SESSION['Link_Root'] ."/Moderator/index.php"; ?>"><div class="important"><?php echo $Left_11; ?></div></a><br />
 		<?php
 	}
 	if ($_SESSION['Access'] == "Admin")
 	{
 		?>
-		<a href="<?php echo $_SESSION['Link_Root'] ."Admin/index.php"; ?>"><div class="important"><?php echo $Left_12; ?></div></a><br />
+		<a href="<?php echo $_SESSION['Link_Root'] ."/Admin/index.php"; ?>"><div class="important"><?php echo $Left_12; ?></div></a><br />
 		<?php
 	}
 }	
