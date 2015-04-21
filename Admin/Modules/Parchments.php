@@ -215,14 +215,14 @@
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AParchments_25;
 			}
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas le Access nécessaire pour accèder à cette partie du site';
+		echo $AParchments_26;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
