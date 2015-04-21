@@ -10,10 +10,10 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$AParchments_0<br />";
 			echo '<form method="POST" action="Parchments.php">';
-			echo '<input type="submit" name="Add" value="Ajouter un parchemin">';
-			echo '<input type="submit" name="Edit" value="Modifier un parchemin">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$AParchments_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$AParchments_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
@@ -21,12 +21,12 @@
 			$Parchement_List_Query = $bdd->query("SELECT * FROM Caranille_Items WHERE Item_Type = 'Parchment'");
 			while ($Parchement_List = $Parchement_List_Query->fetch())
 			{
-				echo 'Nom: ' .stripslashes($Parchement_List['Item_Name']). '<br />';
+				echo "$AParchments_3" .stripslashes($Parchement_List['Item_Name']). '<br />';
 				$Item_ID = stripslashes($Parchement_List['Item_ID']);
 				echo '<form method="POST" action="Parchments.php">';
 				echo "<input type=\"hidden\" name=\"Item_ID\" value=\"$Item_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="modifier">';
-				echo '<input type="submit" name="Delete" value="supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$AParchments_4\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$AParchments_5\">";
 				echo '</form>';
 			}
 			$Parchement_List_Query->closeCursor();
@@ -62,22 +62,22 @@
 
 			echo '<br /><br />';
 			echo '<form method="POST" action="Parchments.php">';
-			echo "Image (Adresse)<br /> <input type=\"text\" name=\"Item_Image\" value=\"$Item_Image\"><br /><br />";
-			echo "Niveau requis<br /> <input type=\"text\" name=\"Item_Level_Required\" value=\"$Item_Level_Required\"><br /><br />";
-			echo "Nom<br /> <input type=\"text\" name=\"Item_Name\" value=\"$Item_Name\"><br /><br />";
-			echo "description<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Item_Description</textarea><br /><br />";
-			echo "HP +<br /> <input type=\"text\" name=\"Item_HP_Effect\" value=\"$Item_HP_Effect\"><br /><br />";
-			echo "MP +<br /> <input type=\"text\" name=\"Item_MP_Effect\" value=\"$Item_MP_Effect\"><br /><br />";
-			echo "Force +<br /> <input type=\"text\" name=\"Item_Strength_Effect\" value=\"$Item_Strength_Effect\"><br /><br />";
-			echo "Magie +<br /> <input type=\"text\" name=\"Item_Magic_Effect\" value=\"$Item_Magic_Effect\"><br /><br />";
-			echo "Agilité +<br /> <input type=\"text\" name=\"Item_Agility_Effect\" value=\"$Item_Agility_Effect\"><br /><br />";
-			echo "Defense +<br /> <input type=\"text\" name=\"Item_Defense_Effect\" value=\"$Item_Defense_Effect\"><br /><br />";
-			echo "Sagesse +<br /> <input type=\"text\" name=\"Item_Sagesse_Effect\" value=\"$Item_Sagesse_Effect\"><br /><br />";
-			echo "Prix d'achat de l'objet<br /> <input type=\"text\" name=\"Item_Purchase_Price\" value=\"$Item_Purchase_Price\"><br /><br />";
-			echo "Prix de vente de l'objet<br /> <input type=\"text\" name=\"Item_Sale_Price\" value=\"$Item_Sale_Price\"><br /><br />";
-			echo '<div class="important">Dans quelle ville se trouve t\'il ?<br /></div>';
+			echo "$AParchments_6<br /> <input type=\"text\" name=\"Item_Image\" value=\"$Item_Image\"><br /><br />";
+			echo "$AParchments_7<br /> <input type=\"text\" name=\"Item_Level_Required\" value=\"$Item_Level_Required\"><br /><br />";
+			echo "$AParchments_8<br /> <input type=\"text\" name=\"Item_Name\" value=\"$Item_Name\"><br /><br />";
+			echo "$AParchments_9<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Item_Description</textarea><br /><br />";
+			echo "$AParchments_10<br /> <input type=\"text\" name=\"Item_HP_Effect\" value=\"$Item_HP_Effect\"><br /><br />";
+			echo "$AParchments_11<br /> <input type=\"text\" name=\"Item_MP_Effect\" value=\"$Item_MP_Effect\"><br /><br />";
+			echo "$AParchments_12<br /> <input type=\"text\" name=\"Item_Strength_Effect\" value=\"$Item_Strength_Effect\"><br /><br />";
+			echo "$AParchments_13<br /> <input type=\"text\" name=\"Item_Magic_Effect\" value=\"$Item_Magic_Effect\"><br /><br />";
+			echo "$AParchments_14<br /> <input type=\"text\" name=\"Item_Agility_Effect\" value=\"$Item_Agility_Effect\"><br /><br />";
+			echo "$AParchments_15<br /> <input type=\"text\" name=\"Item_Defense_Effect\" value=\"$Item_Defense_Effect\"><br /><br />";
+			echo "$AParchments_16<br /> <input type=\"text\" name=\"Item_Sagesse_Effect\" value=\"$Item_Sagesse_Effect\"><br /><br />";
+			echo "$AParchments_17<br /> <input type=\"text\" name=\"Item_Purchase_Price\" value=\"$Item_Purchase_Price\"><br /><br />";
+			echo "$AParchments_18<br /> <input type=\"text\" name=\"Item_Sale_Price\" value=\"$Item_Sale_Price\"><br /><br />";
+			echo "<div class=\"important\">$AParchments_19<br /></div>";
 			echo '<select name="Item_Town" ID="Item_Town">';
-			echo '<option value="Aucune ville">Aucune ville</option>';
+			echo "<option value=\"No_Town\">$AParchments_20</option>";
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
 			{
@@ -87,7 +87,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$AParchments_21\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -109,7 +109,7 @@
 				$Item_Purchase_Price = htmlspecialchars(addslashes($_POST['Item_Purchase_Price']));
 				$Item_Sale_Price = htmlspecialchars(addslashes($_POST['Item_Sale_Price']));
 				$Item_Town = htmlspecialchars(addslashes($_POST['Item_Town']));
-				if ($Item_Town == "Aucune ville")
+				if ($Item_Town == "No_Town")
 				{
 					$Town_ID = 0;
 				}
@@ -128,11 +128,11 @@
 				}
 				$Edit = $bdd->prepare("UPDATE Caranille_Items SET Item_Image= :Item_Image, Item_Level_Required= :Item_Level_Required, Item_Name= :Item_Name, Item_Description= :Item_Description, Item_HP_Effect= :Item_HP_Effect, Item_MP_Effect= :Item_MP_Effect, Item_Strength_Effect= :Item_Strength_Effect, Item_Magic_Effect= :Item_Magic_Effect, Item_Agility_Effect= :Item_Agility_Effect, Item_Defense_Effect= :Item_Defense_Effect, Item_Sagesse_Effect = :Item_Sagesse_Effect, Item_Town= :Town_ID, Item_Purchase_Price= :Item_Purchase_Price, Item_Sale_Price= :Item_Sale_Price WHERE Item_ID= :Item_ID");
 				$Edit->execute(array('Item_Image'=> $Item_Image, 'Item_Level_Required'=> $Item_Level_Required, 'Item_Name'=> $Item_Name, 'Item_Description'=> $Item_Description, 'Item_HP_Effect'=> $Item_HP_Effect, 'Item_MP_Effect'=> $Item_MP_Effect, 'Item_Strength_Effect'=> $Item_Strength_Effect, 'Item_Magic_Effect'=> $Item_Magic_Effect, 'Item_Agility_Effect'=> $Item_Agility_Effect, 'Item_Defense_Effect'=> $Item_Defense_Effect, 'Item_Sagesse_Effect'=> $Item_Sagesse_Effect, 'Town_ID'=> $Town_ID, 'Item_Purchase_Price'=> $Item_Purchase_Price, 'Item_Sale_Price'=> $Item_Sale_Price, 'Item_ID'=> $Item_ID));
-				echo 'Parchemin mis à jour';
+				echo $AParchments_22;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $AParchments_23;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -141,28 +141,28 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_Items WHERE Item_ID= ?");
 			$Delete->execute(array($Item_ID));
 
-			echo 'Le parchemin a bien été supprimé';
+			echo $AParchments_24;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Parchments.php">';
-			echo 'Image (Adresse)<br /> <input type="text" name="Item_Image"><br /><br />';
-			echo 'Niveau requis<br /> <input type="text" name="Item_Level_Required"><br /><br />';
-			echo 'Nom<br /> <input type="text" name="Item_Name"><br /><br />';
-			echo 'description<br /><textarea name="Item_Description" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'HP +<br /> <input type="text" name="Item_HP_Effect"><br /><br />';
-			echo 'MP +<br /> <input type="text" name="Item_MP_Effect"><br /><br />';
-			echo 'Force +<br /> <input type="text" name="Item_Strength_Effect"><br /><br />';
-			echo 'Magie +<br /> <input type="text" name="Item_Magic_Effect"><br /><br />';
-			echo 'Agilité +<br /> <input type="text" name="Item_Agility_Effect"><br /><br />';
-			echo 'Defense +<br /> <input type="text" name="Item_Defense_Effect"><br /><br />';
-			echo 'Sagesse +<br /> <input type="text" name="Item_Sagesse_Effect"><br /><br />';
-			echo 'Prix d\'achat de l\'objet<br /> <input type="text" name="Item_Purchase_Price"><br /><br />';
-			echo 'Prix de vente de l\'objet<br /> <input type="text" name="Item_Sale_Price"><br /><br />';
-			echo '<div class="important">Dans quelle ville se trouve t\'il ?<br /></div>';
+			echo "$AParchments_6<br /> <input type=\"text\" name=\"Item_Image\"><br /><br />";
+			echo "$AParchments_7<br /> <input type=\"text\" name=\"Item_Level_Required\"><br /><br />";
+			echo "$AParchments_8<br /> <input type=\"text\" name=\"Item_Name\"><br /><br />";
+			echo "$AParchments_9<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AParchments_10<br /> <input type=\"text\" name=\"Item_HP_Effect\"><br /><br />";
+			echo "$AParchments_11<br /> <input type=\"text\" name=\"Item_MP_Effect\"><br /><br />";
+			echo "$AParchments_12<br /> <input type=\"text\" name=\"Item_Strength_Effect\"><br /><br />";
+			echo "$AParchments_13<br /> <input type=\"text\" name=\"Item_Magic_Effect\"><br /><br />";
+			echo "$AParchments_14<br /> <input type=\"text\" name=\"Item_Agility_Effect\"><br /><br />";
+			echo "$AParchments_15<br /> <input type=\"text\" name=\"Item_Defense_Effect\"><br /><br />";
+			echo "$AParchments_16<br /> <input type=\"text\" name=\"Item_Sagesse_Effect\"><br /><br />";
+			echo "$AParchments_17<br /> <input type=\"text\" name=\"Item_Purchase_Price\"><br /><br />";
+			echo "$AParchments_18<br /> <input type=\"text\" name=\"Item_Sale_Price\"><br /><br />";
+			echo "<div class=\"important\">$AParchments_19<br /></div>";
 			echo '<select name="Item_Town" ID="Item_Town">';
-			echo '<option value="Aucune ville">Aucune ville</option>';
+			echo "<option value=\"No_Town\">$AParchments_20</option>";
 			$Town_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Town_List = $Town_List_Query->fetch())
 			{
@@ -172,7 +172,7 @@
 			$Town_List_Query->closeCursor();
 
 			echo '</select><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AParchments_21\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -193,7 +193,7 @@
 				$Item_Purchase_Price = htmlspecialchars(addslashes($_POST['Item_Purchase_Price']));
 				$Item_Sale_Price = htmlspecialchars(addslashes($_POST['Item_Sale_Price']));
 				$Item_Town = htmlspecialchars(addslashes($_POST['Item_Town']));
-				if ($Item_Town == "Aucune ville" || $Item_Town=="")
+				if ($Item_Town == "No_Town" || $Item_Town=="")
 				{
 					$Town_ID = 0;
 				}
