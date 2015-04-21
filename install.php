@@ -86,7 +86,16 @@ if (isset($_SESSION['Language']))
 					fclose($Open_Locales);
 					
 					$File = dirname(__FILE__); 
-					$Link = 'http://' .$_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']); 
+
+					if ($_SERVER['HTTP_HOST'] == "localhost")
+					{
+						$Link = 'http://' .$_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']); 
+					}
+					else
+					{
+					 	$Link = 'http://www.' .$_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']); 
+					}
+					
 					$Open_Server = fopen("Kernel/Config/Server.php", "w");
 					fwrite($Open_Server, "
 					<?php
