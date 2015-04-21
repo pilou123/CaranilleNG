@@ -17,7 +17,7 @@
 	//Si le Access est autre que Admin, afficher le menu classique
 	else
 	{
-		echo <?php echo $MIndex_2; ?>;
+		echo $MIndex_2;
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
 ?>
