@@ -10,15 +10,15 @@
 	{
 		if (empty($_POST['Edit']) && empty($_POST['Second_Edit']) && (empty($_POST['Add'])))
 		{
-			echo 'Que souhaitez-vous faire ?<br />';
+			echo "$ATowns_0<br />";
 			echo '<form method="POST" action="Towns.php">';
-			echo '<input type="submit" name="Add" value="Ajouter une ville">';
-			echo '<input type="submit" name="Edit" value="Modifier une ville">';
+			echo "<input type=\"submit\" name=\"Add\" value=\"$ATowns_1\">";
+			echo "<input type=\"submit\" name=\"Edit\" value=\"$ATowns_2\">";
 			echo '</form>';
 		}
 		if (isset($_POST['Edit']))
 		{
-			echo 'Voici la liste des villes du MMORPG<br /><br />';
+			echo "$ATowns_3<br /><br />";
 			$Towns_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
 			while ($Towns_List = $Towns_List_Query->fetch())
 			{
@@ -26,8 +26,8 @@
 				$Town_ID = stripslashes($Towns_List['Town_ID']);
 				echo '<form method="POST" action="Towns.php">';
 				echo "<input type=\"hidden\" name=\"Town_ID\" value=\"$Town_ID\">";
-				echo '<input type="submit" name="Second_Edit" value="Modifier">';
-				echo '<input type="submit" name="Delete" value="supprimer">';
+				echo "<input type=\"submit\" name=\"Second_Edit\" value=\"$ATowns_4\">";
+				echo "<input type=\"submit\" name=\"Delete\" value=\"$ATowns_5\">";
 				echo '</form>';
 			}
 			$Towns_List_Query->closeCursor();
@@ -52,12 +52,12 @@
 
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Towns.php">';
-			echo "Image (Adresse) :<br /> <input type=\"text\" name=\"Town_Image\" value=\"$Town_Image\"><br /><br />";
-			echo "Nom de la ville :<br /> <input type=\"text\" name=\"Town_Name\" value=\"$Town_Name\"><br /><br />";
-			echo "Description de la ville : <br /><textarea name=\"Town_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Town_Description</textarea><br /><br />";
-			echo "Prix de l'auberge :<br /> <input type=\"text\" name=\"Town_Price_INN\" value=\"$Town_Price_INN\"><br /><br />";
-			echo "Ville accessible au chapitre :<br /> <input type=\"text\" name=\"Town_Chapter\" value=\"$Town_Chapter\"><br /><br />";
-			echo '<input type="submit" name="End_Edit" value="Terminer">';
+			echo "$ATowns_6<br /> <input type=\"text\" name=\"Town_Image\" value=\"$Town_Image\"><br /><br />";
+			echo "$ATowns_7<br /> <input type=\"text\" name=\"Town_Name\" value=\"$Town_Name\"><br /><br />";
+			echo "$ATowns_8<br /><textarea name=\"Town_Description\" ID=\"message\" rows=\"10\" cols=\"50\">$Town_Description</textarea><br /><br />";
+			echo "$ATowns_9<br /> <input type=\"text\" name=\"Town_Price_INN\" value=\"$Town_Price_INN\"><br /><br />";
+			echo "$ATowns_10<br /> <input type=\"text\" name=\"Town_Chapter\" value=\"$Town_Chapter\"><br /><br />";
+			echo "<input type=\"submit\" name=\"End_Edit\" value=\"$ATowns_11\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Edit']))
@@ -74,11 +74,11 @@
 				$Edit = $bdd->prepare("UPDATE Caranille_Towns SET Town_Image= :Town_Image, Town_Name= :Town_Name, Town_Description= :Town_Description, Town_Price_INN= :Town_Price_INN, Town_Chapter= :Town_Chapter WHERE Town_ID= :Town_ID");
 				$Edit->execute(array('Town_Image'=> $Town_Image, 'Town_Name'=> $Town_Name, 'Town_Description'=> $Town_Description, 'Town_Price_INN'=> $Town_Price_INN, 'Town_Chapter'=> $Town_Chapter, 'Town_ID'=> $Town_ID));
 				
-				echo 'Ville mises à jour';
+				echo $ATowns_12;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $ATowns_13;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -88,18 +88,18 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_Towns WHERE Town_ID= ?");
 			$Delete->execute(array($Town_ID));
 
-			echo 'La ville a bien été supprimé';
+			echo $ATowns_14;
 		}
 		if (isset($_POST['Add']))
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Towns.php">';
-			echo 'Image (Adresse) :<br /> <input type="text" name="Town_Image"><br /><br />';	
-			echo 'Nom de la ville :<br /> <input type="text" name="Town_Name"><br /><br />';
-			echo 'Description de la ville :<br /><textarea name="Town_Description" ID="message" rows="10" cols="50"></textarea><br /><br />';
-			echo 'Prix de l\'auberge :<br /> <input type="text" name="Town_Price_INN"><br /><br />';
-			echo 'Ville accessible au chapitre :<br /> <input type="text" name="Town_Chapter"><br /><br />';
-			echo '<input type="submit" name="End_Add" value="Terminer">';
+			echo "$ATowns_6<br /> <input type=\"text\" name=\"Town_Image\"><br /><br />";	
+			echo "$ATowns_7<br /> <input type=\"text\" name=\"Town_Name\"><br /><br />";
+			echo "$ATowns_8<br /><textarea name=\"Town_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$ATowns_9<br /> <input type=\"text\" name=\"Town_Price_INN\"><br /><br />";
+			echo "$ATowns_10<br /> <input type=\"text\" name=\"Town_Chapter\"><br /><br />";
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$ATowns_11\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -114,18 +114,18 @@
 				$Add = $bdd->prepare("INSERT INTO Caranille_Towns VALUES ('', :Town_Image, :Town_Name, :Town_Description, :Town_Price_INN, :Town_Chapter)");
 				$Add->execute(array('Town_Image'=> $Town_Image, 'Town_Name'=> $Town_Name, 'Town_Description'=> $Town_Description, 'Town_Price_INN'=> $Town_Price_INN, 'Town_Chapter'=> $Town_Chapter));
 			
-				echo 'Ville ajoutée';
+				echo $ATowns_15;
 			}
 			else
 			{
-				echo 'Tous les champs n\'ont pas été remplis';
+				echo $ATowns_13;
 			}
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo 'Vous ne possèdez pas le Access nécessaire pour accèder à cette partie du site';
+		echo $ATowns_16;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
