@@ -415,7 +415,7 @@ if (isset($_SESSION['Language']))
 				}
 				if (isset($_POST['Finish']))
 				{
-					require_once '/Kernel/Functions/SQL.php';
+					require_once 'Kernel/Functions/SQL.php';
 					echo "<div class=\"important\"><?php echo $Install_36; ?></div><br /><br />";
 					$RPG_Name = htmlspecialchars(addslashes($_POST['RPG_Name']));
 					$Presentation = htmlspecialchars(addslashes($_POST['Presentation']));
