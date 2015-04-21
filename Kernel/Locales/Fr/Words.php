@@ -527,7 +527,7 @@
 	$AConfiguration_0 = "Le MMORPG est actuellement fermé aux joueurs";
 	$AConfiguration_1 = "Le MMORPG est actuellement ouvert aux joueurs";
 	$AConfiguration_2 = "Ouvrir le mmorpg aux joueurs";
-	$AConfiguration_3 = "Fermer le rpg aux joueurs";
+	$AConfiguration_3 = "Fermer le mmorpg aux joueurs";
 	$AConfiguration_4 = "Terminer";
 	$AConfiguration_5 = "Mise à jour effectuée";
 	$AConfiguration_6 = "Continuer";
