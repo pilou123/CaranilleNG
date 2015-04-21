@@ -31,7 +31,7 @@
 	//Si le Access est autre que Admin, afficher le menu classique
 	else
 	{
-		echo <?php echo $AIndex_16; ?>;
+		echo $AIndex_16;
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
 ?>
