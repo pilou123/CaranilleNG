@@ -739,6 +739,53 @@
 	$ANews_13 = "Tous les champs n'ont pas été remplis";
 	$ANews_14 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 	
+	//TRADUCTION OF PARCHMENTS MODULES
+	$AParchments_0 = "Que souhaitez-vous faire ?";
+	$AParchments_1 = "Ajouter un parchemin";
+	$AParchments_2 = "Modifier un parchemin";
+	$AParchments_3 = "Nom";
+	$AParchments_4 = "Modifier";
+	$AParchments_5 = "Supprimer";
+	$AParchments_6 = "Image (Adresse)";
+	$AParchments_7 = "Niveau requis";
+	$AParchments_8 = "Nom";
+	$AParchments_9 = "Description";
+	$AParchments_10 = "HP +";
+	$AParchments_11 = "MP +";
+	$AParchments_12 = "Force +";
+	$AParchments_13 = "Magie +";
+	$AParchments_14 = "Agilité +";
+	$AParchments_15 = "Défense +";
+	$AParchments_16 = "Sagesse +";
+	$AParchments_17 = "Prix d'achat du parchemin";
+	$AParchments_18 = "Prix de vente du parchemin";
+	$AParchments_19 = "Dans quelle ville se trouve t'il ?";
+	$AParchments_20 = "Aucune ville";
+	$AParchments_21 = "Terminer";
+	$AParchments_22 = "Parchemin mis à jour";
+	$AParchments_23 = "Tous les champs n'ont pas été remplis";
+	$AParchments_24 = "Le parchemin a bien été supprimé";
+	$AParchments_25 = "Tous les champs n\'ont pas été remplis";
+	$AParchments_26 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	
+	//TRADUCTION OF TOWNS MODULES
+	$ATowns_0 = "Que souhaitez-vous faire ?";
+	$ATowns_1 = "Ajouter une ville";
+	$ATowns_2 = "Modifier une ville";
+	$ATowns_3 = "Voici la liste des villes du MMORPG";
+	$ATowns_4 = "Modifier";
+	$ATowns_5 = "Supprimer";
+	$ATowns_6 = "Image (Adresse)";
+	$ATowns_7 = "Nom de la ville";
+	$ATowns_8 = "Description de la ville";
+	$ATowns_9 = "Prix de l'auberge";
+	$ATowns_10 = "Ville accessible au chapitre";
+	$ATowns_11 = "Terminer";
+	$ATowns_12 = "Ville mises à jour";
+	$ATowns_13 = "Tous les champs n'ont pas été remplis";
+	$ATowns_14 = "La ville a bien été supprimé";
+	$ATowns_15 = "Ville ajoutée";
+	$ATowns_16 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 	
 //END OF THE /ADMIN/MODULES/ TRADUCTION
 
