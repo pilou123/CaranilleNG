@@ -21,7 +21,7 @@
 			$Magics_List_Query = $bdd->query("SELECT * FROM Caranille_Magics");
 			while ($Magics = $Magics_List_Query->fetch())
 			{
-				echo "$AMagics_3" .$Magics['Magic_Name']. '<br />';
+				echo "$AMagics_3 " .$Magics['Magic_Name']. '<br />';
 				$Magic_ID = stripslashes($Magics['Magic_ID']);
 				echo '<form method="POST" action="Magics.php">';
 				echo "<input type=\"hidden\" name=\"Magic_ID\" value=\"$Magic_ID\">";
@@ -61,7 +61,7 @@
 			if ($Magic_Type == "Attack")
 			{
 				echo "<option selected=\"selected\" value=\"$Magic_Type\">$Magic_Type</option>";
-				echo "<option value=\"Health\">$AMagics_10</option"
+				echo "<option value=\"Health\">$AMagics_10</option>";
 			}
 			if ($Magic_Type == "Health")
 			{
@@ -146,7 +146,7 @@
 			echo '</select><br /><br />';
 			echo "AMagics_12<br /> <input type=\"text\" name=\"Magic_Effect\"><br /><br />";
 			echo "AMagics_13<br /> <input type=\"text\" name=\"Magic_MP_Cost\"><br /><br />";				
-			echo "$AMagics_14<br /> <input type=\"text\" name=\"Magic_Price\"><br /><br "
+			echo "$AMagics_14<br /> <input type=\"text\" name=\"Magic_Price\"><br /><br />";
 			echo "$AMagics_15<br />";
 			echo "<select name=\"Magic_Town\" ID=\"Magic_Town\">";
 			$Towns_List_Query = $bdd->query("SELECT * FROM Caranille_Towns");
@@ -190,7 +190,7 @@
 				$Add = $bdd->prepare("INSERT INTO Caranille_Magics VALUES('', :Magic_Image, :Magic_Name, :Magic_Description, :Magic_Type, :Magic_Effect, :Magic_MP_Cost, :Town_ID_choisit, :Magic_Price)");
 				$Add->execute(array('Magic_Image'=> $Magic_Image, 'Magic_Name'=> $Magic_Name, 'Magic_Description'=> $Magic_Description, 'Magic_Type'=> $Magic_Type, 'Magic_Effect'=> $Magic_Effect, 'Magic_MP_Cost'=> $Magic_MP_Cost, 'Town_ID_choisit'=> $Town_ID_choisit, 'Magic_Price'=> $Magic_Price));
 				
-				echo $AMagics_21
+				echo $AMagics_21;
 			}
 			else
 			{

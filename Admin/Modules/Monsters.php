@@ -21,7 +21,7 @@
 			$Monsters_List_Query = $bdd->query("SELECT * FROM Caranille_Monsters");
 			while ($Monsters = $Monsters_List_Query->fetch())
 			{
-				echo "$AMonsters_3" .$Monsters['Monster_Name']. '<br />';
+				echo "$AMonsters_3 " .$Monsters['Monster_Name']. '<br />';
 				$Monster_ID = stripslashes($Monsters['Monster_ID']);
 				echo '<form method="POST" action="Monsters.php">';
 				echo "<input type=\"hidden\" name=\"Monster_ID\" value=\"$Monster_ID\">";

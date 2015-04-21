@@ -22,7 +22,7 @@
 			$Chapter_List_Query = $bdd->query("SELECT * FROM Caranille_Chapters");
 			while ($Chapter_List = $Chapter_List_Query->fetch())
 			{
-				echo "$AChapters_4" .stripslashes($Chapter_List['Chapter_Name']). '<br />';
+				echo "$AChapters_4 " .stripslashes($Chapter_List['Chapter_Name']). '<br />';
 				$Chapter_ID = stripslashes($Chapter_List['Chapter_ID']);
 				echo '<form method="POST" action="Chapters.php">';
 				echo "<input type=\"hidden\" name=\"Chapter_ID\" value=\"$Chapter_ID\">";
@@ -123,9 +123,9 @@
 			echo "$AChapters_18<br /><br />";
 			echo "$AChapters_8<br /> <input type=\"text\" name=\"Chapter_Number\"><br /><br />";
 			echo "$AChapters_9<br /> <input type=\"text\" name=\"Chapter_Name\"><br /><br />";
-			echo "$AChapters_10<br /><textarea name=\"Chapter_Opening\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
-			echo "$AChapters_11<br /><textarea name=\"Chapter_Ending\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
-			echo "$AChapters_12<br /><textarea name=\"Chapter_Defeate\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
+			echo "$AChapters_10<br /><textarea name=\"Chapter_Opening\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AChapters_11<br /><textarea name=\"Chapter_Ending\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
+			echo "$AChapters_12<br /><textarea name=\"Chapter_Defeate\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
 			echo "$AChapters_13<br />";
 			echo '<select name="Chapter_Monster" ID="Chapter_Monster">';
 

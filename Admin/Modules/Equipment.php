@@ -21,7 +21,7 @@
 			$Equipment_List_Query = $bdd->query("SELECT * FROM Caranille_Items WHERE Item_Type = 'Armor' || Item_Type = 'Boots' || Item_Type = 'Gloves' || Item_Type = 'Helmet' || Item_Type = 'Weapon'");
 			while ($Equipment_List = $Equipment_List_Query->fetch())
 			{
-				echo "$AEquipment_3" .stripslashes($Equipment_List['Item_Name']). '<br />';
+				echo "$AEquipment_3 " .stripslashes($Equipment_List['Item_Name']). '<br />';
 				$Item_ID = stripslashes($Equipment_List['Item_ID']);
 				echo '<form method="POST" action="Equipment.php">';
 				echo "<input type=\"hidden\" name=\"Item_ID\" value=\"$Item_ID\">";
@@ -203,7 +203,7 @@
 			echo '</select><br /><br />';
 			echo "$AEquipment_14<br /> <input type=\"text\" name=\"Item_Level_Required\"><br /><br />";
 			echo "$AEquipment_3<br /> <input type=\"text\" name=\"Item_Name\"><br /><br />";
-			echo "$AEquipment_15<br /><textarea name=\"Item_Description\" ID=\"message\" rows="10" cols="50"></textarea><br /><br />";
+			echo "$AEquipment_15<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
 			echo "$AEquipment_16<br /> <input type=\"text\" name=\"Item_HP_Effect\"><br /><br />";
 			echo "$AEquipment_17<br /> <input type=\"text\" name=\"Item_MP_Effect\"><br /><br />";
 			echo "$AEquipment_18<br /> <input type=\"text\" name=\"Item_Strength_Effect\"><br /><br />";

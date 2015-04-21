@@ -19,7 +19,7 @@
 			$Account_List_Query = $bdd->query("SELECT * FROM Caranille_Accounts");
 			while ($Account_List = $Account_List_Query->fetch())
 			{
-				echo "$AAccounts_2" .htmlspecialchars(addslashes($Account_List['Account_Pseudo'])). '<br />';
+				echo "$AAccounts_2 " .htmlspecialchars(addslashes($Account_List['Account_Pseudo'])). '<br />';
 				$Account_ID = htmlspecialchars(addslashes($Account_List['Account_ID']));
 				echo '<form method="POST" action="Accounts.php">';
 				echo "<input type=\"hidden\" name=\"Account_ID\" value=\"$Account_ID\">";

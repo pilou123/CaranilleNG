@@ -21,7 +21,7 @@
 			$Items_List_Query = $bdd->query("SELECT * FROM Caranille_Items WHERE Item_Type = 'Health' || Item_Type = 'Magic'");
 			while ($Items_List = $Items_List_Query->fetch())
 			{
-				echo "$AItems_3" .stripslashes($Items_List['Item_Name']). '<br />';
+				echo "$AItems_3 " .stripslashes($Items_List['Item_Name']). '<br />';
 				$Item_ID = stripslashes($Items_List['Item_ID']);
 				echo '<form method="POST" action="Items.php">';
 				echo "<input type=\"hidden\" name=\"Item_ID\" value=\"$Item_ID\">";
@@ -139,16 +139,16 @@
 		{
 			echo '</form><br /><br />';
 			echo '<form method="POST" action="Items.php">';
-			echo "$AItems_6 <br /> <input type=\"text\" name=\"Item_Image\"><br /><br />";
+			echo "$AItems_6<br /> <input type=\"text\" name=\"Item_Image\"><br /><br />";
 			echo "<div class=\"important\">$AItems_7<br /></div";
 			echo '<select name="Item_Type" ID="Item_Type">';
-				echo "<option value=\"Health\">$AItems_8</option"
+				echo "<option value=\"Health\">$AItems_8</option";
 				echo "<option value=\"Magic\">$AItems_9</option>";
 			echo '</select><br /><br />';
 			echo "$AItems_10<br /> <input type=\"text\" name=\"Item_Level_Required\"><br /><br />";
 			echo "$AItems_11<br /> <input type=\"text\" name=\"Item_Name\"><br /><br />";
 			echo "$AItems_12<br /><textarea name=\"Item_Description\" ID=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />";
-			echo "$AItems_13br /> <input type=\"text\" name=\"Item_HP_Effect\"><br /><br />";
+			echo "$AItems_13<br /> <input type=\"text\" name=\"Item_HP_Effect\"><br /><br />";
 			echo "$AItems_14<br /> <input type=\"text\" name=\"Item_MP_Effect\"><br /><br />";
 			echo "$AItems_15<br /> <input type=\"text\" name=\"Item_Purchase_Price\"><br /><br />";
 			echo "$AItems_16<br /> <input type=\"text\" name=\"Item_Sale_Price\"><br /><br />";

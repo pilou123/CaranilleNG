@@ -21,7 +21,7 @@
 			$Parchement_List_Query = $bdd->query("SELECT * FROM Caranille_Items WHERE Item_Type = 'Parchment'");
 			while ($Parchement_List = $Parchement_List_Query->fetch())
 			{
-				echo "$AParchments_3" .stripslashes($Parchement_List['Item_Name']). '<br />';
+				echo "$AParchments_3 " .stripslashes($Parchement_List['Item_Name']). '<br />';
 				$Item_ID = stripslashes($Parchement_List['Item_ID']);
 				echo '<form method="POST" action="Parchments.php">';
 				echo "<input type=\"hidden\" name=\"Item_ID\" value=\"$Item_ID\">";

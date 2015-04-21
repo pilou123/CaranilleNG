@@ -21,7 +21,7 @@
 			$Invocations_List_Query = $bdd->query("SELECT * FROM Caranille_Invocations");
 			while ($Invocations_List = $Invocations_List_Query->fetch())
 			{
-				echo "$AInvocations_3" .stripslashes($Invocations_List['Invocation_Name']). '<br />';
+				echo "$AInvocations_3 " .stripslashes($Invocations_List['Invocation_Name']). '<br />';
 				$Invocation_ID = stripslashes($Invocations_List['Invocation_ID']);
 				echo '<form method="POST" action="Invocations.php">';
 				echo "<input type=\"hidden\" name=\"Invocation_ID\" value=\"$Invocation_ID\">";
