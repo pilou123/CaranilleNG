@@ -107,7 +107,7 @@ function SQL_Add_Account($Account_Pseudo, $Account_Password, $Account_Email)
 			'0', 
 			'1', 
 			'1', 
-			'Admin', 
+			'Member', 
 			:Date, 
 			:IP, 
 			'Authorized', 
