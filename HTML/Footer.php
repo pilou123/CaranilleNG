@@ -8,7 +8,7 @@
 		<p>
 
 		<footer>
-			<a href="https://github.com/Caranille/Caranille">MMORPG crée avec Caranilleng</a><br />
+			<a href="https://github.com/Caranille/Caranilleng">MMORPG crée avec Caranilleng</a><br />
 			<?php
 			$timeend=microtime(true);
 			$time=$timeend-$timestart;
