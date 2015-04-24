@@ -28,36 +28,36 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
 		$Data_Account_Query->execute(array($Account_Pseudo));
 		while ($Account_Data = $Data_Account_Query->fetch())
 		{
-	    	$Account_Array['Account']['ID'] = stripslashes($Account_Data['Account_ID']);
-			$Account_Array['Account']['Guild_ID'] = stripslashes($Account_Data['Account_Guild_ID']);
-			$Account_Array['Account']['Pseudo'] = stripslashes($Account_Data['Account_Pseudo']);
-			$Account_Array['Account']['Email'] = stripslashes($Account_Data['Account_Email']);
-			$Account_Array['Account']['Level'] = stripslashes($Account_Data['Account_Level']);
-			$Account_Array['Account']['Strength'] = stripslashes($Account_Data['Level_Strength']);
-			$Account_Array['Account']['Magic'] = stripslashes($Account_Data['Level_Magic']);
-			$Account_Array['Account']['Agility'] = stripslashes($Account_Data['Level_Agility']);
-			$Account_Array['Account']['Defense'] = stripslashes($Account_Data['Level_Defense']);
-			$Account_Array['Account']['HP'] = stripslashes($Account_Data['Account_HP_Remaining']);
-			$Account_Array['Account']['HP_MAX'] = stripslashes($Account_Data['Level_HP']);
-			$Account_Array['Account']['HP_Bonus'] = stripslashes($Account_Data['Account_HP_Bonus']);
-			$Account_Array['Account']['MP'] = stripslashes($Account_Data['Account_MP_Remaining']);
-			$Account_Array['Account']['MP_MAX'] = stripslashes($Account_Data['Level_MP']);
-			$Account_Array['Account']['MP_Bonus'] = stripslashes($Account_Data['Account_MP_Bonus']);
-			$Account_Array['Account']['Strength_Bonus'] = stripslashes($Account_Data['Account_Strength_Bonus']);
-			$Account_Array['Account']['Magic_Bonus'] = stripslashes($Account_Data['Account_Magic_Bonus']);
-			$Account_Array['Account']['Agility_Bonus'] = stripslashes($Account_Data['Account_Agility_Bonus']);
-			$Account_Array['Account']['Defense_Bonus'] = stripslashes($Account_Data['Account_Defense_Bonus']);
-			$Account_Array['Account']['Sagesse_Bonus'] = stripslashes($Account_Data['Account_Sagesse_Bonus']);
-			$Account_Array['Account']['Experience'] = stripslashes($Account_Data['Account_Experience']);
-			$Account_Array['Account']['Gold'] = stripslashes($Account_Data['Account_Golds']);
-			$Account_Array['Account']['Chapter'] = stripslashes($Account_Data['Account_Chapter']);
-			$Account_Array['Account']['Mission'] = stripslashes($Account_Data['Account_Mission']);	
-			$Account_Array['Account']['Access'] = stripslashes($Account_Data['Account_Access']);
-			$Account_Array['Account']['Last_Connection'] = stripslashes($Account_Data['Account_Last_Connection']);
-			$Account_Array['Account']['Last_IP'] = stripslashes($Account_Data['Account_Last_IP']);
-			$Account_Array['Account']['Status'] = stripslashes($Account_Data['Account_Status']);
-			$Account_Array['Account']['Reason'] = stripslashes($Account_Data['Account_Reason']);
-			return $Account_Array['Account'];
+			$Account['Account_Data']['ID'] = stripslashes($Account_Data['Account_ID']);
+			$Account['Account_Data']['Pseudo'] = stripslashes($Account_Data['Account_Pseudo']);
+			$Account['Account_Data']['Email'] = stripslashes($Account_Data['Account_Email']);
+			$Account['Account_Data']['Level'] = stripslashes($Account_Data['Account_Level']);
+			$Account['Account_Data']['Strength'] = stripslashes($Account_Data['Level_Strength']);
+			$Account['Account_Data']['Magic'] = stripslashes($Account_Data['Level_Magic']);
+			$Account['Account_Data']['Agility'] = stripslashes($Account_Data['Level_Agility']);
+			$Account['Account_Data']['Defense'] = stripslashes($Account_Data['Level_Defense']);
+			$Account['Account_Data']['HP'] = stripslashes($Account_Data['Account_HP_Remaining']);
+			$Account['Account_Data']['HP_MAX'] = stripslashes($Account_Data['Level_HP']);
+			$Account['Account_Data']['HP_Bonus'] = stripslashes($Account_Data['Account_HP_Bonus']);
+			$Account['Account_Data']['MP'] = stripslashes($Account_Data['Account_MP_Remaining']);
+			$Account['Account_Data']['MP_MAX'] = stripslashes($Account_Data['Level_MP']);
+			$Account['Account_Data']['MP_Bonus'] = stripslashes($Account_Data['Account_MP_Bonus']);
+			$Account['Account_Data']['Strength_Bonus'] = stripslashes($Account_Data['Account_Strength_Bonus']);
+			$Account['Account_Data']['Magic_Bonus'] = stripslashes($Account_Data['Account_Magic_Bonus']);
+			$Account['Account_Data']['Agility_Bonus'] = stripslashes($Account_Data['Account_Agility_Bonus']);
+			$Account['Account_Data']['Defense_Bonus'] = stripslashes($Account_Data['Account_Defense_Bonus']);
+			$Account['Account_Data']['Sagesse_Bonus'] = stripslashes($Account_Data['Account_Sagesse_Bonus']);
+			$Account['Account_Data']['Experience'] = stripslashes($Account_Data['Account_Experience']);
+			$Account['Account_Data']['Gold'] = stripslashes($Account_Data['Account_Golds']);
+			$Account['Account_Data']['Chapter'] = stripslashes($Account_Data['Account_Chapter']);
+			$Account['Account_Data']['Mission'] = stripslashes($Account_Data['Account_Mission']);	
+			$Account['Account_Data']['Access'] = stripslashes($Account_Data['Account_Access']);
+			$Account['Account_Data']['Last_Connection'] = stripslashes($Account_Data['Account_Last_Connection']);
+			$Account['Account_Data']['Last_IP'] = stripslashes($Account_Data['Account_Last_IP']);
+			$Account['Account_Data']['Status'] = stripslashes($Account_Data['Account_Status']);
+			$Account['Account_Data']['Reason'] = stripslashes($Account_Data['Account_Reason']);
+			$_SESSION['Account'] = $Account['Account_Data'];
+			return $_SESSION['Account'];
 		}
 	}
 	else
