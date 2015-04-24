@@ -1,5 +1,4 @@
 <?php
-session_start();
 //LAUNCH THE CONNECTION
     try 
     {
@@ -57,8 +56,7 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
 			$Account['Account_Data']['Last_IP'] = stripslashes($Account_Data['Account_Last_IP']);
 			$Account['Account_Data']['Status'] = stripslashes($Account_Data['Account_Status']);
 			$Account['Account_Data']['Reason'] = stripslashes($Account_Data['Account_Reason']);
-			$_SESSION['Account'] = $Account['Account_Data'];
-			return $_SESSION['Account'];
+			return $Account['Account_Data'];
 		}
 	}
 	else
