@@ -19,7 +19,7 @@ if (isset($_SESSION['ID']))
 		<?php
 	}
 	?>
-	Caranille <?php echo "$version"; ?>
+	CaranilleNG <?php echo "$version"; ?>
 	<?php
 }
 ?>
