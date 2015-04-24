@@ -193,6 +193,72 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
 	    				$Account['Account_Data']['Weapon_Agility_Effect'] = 0;
 	    				$Account['Account_Data']['Weapon_Defense_Effect'] = 0;
 	    			}
+	    				
+		    		$recuperation_donnees_jeu = $bdd->query("SELECT * FROM Caranille_Configuration");
+		    		while ($donnees_jeu = $recuperation_donnees_jeu->fetch())
+		    		{
+		    			$_SESSION['Configuration_Access'] = stripslashes($donnees_jeu['Configuration_Access']);
+		    		}
+		    
+		    		$recuperation_donnees_jeu->closeCursor();
+		    		$_SESSION['Battle'] = 0;
+		    		$_SESSION['Mission'] = 0;
+		    		$_SESSION['Town'] = 0;
+		    		
+		    		if ($_SESSION['Configuration_Access'] == "Yes")
+		    		{
+		    			$ID = $_SESSION['ID'];
+		    			$Date = date('Y-m-d H:i:s');
+		    			$IP = $_SERVER["REMOTE_ADDR"];
+		    			$Last_Connection = $_SESSION['Last_Connection'];
+		    			$Last_IP = $_SESSION['Last_IP'];
+		    			if ($Last_IP != $_SERVER["REMOTE_ADDR"])
+		    			{
+		    				echo "<script type=\"text/javascript\"> alert(\"$Login_4 $Last_Connection\\n- Adresse IP: $Last_IP\"); </script>";
+		    			}
+		    			$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Last_Connection = :Date, Account_Last_IP = :IP WHERE Account_ID = :ID");
+		    			$Update_Account->execute(array('Date' => $Date, 'IP' => $IP, 'ID' => $ID));
+		    			echo "$Login_5<br /><br />";
+		    			echo "<a href=\"Main.php\">$Login_6</a>";
+		    		}
+		    		else
+		    		{
+		    			if ($_SESSION['Access'] == "Admin")
+		    			{
+		    				$ID = $_SESSION['ID'];
+		    				$Date = date('Y-m-d H:i:s');
+		    				$IP = $_SERVER["REMOTE_ADDR"];
+		    				$Last_Connection = $_SESSION['Last_Connection'];
+		    				$Last_IP = $_SESSION['Last_IP'];
+		    				if ($Last_IP != $_SERVER["REMOTE_ADDR"])
+		    				{
+		    					echo "<script type=\"text/javascript\"> alert(\"$Login_4 $Last_Connection\\n- Adresse IP: $Last_IP\"); </script>";
+		    				}
+		    				$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Last_Connection = :Date, Account_Last_IP = :IP WHERE Account_ID = :ID");
+		    				$Update_Account->execute(array('Date' => $Date, 'IP' => $IP, 'ID' => $ID));
+		    				echo "$Login_5<br /><br />";
+		    				echo "<a href=\"Main.php\">$Login_6</a>";
+		    			}
+		    			else
+		    			{	
+		    				echo "$Login_7";
+		    				$ID = $_SESSION['ID'];
+		    				$Date = date('Y-m-d H:i:s');
+		    				$IP = $_SERVER["REMOTE_ADDR"];
+		    				$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Last_Connection = :Date, Account_Last_IP = :IP WHERE Account_ID = :ID");
+		    				$Update_Account->execute(array('Date' => $Date, 'IP' => $IP, 'ID' => $ID));
+		    				session_destroy();
+		    			}
+			        }
+			        else
+			        {
+			            $Reason = $_SESSION['Reason'];
+			            echo "<script type=\"text/javascript\"> alert(\"$Login_8 $Reason\"); </script>";
+				}
+				else
+				{
+					echo "$Login_9";
+				}
 				return $Account['Account_Data'];
 			}
 			else
