@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Caranille - Accueil</title>
+		<title>CaranilleNG</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" media="screen" type="text/css" title="design" href="<?php echo $_SESSION['Link_Root'] ."/Design/Design.css"; ?>"/>
 	</head>
