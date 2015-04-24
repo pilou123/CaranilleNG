@@ -17,7 +17,7 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
     global $Login_6;
     global $Login_7;
     
-    $Login_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ? AND Account_Password= ?");
+    	$Login_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ? AND Account_Password= ?");
 	$Login_Query->execute(array($Account_Pseudo, $Account_Password));
 	$Login = $Login_Query->rowCount();
 	if ($Login >= 1)
@@ -56,6 +56,8 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
 			$Account['Account_Data']['Last_IP'] = stripslashes($Account_Data['Account_Last_IP']);
 			$Account['Account_Data']['Status'] = stripslashes($Account_Data['Account_Status']);
 			$Account['Account_Data']['Reason'] = stripslashes($Account_Data['Account_Reason']);
+			
+			$Data_Account_Query->closeCursor();
 			
 			if ($Account['Account_Data']['Status'] == "Authorized")
 			{
