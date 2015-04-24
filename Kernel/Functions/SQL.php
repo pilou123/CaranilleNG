@@ -56,6 +56,139 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
 			$Account['Account_Data']['Last_IP'] = stripslashes($Account_Data['Account_Last_IP']);
 			$Account['Account_Data']['Status'] = stripslashes($Account_Data['Account_Status']);
 			$Account['Account_Data']['Reason'] = stripslashes($Account_Data['Account_Reason']);
+			
+			$Data_Item_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts, Caranille_Inventory, Caranille_Items 
+    			WHERE Inventory_Account_ID = Account_ID
+    			AND Inventory_Item_ID = Item_ID 
+    			AND Inventory_Item_Equipped='Yes'
+    			AND Account_Pseudo= ?"); 
+    			$Data_Item_Query->execute(array($Pseudo));
+    			$Item_Quantity = $Data_Item_Query->rowCount();
+    			while ($Account_Data = $Data_Item_Query->fetch())
+    			{
+	    			if ($Account_Data['Item_Type'] == "Armor")
+	    			{
+	    				$_SESSION['Armor_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+	    				$_SESSION['Armor_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+	    				$_SESSION['Armor'] = stripslashes($Account_Data['Item_Name']);
+	    				$_SESSION['Armor_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+	    				$_SESSION['Armor_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+	    				$_SESSION['Armor_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+	    				$_SESSION['Armor_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+	    				$_SESSION['Armor_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+	    				$_SESSION['Armor_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    			}
+	    			if ($Account_Data['Item_Type'] == "Boots")
+	    			{
+	    				$_SESSION['Boots_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+	    				$_SESSION['Boots_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+	    				$_SESSION['Boots'] = stripslashes($Account_Data['Item_Name']);
+	    				$_SESSION['Boots_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+	    				$_SESSION['Boots_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+	    				$_SESSION['Boots_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+	    				$_SESSION['Boots_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+	    				$_SESSION['Boots_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+	    				$_SESSION['Boots_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    			}
+	    			if ($Account_Data['Item_Type'] == "Gloves")
+	    			{
+	    				$_SESSION['Gloves_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+	    				$_SESSION['Gloves_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+	    				$_SESSION['Gloves'] = stripslashes($Account_Data['Item_Name']);
+	    				$_SESSION['Gloves_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+	    				$_SESSION['Gloves_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+	    				$_SESSION['Gloves_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+	    				$_SESSION['Gloves_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+	    				$_SESSION['Gloves_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+	    				$_SESSION['Gloves_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    			}
+	    			if ($Account_Data['Item_Type'] == "Helmet")
+	    			{
+	    				$_SESSION['Helmet_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+	    				$_SESSION['Helmet_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+	    				$_SESSION['Helmet'] = stripslashes($Account_Data['Item_Name']);
+	    				$_SESSION['Helmet_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+	    				$_SESSION['Helmet_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+	    				$_SESSION['Helmet_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+	    				$_SESSION['Helmet_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+	    				$_SESSION['Helmet_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+	    				$_SESSION['Helmet_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    			}
+	    			if ($Account_Data['Item_Type'] == "Weapon")
+	    			{
+	    				$_SESSION['Weapon_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+	    				$_SESSION['Weapon_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+	    				$_SESSION['Weapon'] = stripslashes($Account_Data['Item_Name']);
+	    				$_SESSION['Weapon_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+	    				$_SESSION['Weapon_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+	    				$_SESSION['Weapon_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+	    				$_SESSION['Weapon_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+	    				$_SESSION['Weapon_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+	    				$_SESSION['Weapon_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    			}
+    			}	
+    			$Data_Item_Query->closeCursor();
+    
+    			if (empty($_SESSION['Armor_Inventory_ID']))
+    			{
+    				$_SESSION['Armor_Inventory_ID'] = 0;
+    				$_SESSION['Armor_ID'] = 0;
+    				$_SESSION['Armor'] = "Aucune";
+    				$_SESSION['Armor_HP_Effect'] = 0;
+    				$_SESSION['Armor_MP_Effect'] = 0;
+    				$_SESSION['Armor_Strength_Effect'] = 0;
+    				$_SESSION['Armor_Magic_Effect'] = 0;
+    				$_SESSION['Armor_Agility_Effect'] = 0;
+    				$_SESSION['Armor_Defense_Effect'] = 0;
+    			}
+    			if (empty($_SESSION['Boots_Inventory_ID']))
+    			{
+    				$_SESSION['Boots_Inventory_ID'] = 0;
+    				$_SESSION['Boots_ID'] = 0;
+    				$_SESSION['Boots'] = "Aucune";
+    				$_SESSION['Boots_HP_Effect'] = 0;
+    				$_SESSION['Boots_MP_Effect'] = 0;
+    				$_SESSION['Boots_Strength_Effect'] = 0;
+    				$_SESSION['Boots_Magic_Effect'] = 0;
+    				$_SESSION['Boots_Agility_Effect'] = 0;
+    				$_SESSION['Boots_Defense_Effect'] = 0;
+    			}
+    			if (empty($_SESSION['Gloves_Inventory_ID']))
+    			{
+    				$_SESSION['Gloves_Inventory_ID'] = 0;
+    				$_SESSION['Gloves_ID'] = 0;
+    				$_SESSION['Gloves'] = "Aucun";
+    				$_SESSION['Gloves_HP_Effect'] = 0;
+    				$_SESSION['Gloves_MP_Effect'] = 0;
+    				$_SESSION['Gloves_Strength_Effect'] = 0;
+    				$_SESSION['Gloves_Magic_Effect'] = 0;
+    				$_SESSION['Gloves_Agility_Effect'] = 0;
+    				$_SESSION['Gloves_Defense_Effect'] = 0;
+    			}
+    			if (empty($_SESSION['Helmet_Inventory_ID']))
+    			{
+    				$_SESSION['Helmet_Inventory_ID'] = 0;
+    				$_SESSION['Helmet_ID'] = 0;
+    				$_SESSION['Helmet'] = "Aucun";
+    				$_SESSION['Helmet_HP_Effect'] = 0;
+    				$_SESSION['Helmet_MP_Effect'] = 0;
+    				$_SESSION['Helmet_Strength_Effect'] = 0;
+    				$_SESSION['Helmet_Magic_Effect'] = 0;
+    				$_SESSION['Helmet_Agility_Effect'] = 0;
+    				$_SESSION['Helmet_Defense_Effect'] = 0;
+    			}
+    			if (empty($_SESSION['Weapon_Inventory_ID']))
+    			{
+    				$_SESSION['Weapon_Inventory_ID'] = 0;
+    				$_SESSION['Weapon_ID'] = 0;
+    				$_SESSION['Weapon'] = "Aucune";
+    				$_SESSION['Weapon_HP_Effect'] = 0;
+    				$_SESSION['Weapon_MP_Effect'] = 0;
+    				$_SESSION['Weapon_Strength_Effect'] = 0;
+    				$_SESSION['Weapon_Magic_Effect'] = 0;
+    				$_SESSION['Weapon_Agility_Effect'] = 0;
+    				$_SESSION['Weapon_Defense_Effect'] = 0;
+    			}
 			return $Account['Account_Data'];
 		}
 	}
