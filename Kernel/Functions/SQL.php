@@ -57,139 +57,146 @@ function SQL_Account_Connection($Account_Pseudo, $Account_Password)
 			$Account['Account_Data']['Status'] = stripslashes($Account_Data['Account_Status']);
 			$Account['Account_Data']['Reason'] = stripslashes($Account_Data['Account_Reason']);
 			
-			$Data_Item_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts, Caranille_Inventory, Caranille_Items 
-    			WHERE Inventory_Account_ID = Account_ID
-    			AND Inventory_Item_ID = Item_ID 
-    			AND Inventory_Item_Equipped='Yes'
-    			AND Account_Pseudo= ?"); 
-    			$Data_Item_Query->execute(array($Pseudo));
-    			$Item_Quantity = $Data_Item_Query->rowCount();
-    			while ($Account_Data = $Data_Item_Query->fetch())
-    			{
-	    			if ($Account_Data['Item_Type'] == "Armor")
+			if ($Account['Account_Data']['Status'] == "Authorized")
+			{
+				$Data_Item_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts, Caranille_Inventory, Caranille_Items 
+	    			WHERE Inventory_Account_ID = Account_ID
+	    			AND Inventory_Item_ID = Item_ID 
+	    			AND Inventory_Item_Equipped='Yes'
+	    			AND Account_Pseudo= ?"); 
+	    			$Data_Item_Query->execute(array($Pseudo));
+	    			$Item_Quantity = $Data_Item_Query->rowCount();
+	    			while ($Account_Data = $Data_Item_Query->fetch())
 	    			{
-	    				$Account['Account_Data']['Armor_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
-	    				$Account['Account_Data']['Armor_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
-	    				$Account['Account_Data']['Armor'] = stripslashes($Account_Data['Item_Name']);
-	    				$Account['Account_Data']['Armor_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
-	    				$Account['Account_Data']['Armor_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
-	    				$Account['Account_Data']['Armor_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
-	    				$Account['Account_Data']['Armor_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
-	    				$Account['Account_Data']['Armor_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
-	    				$Account['Account_Data']['Armor_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
-	    			}
-	    			if ($Account_Data['Item_Type'] == "Boots")
+		    			if ($Account_Data['Item_Type'] == "Armor")
+		    			{
+		    				$Account['Account_Data']['Armor_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+		    				$Account['Account_Data']['Armor_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+		    				$Account['Account_Data']['Armor'] = stripslashes($Account_Data['Item_Name']);
+		    				$Account['Account_Data']['Armor_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+		    				$Account['Account_Data']['Armor_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+		    				$Account['Account_Data']['Armor_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+		    				$Account['Account_Data']['Armor_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+		    				$Account['Account_Data']['Armor_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+		    				$Account['Account_Data']['Armor_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+		    			}
+		    			if ($Account_Data['Item_Type'] == "Boots")
+		    			{
+		    				$Account['Account_Data']['Boots_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+		    				$Account['Account_Data']['Boots_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+		    				$Account['Account_Data']['Boots'] = stripslashes($Account_Data['Item_Name']);
+		    				$Account['Account_Data']['Boots_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+		    				$Account['Account_Data']['Boots_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+		    				$Account['Account_Data']['Boots_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+		    				$Account['Account_Data']['Boots_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+		    				$Account['Account_Data']['Boots_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+		    				$Account['Account_Data']['Boots_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+		    			}
+		    			if ($Account_Data['Item_Type'] == "Gloves")
+		    			{
+		    				$Account['Account_Data']['Gloves_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+		    				$Account['Account_Data']['Gloves_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+		    				$Account['Account_Data']['Gloves'] = stripslashes($Account_Data['Item_Name']);
+		    				$Account['Account_Data']['Gloves_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+		    				$Account['Account_Data']['Gloves_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+		    				$Account['Account_Data']['Gloves_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+		    				$Account['Account_Data']['Gloves_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+		    				$Account['Account_Data']['Gloves_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+		    				$Account['Account_Data']['Gloves_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+		    			}
+		    			if ($Account_Data['Item_Type'] == "Helmet")
+		    			{
+		    				$Account['Account_Data']['Helmet_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+		    				$Account['Account_Data']['Helmet_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+		    				$Account['Account_Data']['Helmet'] = stripslashes($Account_Data['Item_Name']);
+		    				$Account['Account_Data']['Helmet_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+		    				$Account['Account_Data']['Helmet_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+		    				$Account['Account_Data']['Helmet_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+		    				$Account['Account_Data']['Helmet_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+		    				$Account['Account_Data']['Helmet_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+		    				$Account['Account_Data']['Helmet_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+		    			}
+		    			if ($Account_Data['Item_Type'] == "Weapon")
+		    			{
+		    				$Account['Account_Data']['Weapon_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
+		    				$Account['Account_Data']['Weapon_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
+		    				$Account['Account_Data']['Weapon'] = stripslashes($Account_Data['Item_Name']);
+		    				$Account['Account_Data']['Weapon_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
+		    				$Account['Account_Data']['Weapon_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
+		    				$Account['Account_Data']['Weapon_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
+		    				$Account['Account_Data']['Weapon_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
+		    				$Account['Account_Data']['Weapon_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
+		    				$Account['Account_Data']['Weapon_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+		    			}
+	    			}	
+	    			$Data_Item_Query->closeCursor();
+	    
+	    			if (empty($_SESSION['Armor_Inventory_ID']))
 	    			{
-	    				$Account['Account_Data']['Boots_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
-	    				$Account['Account_Data']['Boots_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
-	    				$Account['Account_Data']['Boots'] = stripslashes($Account_Data['Item_Name']);
-	    				$Account['Account_Data']['Boots_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
-	    				$Account['Account_Data']['Boots_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
-	    				$Account['Account_Data']['Boots_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
-	    				$Account['Account_Data']['Boots_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
-	    				$Account['Account_Data']['Boots_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
-	    				$Account['Account_Data']['Boots_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    				$Account['Account_Data']['Armor_Inventory_ID'] = 0;
+	    				$Account['Account_Data']['Armor_ID'] = 0;
+	    				$Account['Account_Data']['Armor'] = "Aucune";
+	    				$Account['Account_Data']['Armor_HP_Effect'] = 0;
+	    				$Account['Account_Data']['Armor_MP_Effect'] = 0;
+	    				$Account['Account_Data']['Armor_Strength_Effect'] = 0;
+	    				$Account['Account_Data']['Armor_Magic_Effect'] = 0;
+	    				$Account['Account_Data']['Armor_Agility_Effect'] = 0;
+	    				$Account['Account_Data']['Armor_Defense_Effect'] = 0;
 	    			}
-	    			if ($Account_Data['Item_Type'] == "Gloves")
+	    			if (empty($_SESSION['Boots_Inventory_ID']))
 	    			{
-	    				$Account['Account_Data']['Gloves_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
-	    				$Account['Account_Data']['Gloves_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
-	    				$Account['Account_Data']['Gloves'] = stripslashes($Account_Data['Item_Name']);
-	    				$Account['Account_Data']['Gloves_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
-	    				$Account['Account_Data']['Gloves_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
-	    				$Account['Account_Data']['Gloves_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
-	    				$Account['Account_Data']['Gloves_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
-	    				$Account['Account_Data']['Gloves_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
-	    				$Account['Account_Data']['Gloves_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    				$Account['Account_Data']['Boots_Inventory_ID'] = 0;
+	    				$Account['Account_Data']['Boots_ID'] = 0;
+	    				$Account['Account_Data']['Boots'] = "Aucune";
+	    				$Account['Account_Data']['Boots_HP_Effect'] = 0;
+	    				$Account['Account_Data']['Boots_MP_Effect'] = 0;
+	    				$Account['Account_Data']['Boots_Strength_Effect'] = 0;
+	    				$Account['Account_Data']['Boots_Magic_Effect'] = 0;
+	    				$Account['Account_Data']['Boots_Agility_Effect'] = 0;
+	    				$Account['Account_Data']['Boots_Defense_Effect'] = 0;
 	    			}
-	    			if ($Account_Data['Item_Type'] == "Helmet")
+	    			if (empty($_SESSION['Gloves_Inventory_ID']))
 	    			{
-	    				$Account['Account_Data']['Helmet_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
-	    				$Account['Account_Data']['Helmet_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
-	    				$Account['Account_Data']['Helmet'] = stripslashes($Account_Data['Item_Name']);
-	    				$Account['Account_Data']['Helmet_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
-	    				$Account['Account_Data']['Helmet_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
-	    				$Account['Account_Data']['Helmet_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
-	    				$Account['Account_Data']['Helmet_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
-	    				$Account['Account_Data']['Helmet_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
-	    				$Account['Account_Data']['Helmet_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    				$Account['Account_Data']['Gloves_Inventory_ID'] = 0;
+	    				$Account['Account_Data']['Gloves_ID'] = 0;
+	    				$Account['Account_Data']['Gloves'] = "Aucun";
+	    				$Account['Account_Data']['Gloves_HP_Effect'] = 0;
+	    				$Account['Account_Data']['Gloves_MP_Effect'] = 0;
+	    				$Account['Account_Data']['Gloves_Strength_Effect'] = 0;
+	    				$Account['Account_Data']['Gloves_Magic_Effect'] = 0;
+	    				$Account['Account_Data']['Gloves_Agility_Effect'] = 0;
+	    				$Account['Account_Data']['Gloves_Defense_Effect'] = 0;
 	    			}
-	    			if ($Account_Data['Item_Type'] == "Weapon")
+	    			if (empty($_SESSION['Helmet_Inventory_ID']))
 	    			{
-	    				$Account['Account_Data']['Weapon_Inventory_ID'] = stripslashes($Account_Data['Inventory_ID']);
-	    				$Account['Account_Data']['Weapon_ID'] = stripslashes($Account_Data['Inventory_Item_ID']);
-	    				$Account['Account_Data']['Weapon'] = stripslashes($Account_Data['Item_Name']);
-	    				$Account['Account_Data']['Weapon_HP_Effect'] = stripslashes($Account_Data['Item_HP_Effect']);
-	    				$Account['Account_Data']['Weapon_MP_Effect'] = stripslashes($Account_Data['Item_MP_Effect']);
-	    				$Account['Account_Data']['Weapon_Strength_Effect'] = stripslashes($Account_Data['Item_Strength_Effect']);
-	    				$Account['Account_Data']['Weapon_Magic_Effect'] = stripslashes($Account_Data['Item_Magic_Effect']);
-	    				$Account['Account_Data']['Weapon_Agility_Effect'] = stripslashes($Account_Data['Item_Agility_Effect']);
-	    				$Account['Account_Data']['Weapon_Defense_Effect'] = stripslashes($Account_Data['Item_Defense_Effect']);
+	    				$Account['Account_Data']['Helmet_Inventory_ID'] = 0;
+	    				$Account['Account_Data']['Helmet_ID'] = 0;
+	    				$Account['Account_Data']['Helmet'] = "Aucun";
+	    				$Account['Account_Data']['Helmet_HP_Effect'] = 0;
+	    				$Account['Account_Data']['Helmet_MP_Effect'] = 0;
+	    				$Account['Account_Data']['Helmet_Strength_Effect'] = 0;
+	    				$Account['Account_Data']['Helmet_Magic_Effect'] = 0;
+	    				$Account['Account_Data']['Helmet_Agility_Effect'] = 0;
+	    				$Account['Account_Data']['Helmet_Defense_Effect'] = 0;
 	    			}
-    			}	
-    			$Data_Item_Query->closeCursor();
-    
-    			if (empty($_SESSION['Armor_Inventory_ID']))
-    			{
-    				$Account['Account_Data']['Armor_Inventory_ID'] = 0;
-    				$Account['Account_Data']['Armor_ID'] = 0;
-    				$Account['Account_Data']['Armor'] = "Aucune";
-    				$Account['Account_Data']['Armor_HP_Effect'] = 0;
-    				$Account['Account_Data']['Armor_MP_Effect'] = 0;
-    				$Account['Account_Data']['Armor_Strength_Effect'] = 0;
-    				$Account['Account_Data']['Armor_Magic_Effect'] = 0;
-    				$Account['Account_Data']['Armor_Agility_Effect'] = 0;
-    				$Account['Account_Data']['Armor_Defense_Effect'] = 0;
-    			}
-    			if (empty($_SESSION['Boots_Inventory_ID']))
-    			{
-    				$Account['Account_Data']['Boots_Inventory_ID'] = 0;
-    				$Account['Account_Data']['Boots_ID'] = 0;
-    				$Account['Account_Data']['Boots'] = "Aucune";
-    				$Account['Account_Data']['Boots_HP_Effect'] = 0;
-    				$Account['Account_Data']['Boots_MP_Effect'] = 0;
-    				$Account['Account_Data']['Boots_Strength_Effect'] = 0;
-    				$Account['Account_Data']['Boots_Magic_Effect'] = 0;
-    				$Account['Account_Data']['Boots_Agility_Effect'] = 0;
-    				$Account['Account_Data']['Boots_Defense_Effect'] = 0;
-    			}
-    			if (empty($_SESSION['Gloves_Inventory_ID']))
-    			{
-    				$Account['Account_Data']['Gloves_Inventory_ID'] = 0;
-    				$Account['Account_Data']['Gloves_ID'] = 0;
-    				$Account['Account_Data']['Gloves'] = "Aucun";
-    				$Account['Account_Data']['Gloves_HP_Effect'] = 0;
-    				$Account['Account_Data']['Gloves_MP_Effect'] = 0;
-    				$Account['Account_Data']['Gloves_Strength_Effect'] = 0;
-    				$Account['Account_Data']['Gloves_Magic_Effect'] = 0;
-    				$Account['Account_Data']['Gloves_Agility_Effect'] = 0;
-    				$Account['Account_Data']['Gloves_Defense_Effect'] = 0;
-    			}
-    			if (empty($_SESSION['Helmet_Inventory_ID']))
-    			{
-    				$Account['Account_Data']['Helmet_Inventory_ID'] = 0;
-    				$Account['Account_Data']['Helmet_ID'] = 0;
-    				$Account['Account_Data']['Helmet'] = "Aucun";
-    				$Account['Account_Data']['Helmet_HP_Effect'] = 0;
-    				$Account['Account_Data']['Helmet_MP_Effect'] = 0;
-    				$Account['Account_Data']['Helmet_Strength_Effect'] = 0;
-    				$Account['Account_Data']['Helmet_Magic_Effect'] = 0;
-    				$Account['Account_Data']['Helmet_Agility_Effect'] = 0;
-    				$Account['Account_Data']['Helmet_Defense_Effect'] = 0;
-    			}
-    			if (empty($_SESSION['Weapon_Inventory_ID']))
-    			{
-    				$Account['Account_Data']['Weapon_Inventory_ID'] = 0;
-    				$Account['Account_Data']['Weapon_ID'] = 0;
-    				$Account['Account_Data']['Weapon'] = "Aucune";
-    				$Account['Account_Data']['Weapon_HP_Effect'] = 0;
-    				$Account['Account_Data']['Weapon_MP_Effect'] = 0;
-    				$Account['Account_Data']['Weapon_Strength_Effect'] = 0;
-    				$Account['Account_Data']['Weapon_Magic_Effect'] = 0;
-    				$Account['Account_Data']['Weapon_Agility_Effect'] = 0;
-    				$Account['Account_Data']['Weapon_Defense_Effect'] = 0;
-    			}
-			return $Account['Account_Data'];
+	    			if (empty($_SESSION['Weapon_Inventory_ID']))
+	    			{
+	    				$Account['Account_Data']['Weapon_Inventory_ID'] = 0;
+	    				$Account['Account_Data']['Weapon_ID'] = 0;
+	    				$Account['Account_Data']['Weapon'] = "Aucune";
+	    				$Account['Account_Data']['Weapon_HP_Effect'] = 0;
+	    				$Account['Account_Data']['Weapon_MP_Effect'] = 0;
+	    				$Account['Account_Data']['Weapon_Strength_Effect'] = 0;
+	    				$Account['Account_Data']['Weapon_Magic_Effect'] = 0;
+	    				$Account['Account_Data']['Weapon_Agility_Effect'] = 0;
+	    				$Account['Account_Data']['Weapon_Defense_Effect'] = 0;
+	    			}
+				return $Account['Account_Data'];
+			}
+			else
+			{
+				echo "You are banned";
+			}
 		}
 	}
 	else
