@@ -15,8 +15,8 @@
 	}
 	if (isset($_POST['Login']))
 	{
-		$Pseudo = htmlspecialchars(addslashes($_POST['Pseudo']));
-		$Password =  md5(htmlspecialchars(addslashes($_POST['Password'])));
+		$Account_Pseudo = htmlspecialchars(addslashes($_POST['Pseudo']));
+		$Account_Password =  md5(htmlspecialchars(addslashes($_POST['Password'])));
 		
 		$_SESSION['Account_Data'] = SQL_Account_Data($Account_Pseudo, $Account_Password);
 	}
