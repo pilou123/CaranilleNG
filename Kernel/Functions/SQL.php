@@ -269,6 +269,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Account['Account_data']['Weapon_Agility_Effect'] = 0;
 		    		$Account['Account_data']['Weapon_Defense_Effect'] = 0;
 		    	}
+			return $Account;
 		    	$recuperation_donnees_jeu = $bdd->query("SELECT * FROM Caranille_Configuration");
 		    	while ($donnees_jeu = $recuperation_donnees_jeu->fetch())
 		    	{
