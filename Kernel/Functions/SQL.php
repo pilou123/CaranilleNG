@@ -91,17 +91,25 @@ function SQL_Add_Account($Account_Pseudo, $Account_Password, $Account_Email)
 	}
 }
 
-function SQL_AccountèData($Account_Pseudo, $Account_Password)
+function SQL_Account_Data($Account_Pseudo, $Account_Password)
 {
+	global $bdd;
+	global $Login_4;
+	global $Login_5;
+	global $Login_6;
+	global $Login_7;
+	global $Login_8;
+	global $Login_9;
+
 	$Login_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ? AND Account_Password= ?");
-	$Login_Query->execute(array($Pseudo, $Password));
+	$Login_Query->execute(array($Account_Pseudo, $Account_Password));
 	$Login = $Login_Query->rowCount();
 	if ($Login >= 1)
 	{
 		$Data_Account_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts, Caranille_Levels
 		WHERE Account_Pseudo= ?
 		AND Account_Level = Level_Number");
-		$Data_Account_Query->execute(array($Pseudo));
+		$Data_Account_Query->execute(array($Account_Pseudo));
 		while ($Account_Data = $Data_Account_Query->fetch())
 		{
 			$Account['Account_data']['ID'] = stripslashes($Account_Data['Account_ID']);
@@ -134,14 +142,14 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 			$Account['Account_data']['Reason'] = stripslashes($Account_Data['Account_Reason']);
 		}
 		$Data_Account_Query->closeCursor();
-		if ($_SESSION['Status'] == "Authorized")
+		if ($Account['Account_data']['Status'] == "Authorized")
 		{
 		    	$Data_Item_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts, Caranille_Inventory, Caranille_Items 
 		    	WHERE Inventory_Account_ID = Account_ID
 		    	AND Inventory_Item_ID = Item_ID 
 		    	AND Inventory_Item_Equipped='Yes'
 		    	AND Account_Pseudo= ?"); 
-		    	$Data_Item_Query->execute(array($Pseudo));
+		    	$Data_Item_Query->execute(array($Account_Pseudo));
 		    	$Item_Quantity = $Data_Item_Query->rowCount();
 		    	while ($Account_Data = $Data_Item_Query->fetch())
 		    	{
@@ -209,7 +217,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		
 		    	$Data_Item_Query->closeCursor();
 		
-		    	if (empty($_SESSION['Armor_Inventory_ID']))
+		    	if (empty($Account['Account_data']['Armor_Inventory_ID']))
 		    	{
 		    		$Account['Account_data']['Armor_Inventory_ID'] = 0;
 		    		$Account['Account_data']['Armor_ID'] = 0;
@@ -221,7 +229,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Account['Account_data']['Armor_Agility_Effect'] = 0;
 		    		$Account['Account_data']['Armor_Defense_Effect'] = 0;
 		    	}
-		    	if (empty($_SESSION['Boots_Inventory_ID']))
+		    	if (empty($Account['Account_data']['Boots_Inventory_ID']))
 		    	{
 		    		$Account['Account_data']['Boots_Inventory_ID'] = 0;
 		    		$Account['Account_data']['Boots_ID'] = 0;
@@ -233,7 +241,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Account['Account_data']['Boots_Agility_Effect'] = 0;
 		    		$Account['Account_data']['Boots_Defense_Effect'] = 0;
 		    	}
-		    	if (empty($_SESSION['Gloves_Inventory_ID']))
+		    	if (empty($Account['Account_data']['Gloves_Inventory_ID']))
 		    	{
 		    		$Account['Account_data']['Gloves_Inventory_ID'] = 0;
 		    		$Account['Account_data']['Gloves_ID'] = 0;
@@ -245,7 +253,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Account['Account_data']['Gloves_Agility_Effect'] = 0;
 		    		$Account['Account_data']['Gloves_Defense_Effect'] = 0;
 		    	}
-		    	if (empty($_SESSION['Helmet_Inventory_ID']))
+		    	if (empty($Account['Account_data']['Helmet_Inventory_ID']))
 		    	{
 		    		$Account['Account_data']['Helmet_Inventory_ID'] = 0;
 		    		$Account['Account_data']['Helmet_ID'] = 0;
@@ -257,7 +265,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Account['Account_data']['Helmet_Agility_Effect'] = 0;
 		    		$Account['Account_data']['Helmet_Defense_Effect'] = 0;
 		    	}
-		    	if (empty($_SESSION['Weapon_Inventory_ID']))
+		    	if (empty($Account['Account_data']['Weapon_Inventory_ID']))
 		    	{
 		    		$Account['Account_data']['Weapon_Inventory_ID'] = 0;
 		    		$Account['Account_data']['Weapon_ID'] = 0;
@@ -269,26 +277,26 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Account['Account_data']['Weapon_Agility_Effect'] = 0;
 		    		$Account['Account_data']['Weapon_Defense_Effect'] = 0;
 		    	}
-			return $Account;
-		    	$recuperation_donnees_jeu = $bdd->query("SELECT * FROM Caranille_Configuration");
-		    	while ($donnees_jeu = $recuperation_donnees_jeu->fetch())
+
+		    	$Game_Data_Query = $bdd->query("SELECT * FROM Caranille_Configuration");
+		    	while ($Game_Data = $Game_Data_Query->fetch())
 		    	{
-		    		$_SESSION['Configuration_Access'] = stripslashes($donnees_jeu['Configuration_Access']);
+		    		$Account['Account_data']['Configuration_Access'] = stripslashes($Game_Data['Configuration_Access']);
 		    	}
 		
-		    	$recuperation_donnees_jeu->closeCursor();
+		    	$Game_Data_Query->closeCursor();
 		
-		    	$_SESSION['Battle'] = 0;
-		    	$_SESSION['Mission'] = 0;
-		    	$_SESSION['Town'] = 0;
+		    	$Account['Account_data']['Battle'] = 0;
+		    	$Account['Account_data']['Mission'] = 0;
+		    	$Account['Account_data']['Town'] = 0;
 		    	
-		    	if ($_SESSION['Configuration_Access'] == "Yes")
+		    	if ($Account['Account_data']['Configuration_Access'] == "Yes")
 		    	{
-		    		$ID = $_SESSION['ID'];
+		    		$ID = $Account['Account_data']['ID'];
 		    		$Date = date('Y-m-d H:i:s');
 		    		$IP = $_SERVER["REMOTE_ADDR"];
-		    		$Last_Connection = $_SESSION['Last_Connection'];
-		    		$Last_IP = $_SESSION['Last_IP'];
+		    		$Last_Connection = $Account['Account_data']['Last_Connection'];
+		    		$Last_IP = $Account['Account_data']['Last_IP'];
 		    		if ($Last_IP != $_SERVER["REMOTE_ADDR"])
 		    		{
 		    			echo "<script type=\"text/javascript\"> alert(\"$Login_4 $Last_Connection\\n- Adresse IP: $Last_IP\"); </script>";
@@ -297,6 +305,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    		$Update_Account->execute(array('Date' => $Date, 'IP' => $IP, 'ID' => $ID));
 		    		echo "$Login_5<br /><br />";
 		    		echo "<a href=\"Main.php\">$Login_6</a>";
+				return $Account['Account_data'];
 		    	}
 		    	else
 		    	{
@@ -315,6 +324,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		    			$Update_Account->execute(array('Date' => $Date, 'IP' => $IP, 'ID' => $ID));
 		    			echo "$Login_5<br /><br />";
 		    			echo "<a href=\"Main.php\">$Login_6</a>";
+					return $Account['Account_data'];
 		    		}
 		    		else
 		    		{	
@@ -330,7 +340,7 @@ function SQL_AccountèData($Account_Pseudo, $Account_Password)
 		}
 		else
 		{
-		    $Reason = $_SESSION['Reason'];
+		    $Reason = $Account['Account_data']['Reason'];
 		    echo "<script type=\"text/javascript\"> alert(\"$Login_8 $Reason\"); </script>";
 		}
 	}
