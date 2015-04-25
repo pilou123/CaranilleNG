@@ -535,6 +535,7 @@ function SQL_Account_Refresh($Account_Pseudo)
 	    	}
 	
 	    	$Game_Data_Query->closeCursor();
+	    	return $Account['Account_data'];
 	}
 	else
 	{
