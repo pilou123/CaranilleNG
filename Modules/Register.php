@@ -87,11 +87,11 @@
 						while ($Account_Data = $Account_Data_Query->fetch())
 						{	
 							$ID = $Account_Data['Account_ID'];
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '1', '1', 'Yes')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '2', '1', 'Yes')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '3', '1', 'Yes')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '4', '1', 'Yes')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '5', '1', 'Yes')");
+							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '1', '1', 'No')");
+							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '2', '1', 'No')");
+							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '3', '1', 'No')");
+							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '4', '1', 'No')");
+							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '5', '1', 'No')");
 						}
 						$Account_Data_Query->closeCursor();
 						echo $Register_8;
