@@ -18,7 +18,7 @@
 		$Account_Pseudo = htmlspecialchars(addslashes($_POST['Pseudo']));
 		$Account_Password =  md5(htmlspecialchars(addslashes($_POST['Password'])));
 		
-		$_SESSION['Account_Data'] = SQL_Account_Data($Account_Pseudo, $Account_Password);
+		$_SESSION['Account_Data'] = SQL_Account_Data($Account_Pseudo, $Account_Password, "Login");
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
 ?>
