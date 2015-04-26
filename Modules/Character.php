@@ -9,6 +9,7 @@
 	{
 		if (empty($_POST['Change_Password']) && empty($_POST['Finish']))
 		{
+			$Mission = htmlspecialchars(addslashes($_SESSION['Mission'])) -1;
 			echo "$Character_0<br /><br />";
 			echo "$Character_1<br /><br />";
 			echo "<div class=\"important\">$Character_2</div> : " .htmlspecialchars(addslashes($_SESSION['Pseudo'])). '<br />';
@@ -29,7 +30,7 @@
 			echo "<div class=\"important\">$Character_17</div> : " .htmlspecialchars(addslashes($_SESSION['Experience'])). '<br />';
 			echo "<div class=\"important\">$Character_18</div> : $Next_Level<br />";
 			echo "<div class=\"important\">$Character_19</div> : " .htmlspecialchars(addslashes($_SESSION['Chapter'])). '<br />';
-			echo "<div class=\"important\">$Character_20</div> : " .htmlspecialchars(addslashes($_SESSION['Mission'])). '<br />';
+			echo "<div class=\"important\">$Character_20</div> : $Mission <br />";
 			echo "<div class=\"important\">$Character_21</div> : " .htmlspecialchars(addslashes($_SESSION['Access'])). '<br /><br />';
 			echo '<form method="POST" action="Character.php"><br />';
 			echo "<input type=\"submit\" name=\"Change_Password\" value=\"$Character_22\">";
