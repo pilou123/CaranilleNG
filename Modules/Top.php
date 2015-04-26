@@ -20,11 +20,10 @@
 			
 			echo '</tr>';
 	
-		$Account_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts, Caranille_Levels
+		$Account_Query = $bdd->query("SELECT * FROM Caranille_Accounts, Caranille_Levels
 		WHERE Account_Level = Level_Number
 		ORDER BY Account_Level DESC
 		LIMIT 0, 99");
-		$Account_Query->execute(array($Order_ID));
 		while ($Account = $Account_Query->fetch())
 		{
 			$Account_ID = stripslashes($Account['Account_ID']);
