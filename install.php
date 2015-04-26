@@ -100,8 +100,8 @@ if (isset($_SESSION['Language']))
 					$Open_SQL = fopen("Kernel/Config/SQL.php", "w");
 					fwrite($Open_SQL, "
 					<?php
-					//Version of Caranille RPG
-					\$version = \"6.0.0\";
+					//Version of CaranilleNG MMORPG
+					\$version = \"6.1.0\";
 					\$Dsn = 'mysql:dbname=$Database_Name;host=$Database_Host';
 					\$User = '$Database_User';
 					\$Password = '$Database_Password';
