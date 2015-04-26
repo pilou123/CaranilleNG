@@ -461,7 +461,9 @@
 	$AIndex_13 = "Gestion des Villes";
 	$AIndex_14 = "Gestion du Design";
 	$AIndex_15 = "Editer le design";
-	$AIndex_16 = "Aucun privilège";
+	$AIndex_16 = "Récompenses";
+	$AIndex_17 = "Espace récompenses";
+	$AIndex_18 = "Aucun privilège";
 		
 //END OF THE /ADMIN/ TRADUCTION
 
@@ -767,6 +769,15 @@
 	$AParchments_24 = "Le parchemin a bien été supprimé";
 	$AParchments_25 = "Tous les champs n\'ont pas été remplis";
 	$AParchments_26 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+
+	//TRADUCTION OF PRESENTS MODULES
+	$APresents_0 = "Que souhaitez-vous faire ?";
+	$APresents_1 = "Donner un cadeau";
+	$APresents_2 = "Veuillez choisir le joueur et le cadeau";
+	$APresents_3 = "Joueurs";
+	$APresents_4 = "Objet";
+	$APresents_5 = "Donner ce cadeau";
+	$APresents_29 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 	
 	//TRADUCTION OF TOWNS MODULES
 	$ATowns_0 = "Que souhaitez-vous faire ?";
