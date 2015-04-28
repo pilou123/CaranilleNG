@@ -38,12 +38,6 @@
 					$Pseudo_List = $Pseudo_List_Query->rowCount();
 					if ($Pseudo_List == 0)
 					{
-					    $Email_List_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ?");
-					    $Email_List_Query->execute(array($Account_Pseudo));
-					    
-					    $Email_List = $Email_List_Query->rowCount();
-					    if ($Email_List == 0)
-					    {
 						$Date = date('Y-m-d H:i:s');
 						$IP = $_SERVER["REMOTE_ADDR"];
 					
