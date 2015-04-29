@@ -777,7 +777,8 @@
 	$APresents_3 = "Joueurs";
 	$APresents_4 = "Objet";
 	$APresents_5 = "Donner ce cadeau";
-	$APresents_29 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	$APresents_6 = "Objet donné";
+	$APresents_7 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 	
 	//TRADUCTION OF TOWNS MODULES
 	$ATowns_0 = "Que souhaitez-vous faire ?";
