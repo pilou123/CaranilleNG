@@ -27,8 +27,9 @@
 			$Players_List_Query = $bdd->query("SELECT * FROM Caranille_Accounts ORDER BY Account_Pseudo ASC");
 			while ($Players_List = $Players_List_Query->fetch())
 			{
-				$Receiver = stripslashes($Players_List['Account_Pseudo']);
-				echo "<option value=\"$Receiver\">$Receiver</option>";
+				$Receiver_ID = stripslashes($Players_List['Account_ID']);
+				$Receiver_Pseudo = stripslashes($Players_List['Account_Pseudo']);
+				echo "<option value=\"$Receiver_ID\">$Receiver_Pseudo</option>";
 			}
 
 			$Players_List_Query->closecursor();
@@ -44,18 +45,7 @@
 				$Avert_Type = htmlspecialchars(addslashes($_POST['Avert_Type']));	
 				$Avert_Message = htmlspecialchars(addslashes($_POST['Avert_Message']));
 				$Avert_Transmitter = htmlspecialchars(addslashes($_SESSION['Pseudo']));
-				$Account_Pseudo = htmlspecialchars(addslashes($_POST['Receiver']));
-
-				$recherche_Avert_Receiver = $bdd->prepare("SELECT Account_ID 
-				FROM Caranille_Accounts
-				WHERE Account_Pseudo = ?");
-				$recherche_Avert_Receiver->execute(array($Account_Pseudo));
-
-				while ($Account_ID = $recherche_Avert_Receiver->fetch())
-				{
-					$Avert_Receiver = stripslashes($Account_ID['Account_ID']);
-				}
-				$recherche_Avert_Receiver->closeCursor();
+				$Avert_Receiver = htmlspecialchars(addslashes($_POST['Receiver']));
 
 				$Add_Avert = $bdd->prepare("INSERT INTO Caranille_Sanctions VALUES ('', :Avert_Type, :Avert_Message, :Avert_Transmitter, :Avert_Receiver)");
 				$Add_Avert->execute(array('Avert_Type'=> $Avert_Type, 'Avert_Message'=> $Avert_Message, 'Avert_Transmitter'=> $Avert_Transmitter, 'Avert_Receiver'=> $Avert_Receiver));
