@@ -47,28 +47,31 @@
 		}
 		if (isset($_POST['End_Add']))
 		{
-			$Account_ID = htmlspecialchars(addslashes($_POST['Account_ID']));
+			$Transmitter_Pseudo = $_SESSION['Pseudo'];
+			$Receiver_ID = htmlspecialchars(addslashes($_POST['Account_ID']));
 			$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
 			$Message = htmlspecialchars(addslashes($_POST['Message']));
 			
 			$Item_Quantity_Query = $bdd->prepare("SELECT * FROM Caranille_Inventory
 			WHERE Inventory_Item_ID= ?
 			AND Inventory_Account_ID= ?");
-			$Item_Quantity_Query->execute(array($Item_ID, $Account_ID));
+			$Item_Quantity_Query->execute(array($Item_ID, $Receiver_ID));
 		
 			$Item_Quantity = $Item_Quantity_Query->rowCount();
 			if ($Item_Quantity>=1)
 			{
 				$Add_Item = $bdd->prepare("UPDATE Caranille_Inventory SET Inventory_Item_Quantity = Inventory_Item_Quantity + 1
 				WHERE Inventory_Item_ID= :Item_ID
-				AND Inventory_Account_ID = :Account_ID");
-				$Add_Item->execute(array('Item_ID'=> $Item_ID, 'Account_ID'=> $Account_ID));
+				AND Inventory_Account_ID = :Receiver_ID");
+				$Add_Item->execute(array('Item_ID'=> $Item_ID, 'Receiver_ID'=> $Receiver_ID));
 			}
 			else
 			{
-				$Add_Item = $bdd->prepare("INSERT INTO Caranille_Inventory VALUES('', :Account_ID, :Item_ID, '1', 'No')");
-				$Add_Item->execute(array('Account_ID'=> $Account_ID, 'Item_ID'=> $Item_ID));
+				$Add_Item = $bdd->prepare("INSERT INTO Caranille_Inventory VALUES('', :Receiver_ID, :Item_ID, '1', 'No')");
+				$Add_Item->execute(array('Receiver_ID'=> $Receiver_ID, 'Item_ID'=> $Item_ID));
 			}
+			$Add_Avert = $bdd->prepare("INSERT INTO Caranille_Sanctions VALUES ('', :Type, :Message, :Transmitter_Pseudo, :Receiver_ID)");
+			$Add_Avert->execute(array('Type'=> 'Information', 'Message'=> $Message, 'Transmitter_Pseudo'=> $Transmitter_Pseudo, 'Receiver_ID'=> $Receiver_ID));
 			echo $APresents_6;
 		}
 	}
