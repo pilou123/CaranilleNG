@@ -14,8 +14,29 @@ else
 
 	$_SESSION['File_Root'] = $File_Root;
 	$_SESSION['Link_Root'] = $Link_Root;
-
-	$Link = 'http://' .$_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+	
+	if (dirname($_SERVER['PHP_SELF']) == "\\")
+	{
+		if ($_SERVER['HTTP_HOST'] == "localhost")
+		{
+			$Link = 'http://localhost'; 
+		}
+		else
+		{
+			$Link = 'http://' .$_SERVER['HTTP_HOST']; 
+		}
+	}
+	else
+	{
+		if ($_SERVER['HTTP_HOST'] == "localhost")
+		{
+			$Link = 'http://localhost' . dirname($_SERVER['PHP_SELF']); 
+		}
+		else
+		{
+			$Link = 'http://' .$_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']); 
+		}
+	}
 
 	if ($Link != $_SESSION['Link_Root'])
 	{
