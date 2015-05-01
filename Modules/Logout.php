@@ -9,7 +9,7 @@
 	echo "$Logout_0<br /><br />";
 	?>
 	
-	<a href="<?php echo $_SESSION['Link_Root'] ."/Modules/Main.php"; ?>"><?php echo $Logout_1; ?></a><br />
+	<a href="../index.php">Continue</a><br />
 
 	<?php
 	session_destroy();

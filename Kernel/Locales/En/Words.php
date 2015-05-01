@@ -714,15 +714,15 @@
 	$AMonsters_28 = "Monstre de chapitre";
 	$AMonsters_29 = "Monstre de mission";
 	$AMonsters_30 = "Monstre de combat";
-	$AMonsters_30 = "Terminer";
-	$AMonsters_31 = "Monstre mis à jour";
-	$AMonsters_32 = "Tous les champs n'ont pas été remplis";
-	$AMonsters_33 = "Le monstre a bien été supprimé";
-	$AMonsters_34 = "Ajout d'un monstre";
-	$AMonsters_35 = "Ajouter";
-	$AMonsters_36 = "Monstre ajouté";
-	$AMonsters_37 = "Tous les champs n'ont pas été remplis";
-	$AMonsters_38 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
+	$AMonsters_31 = "Terminer";
+	$AMonsters_32 = "Monstre mis à jour";
+	$AMonsters_33 = "Tous les champs n'ont pas été remplis";
+	$AMonsters_34 = "Le monstre a bien été supprimé";
+	$AMonsters_35 = "Ajout d'un monstre";
+	$AMonsters_36 = "Ajouter";
+	$AMonsters_37 = "Monstre ajouté";
+	$AMonsters_38 = "Tous les champs n'ont pas été remplis";
+	$AMonsters_39 = "Vous ne possèdez pas l'accès nécessaire pour accèder à cette partie du site";
 	
 	//TRADUCTION OF NEWS MODULES
 	$ANews_0 = "Que souhaitez-vous faire ?";

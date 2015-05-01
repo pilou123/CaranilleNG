@@ -122,7 +122,7 @@ if (isset($_SESSION['Language']))
 					fwrite($Open_SQL, "
 					<?php
 					//Version of CaranilleNG MMORPG
-					\$version = \"6.1.0\";
+					\$version = \"6.2.0\";
 					\$Dsn = 'mysql:dbname=$Database_Name;host=$Database_Host';
 					\$User = '$Database_User';
 					\$Password = '$Database_Password';
@@ -327,6 +327,11 @@ if (isset($_SESSION['Language']))
 					`Monster_Item_Four_Rate` int(11) NOT NULL,
 					`Monster_Item_Five` int(11) NOT NULL,
 					`Monster_Item_Five_Rate` int(11) NOT NULL,
+					`Monster_Quantity_Actived` int(11) NOT NULL,
+					`Monster_Quantity` int(11) NOT NULL,
+					`Monster_Date_Actived` int(11) NOT NULL,
+					`Monster_Date_Beginning` DATETIME NOT NULL,
+					`Monster_Date_Ending` DATETIME NOT NULL,
 					`Monster_Access` VARCHAR(30) NOT NULL
 					)");
 					
@@ -628,6 +633,11 @@ if (isset($_SESSION['Language']))
 							'',
 							'',
 							'', 
+							'0',
+							'0',
+							'0',
+							'0000-00-00 00:00:00',
+							'0000-00-00 00:00:00',
 							'Battle')");
 
 							$bdd->exec("INSERT INTO Caranille_Monsters VALUES(
@@ -652,7 +662,12 @@ if (isset($_SESSION['Language']))
 							'',
 							'',
 							'',
-							'', 
+							'',
+							'0',
+							'0',
+							'0',
+							'0000-00-00 00:00:00',
+							'0000-00-00 00:00:00', 
 							'Mission')");
 
 							$bdd->exec("INSERT INTO Caranille_Monsters VALUES(
@@ -678,6 +693,11 @@ if (isset($_SESSION['Language']))
 							'',
 							'',
 							'', 
+							'0',
+							'0',
+							'0',
+							'0000-00-00 00:00:00',
+							'0000-00-00 00:00:00',
 							'Chapter')");
 
 							$bdd->exec("INSERT INTO Caranille_Items VALUES(

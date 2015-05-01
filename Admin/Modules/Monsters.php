@@ -217,13 +217,13 @@
 			if ($Monster_Access == "Chapter")
 			{
 				echo "<option selected=\"selected\" value=\"$Monster_Access\">$Monster_Access</option>";
-				echo "<option value=\"Battle\">$AMonsters_26</option>";
-				echo "<option value=\"Mission\">$AMonsters_27</option>";
+				echo "<option value=\"Battle\">$AMonsters_30</option>";
+				echo "<option value=\"Mission\">$AMonsters_29</option>";
 			}
 			if ($Monster_Access == "Battle")
 			{
 				echo "<option selected=\"selected\" value=\"$Monster_Access\">$Monster_Access</option>";
-				echo "option value=\"Chapter\">$AMonsters_28</option>";
+				echo "<option value=\"Chapter\">$AMonsters_28</option>";
 				echo "<option value=\"Mission\">$AMonsters_29</option>";
 			}
 			if ($Monster_Access == "Mission")
@@ -431,11 +431,11 @@
 				'Monster_Item_Five_Rate'=> $Monster_Item_Five_Rate, 
 				'Monster_Access'=> $Monster_Access, 
 				'Monster_ID'=> $Monster_ID));
-				echo $AMonsters_31;
+				echo $AMonsters_32;
 			}
 			else
 			{
-				echo $AMonsters_32;
+				echo $AMonsters_33;
 			}
 		}
 		if (isset($_POST['Delete']))
@@ -445,11 +445,11 @@
 			$Delete = $bdd->prepare("DELETE FROM Caranille_Monsters WHERE Monster_ID= :Monster_ID");
 			$Delete->execute(array('Monster_ID'=> $Monster_ID));
 
-			echo $AMonsters_33;
+			echo $AMonsters_34;
 		}
 		if (isset($_POST['Add']))
 		{
-			echo "$AMonsters_34<br />";
+			echo "$AMonsters_35<br />";
 			echo '<form method="POST" action="Monsters.php">';
 			echo "$AMonsters_6<br /> <input type=\"text\" name=\"Monster_Image\"><br /><br />";
 			echo "$AMonsters_7<br /> <input type=\"text\" name=\"Monster_Name\"><br /><br />";
@@ -543,7 +543,7 @@
 				echo "<option value=\"Mission\">$AMonsters_29</option>";
 				echo "<option value=\"Battle\">$AMonsters_30</option>";
 			echo '</select><br /><br />';
-			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AMonsters_35\">";
+			echo "<input type=\"submit\" name=\"End_Add\" value=\"$AMonsters_36\">";
 			echo '</form>';
 		}
 		if (isset($_POST['End_Add']))
@@ -708,6 +708,11 @@
 				:Monster_Item_Four_Rate, 
 				:Item_ID_Five, 
 				:Monster_Item_Five_Rate,  
+				'0',
+				'0',
+				'0',
+				'0000-00-00 00:00:00',
+				'0000-00-00 00:00:00',
 				:Monster_Access)");
 
 				$Add->execute(array(
@@ -733,18 +738,18 @@
 				'Item_ID_Five'=> $Item_ID_Five, 
 				'Monster_Item_Five_Rate'=> $Monster_Item_Five_Rate, 
 				'Monster_Access'=> $Monster_Access));
-				echo $AMonsters_36;
+				echo $AMonsters_37;
 			}
 			else
 			{
-				echo $AMonsters_37;
+				echo $AMonsters_38;
 			}
 		}
 	}
 	else
 	{
 		echo '<center>';
-		echo $AMonsters_38;
+		echo $AMonsters_39;
 		echo '</center>';
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';
