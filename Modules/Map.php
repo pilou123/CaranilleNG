@@ -30,17 +30,21 @@
 			}
 			if (isset($_POST['entrer_Town']))
 			{
-				$Town_ID = htmlspecialchars(addslashes($_POST['Town_ID']));
-				$recherche_information_Town = $bdd->prepare("SELECT * FROM Caranille_Towns WHERE Town_ID= ?");
-				$recherche_information_Town->execute(array($Town_ID));
-				while ($information_Town = $recherche_information_Town->fetch())
+				$Good_Link = $_SESSION['Link_Root'] . "/Modules/Map.php";
+				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 				{
-					$_SESSION['Town_ID'] = stripslashes($information_Town['Town_ID']);
-					$_SESSION['Town_Image'] = stripslashes($information_Town['Town_Image']);	
-					$_SESSION['Town_Name'] = stripslashes($information_Town['Town_Name']);
-					$_SESSION['Town_Description'] = stripslashes(nl2br($information_Town['Town_Description']));
-					$_SESSION['Town_Price_INN'] = stripslashes($information_Town['Town_Price_INN']);
-					$_SESSION['Town'] = 1;
+					$Town_ID = htmlspecialchars(addslashes($_POST['Town_ID']));
+					$recherche_information_Town = $bdd->prepare("SELECT * FROM Caranille_Towns WHERE Town_ID= ?");
+					$recherche_information_Town->execute(array($Town_ID));
+					while ($information_Town = $recherche_information_Town->fetch())
+					{
+						$_SESSION['Town_ID'] = stripslashes($information_Town['Town_ID']);
+						$_SESSION['Town_Image'] = stripslashes($information_Town['Town_Image']);	
+						$_SESSION['Town_Name'] = stripslashes($information_Town['Town_Name']);
+						$_SESSION['Town_Description'] = stripslashes(nl2br($information_Town['Town_Description']));
+						$_SESSION['Town_Price_INN'] = stripslashes($information_Town['Town_Price_INN']);
+						$_SESSION['Town'] = 1;
+					}
 				}
 			}
 		}
@@ -71,11 +75,15 @@
 			//Si l'utilisateur décIDe de quitter la Town
 			if (isset($_POST['Exit_Town']))
 			{
-				$_SESSION['Town'] = 0;
-				echo "$Map_12";
-				echo '<form method="POST" action="Map.php">';
-				echo "<input type=\"submit\" name=\"carte\" value=\"$Map_13\">";
-				echo '</form></p>';
+				$Good_Link = $_SESSION['Link_Root'] . "/Modules/Map.php";
+				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
+				{
+					$_SESSION['Town'] = 0;
+					echo "$Map_12";
+					echo '<form method="POST" action="Map.php">';
+					echo "<input type=\"submit\" name=\"carte\" value=\"$Map_13\">";
+					echo '</form></p>';
+				}
 			}
 		}
 	}

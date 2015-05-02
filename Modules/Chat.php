@@ -9,10 +9,14 @@
 	{
 		if (isset($_POST['Send']))
 		{
-			$ID = htmlspecialchars(addslashes($_SESSION['ID']));
-			$Message = htmlspecialchars(addslashes($_POST['Message']));
-			$Send_Message = $bdd->prepare("INSERT INTO Caranille_Chat VALUES('', :ID, :Message)");
-			$Send_Message->execute(array('ID' => $ID, 'Message' => $Message));
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Chat.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
+			{
+				$ID = htmlspecialchars(addslashes($_SESSION['ID']));
+				$Message = htmlspecialchars(addslashes($_POST['Message']));
+				$Send_Message = $bdd->prepare("INSERT INTO Caranille_Chat VALUES('', :ID, :Message)");
+				$Send_Message->execute(array('ID' => $ID, 'Message' => $Message));
+			}
 		}
 		echo "$Chat_0";
 		echo '<table>';
@@ -80,20 +84,28 @@
 		
 		if (isset($_POST['Delete']))
 		{
-			if ($_SESSION['Access'] == "Admin")
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Chat.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 			{
-				$ID_Message = htmlspecialchars(addslashes($_POST['ID_message']));
-				$Delete_Message = $bdd->prepare("DELETE FROM Caranille_Chat WHERE Chat_Message_ID=:ID_Message");
-				$Delete_Message->execute(array('ID_Message' => $ID_Message));
-				echo "$Chat_6";
+				if ($_SESSION['Access'] == "Admin")
+				{
+					$ID_Message = htmlspecialchars(addslashes($_POST['ID_message']));
+					$Delete_Message = $bdd->prepare("DELETE FROM Caranille_Chat WHERE Chat_Message_ID=:ID_Message");
+					$Delete_Message->execute(array('ID_Message' => $ID_Message));
+					echo "$Chat_6";
+				}
 			}
 		}
 		if (isset($_POST['Clear']))
 		{
-			if ($_SESSION['Access'] == "Admin")
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Chat.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 			{
-				$bdd->exec("DELETE FROM Caranille_Chat");
-				echo "$Chat_7";
+				if ($_SESSION['Access'] == "Admin")
+				{
+					$bdd->exec("DELETE FROM Caranille_Chat");
+					echo "$Chat_7";
+				}
 			}
 		}
 	}

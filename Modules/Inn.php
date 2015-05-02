@@ -18,22 +18,26 @@
 			}
 			if (isset($_POST['Rest']))
 			{
-				if ($_SESSION['Gold'] >= $_SESSION['Town_Price_INN'])
+				$Good_Link = $_SESSION['Link_Root'] . "/Modules/Inn.php";
+				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 				{
-					echo $Inn_3;
-					$Gold = htmlspecialchars(addslashes($_SESSION['Gold'])) - htmlspecialchars(addslashes($_SESSION['Town_Price_INN']));
-					$HP_Total = htmlspecialchars(addslashes($_SESSION['HP_Total']));
-					$MP_Total = htmlspecialchars(addslashes($_SESSION['MP_Total']));
-					$Account_Update = $bdd->prepare("UPDATE Caranille_Accounts SET Account_HP_Remaining=:HP_Total, Account_MP_Remaining=:MP_Total, Account_Golds=:Gold WHERE Account_ID=:ID");
-					$Account_Update->execute(array('HP_Total'=> $HP_Total, 'MP_Total'=> $MP_Total, 'Gold'=> $Gold, 'ID'=> $ID));
-				
-					echo '<form method="POST" action="Map.php">';
-					echo "<input type=\"submit\" name=\"Inn\" value=\"$Inn_4\">";
-					echo '</form>';
-				}
-				else
-				{
-					echo $Inn_5;
+					if ($_SESSION['Gold'] >= $_SESSION['Town_Price_INN'])
+					{
+						echo $Inn_3;
+						$Gold = htmlspecialchars(addslashes($_SESSION['Gold'])) - htmlspecialchars(addslashes($_SESSION['Town_Price_INN']));
+						$HP_Total = htmlspecialchars(addslashes($_SESSION['HP_Total']));
+						$MP_Total = htmlspecialchars(addslashes($_SESSION['MP_Total']));
+						$Account_Update = $bdd->prepare("UPDATE Caranille_Accounts SET Account_HP_Remaining=:HP_Total, Account_MP_Remaining=:MP_Total, Account_Golds=:Gold WHERE Account_ID=:ID");
+						$Account_Update->execute(array('HP_Total'=> $HP_Total, 'MP_Total'=> $MP_Total, 'Gold'=> $Gold, 'ID'=> $ID));
+					
+						echo '<form method="POST" action="Map.php">';
+						echo "<input type=\"submit\" name=\"Inn\" value=\"$Inn_4\">";
+						echo '</form>';
+					}
+					else
+					{
+						echo $Inn_5;
+					}
 				}
 			}
 		}

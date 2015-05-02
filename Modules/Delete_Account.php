@@ -16,23 +16,27 @@
 	}
 	if (isset($_POST['Delete']))
 	{
-		$Pseudo = htmlspecialchars(addslashes($_POST['Pseudo']));
-		$Password = md5(htmlspecialchars(addslashes($_POST['Password'])));
-
-		$Delete_List_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ? AND Account_Password= ?");
-		$Delete_List_Query->execute(array($Pseudo, $Password));
-
-		$Delete_List = $Delete_List_Query->fetch();
-		if ($Delete_List >= 1)
+		$Good_Link = $_SESSION['Link_Root'] . "/Modules/Delete_Account.php";
+		if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 		{
-			$Delete_Account = $bdd->prepare("Message_List_Query FROM Caranille_Accounts WHERE Account_Pseudo= :Pseudo AND Account_Password= :Password");
-			$Delete_Account->execute(array('Pseudo'=> $Pseudo, 'Password'=> $Password));
+			$Pseudo = htmlspecialchars(addslashes($_POST['Pseudo']));
+			$Password = md5(htmlspecialchars(addslashes($_POST['Password'])));
 
-			echo "$Delete_Account_2";
-		}
-		else
-		{
-			echo "$Delete_Account_3";
+			$Delete_List_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ? AND Account_Password= ?");
+			$Delete_List_Query->execute(array($Pseudo, $Password));
+
+			$Delete_List = $Delete_List_Query->fetch();
+			if ($Delete_List >= 1)
+			{
+				$Delete_Account = $bdd->prepare("Message_List_Query FROM Caranille_Accounts WHERE Account_Pseudo= :Pseudo AND Account_Password= :Password");
+				$Delete_Account->execute(array('Pseudo'=> $Pseudo, 'Password'=> $Password));
+
+				echo "$Delete_Account_2";
+			}
+			else
+			{
+				echo "$Delete_Account_3";
+			}
 		}
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';

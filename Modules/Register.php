@@ -21,93 +21,97 @@
 	}	
 	if (isset($_POST['Register']))
 	{
-		if (isset($_POST['Account_Pseudo']) && ($_POST['Account_Password']) && ($_POST['Account_Password_Confirm']) && ($_POST['Account_Email']))
+		$Good_Link = $_SESSION['Link_Root'] . "/Modules/Register.php";
+		if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 		{
-			$Account_Pseudo = htmlspecialchars(addslashes($_POST['Account_Pseudo']));
-			$Account_Password = htmlspecialchars(addslashes($_POST['Account_Password']));
-			$Account_Password_Confirm = htmlspecialchars(addslashes($_POST['Account_Password_Confirm']));
-			$Account_Email = htmlspecialchars(addslashes($_POST['Account_Email']));
-			if ($Account_Password == $Account_Password_Confirm)
+			if (isset($_POST['Account_Pseudo']) && ($_POST['Account_Password']) && ($_POST['Account_Password_Confirm']) && ($_POST['Account_Email']))
 			{
-				if (isset($_POST['Licence']))
+				$Account_Pseudo = htmlspecialchars(addslashes($_POST['Account_Pseudo']));
+				$Account_Password = htmlspecialchars(addslashes($_POST['Account_Password']));
+				$Account_Password_Confirm = htmlspecialchars(addslashes($_POST['Account_Password_Confirm']));
+				$Account_Email = htmlspecialchars(addslashes($_POST['Account_Email']));
+				if ($Account_Password == $Account_Password_Confirm)
 				{
-					$Account_Password = md5(htmlspecialchars(addslashes($_POST['Account_Password'])));
-					$Pseudo_List_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ?");
-					$Pseudo_List_Query->execute(array($Account_Pseudo));
-					
-					$Pseudo_List = $Pseudo_List_Query->rowCount();
-					if ($Pseudo_List == 0)
+					if (isset($_POST['Licence']))
 					{
-						$Date = date('Y-m-d H:i:s');
-						$IP = $_SERVER["REMOTE_ADDR"];
-					
-						$Add_Account = $bdd->prepare("INSERT INTO Caranille_Accounts VALUES(
-						'', 
-						'0', 
-						:Pseudo, 
-						:Password, 
-						:Email, 
-						'1', 
-						'100', 
-						'0', 
-						'10', 
-						'0', 
-						'0', 
-						'0', 
-						'0', 
-						'0', 
-						'0', 
-						'0', 
-						'0', 
-						'1', 
-						'1', 
-						'Member', 
-						:Date, 
-						:IP, 
-						'Authorized', 
-						'None')");
-					
-						$Add_Account->execute(array(
-						'Pseudo' => $Account_Pseudo, 
-						'Password' => $Account_Password, 
-						'Email' => $Account_Email, 
-						'Date' => $Date, 
-						'IP' => $IP));
+						$Account_Password = md5(htmlspecialchars(addslashes($_POST['Account_Password'])));
+						$Pseudo_List_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ?");
+						$Pseudo_List_Query->execute(array($Account_Pseudo));
 						
-						$Account_Data_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts 
-						WHERE Account_Pseudo= ?");
-						$Account_Data_Query->execute(array($Account_Pseudo));
-			
-						while ($Account_Data = $Account_Data_Query->fetch())
-						{	
-							$ID = $Account_Data['Account_ID'];
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '1', '1', 'No')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '2', '1', 'No')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '3', '1', 'No')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '4', '1', 'No')");
-							$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '5', '1', 'No')");
+						$Pseudo_List = $Pseudo_List_Query->rowCount();
+						if ($Pseudo_List == 0)
+						{
+							$Date = date('Y-m-d H:i:s');
+							$IP = $_SERVER["REMOTE_ADDR"];
+						
+							$Add_Account = $bdd->prepare("INSERT INTO Caranille_Accounts VALUES(
+							'', 
+							'0', 
+							:Pseudo, 
+							:Password, 
+							:Email, 
+							'1', 
+							'100', 
+							'0', 
+							'10', 
+							'0', 
+							'0', 
+							'0', 
+							'0', 
+							'0', 
+							'0', 
+							'0', 
+							'0', 
+							'1', 
+							'1', 
+							'Member', 
+							:Date, 
+							:IP, 
+							'Authorized', 
+							'None')");
+						
+							$Add_Account->execute(array(
+							'Pseudo' => $Account_Pseudo, 
+							'Password' => $Account_Password, 
+							'Email' => $Account_Email, 
+							'Date' => $Date, 
+							'IP' => $IP));
+							
+							$Account_Data_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts 
+							WHERE Account_Pseudo= ?");
+							$Account_Data_Query->execute(array($Account_Pseudo));
+				
+							while ($Account_Data = $Account_Data_Query->fetch())
+							{	
+								$ID = $Account_Data['Account_ID'];
+								$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '1', '1', 'No')");
+								$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '2', '1', 'No')");
+								$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '3', '1', 'No')");
+								$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '4', '1', 'No')");
+								$bdd->exec("INSERT INTO Caranille_Inventory VALUES('', '$ID', '5', '1', 'No')");
+							}
+							$Account_Data_Query->closeCursor();
+							echo $Register_8;
 						}
-						$Account_Data_Query->closeCursor();
-						echo $Register_8;
+						else
+						{
+							echo $Register_9;
+						}
 					}
 					else
 					{
-						echo $Register_9;
+						echo "$Register_10";
 					}
 				}
 				else
 				{
-					echo "$Register_10";
+					echo "$Register_11";
 				}
 			}
 			else
 			{
-				echo "$Register_11";
+				echo "$Register_12";
 			}
-		}
-		else
-		{
-			echo "$Register_12";
 		}
 	}
 	require_once $_SESSION['File_Root'] .'/HTML/Footer.php';

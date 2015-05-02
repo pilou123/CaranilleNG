@@ -385,58 +385,61 @@
 			}
 			if (isset($_POST['Buy']))
 			{
-				$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
-				$Town = htmlspecialchars(addslashes($_SESSION['Town_ID']));
-				$Item_Query = $bdd->prepare("SELECT * FROM Caranille_Items
-				WHERE Item_ID= ?
-				AND Item_Town= ?");
-				$Item_Query->execute(array($Item_ID, $Town));
-				while ($Item = $Item_Query->fetch())
+				$Good_Link = $_SESSION['Link_Root'] . "/Modules/Accessory_Shop.php";
+				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 				{
-					$Item_ID = stripslashes($Item['Item_ID']);
-					$Item_Price = stripslashes($Item['Item_Purchase_Price']);
-					$Item_Name = stripslashes($Item['Item_Name']);
-				
-					if ($_SESSION['Gold'] >= $Item_Price)
+					$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
+					$Town = htmlspecialchars(addslashes($_SESSION['Town_ID']));
+					$Item_Query = $bdd->prepare("SELECT * FROM Caranille_Items
+					WHERE Item_ID= ?
+					AND Item_Town= ?");
+					$Item_Query->execute(array($Item_ID, $Town));
+					while ($Item = $Item_Query->fetch())
 					{
-						$Gold = htmlspecialchars(addslashes($_SESSION['Gold'])) - htmlspecialchars(addslashes($Item_Price));
+						$Item_ID = stripslashes($Item['Item_ID']);
+						$Item_Price = stripslashes($Item['Item_Purchase_Price']);
+						$Item_Name = stripslashes($Item['Item_Name']);
 					
-						$Item_Quantity_Query = $bdd->prepare("SELECT * FROM Caranille_Inventory
-						WHERE Inventory_Item_ID= ?
-						AND Inventory_Account_ID= ?");
-						$Item_Quantity_Query->execute(array($Item_ID, $ID));
-					
-						$Item_Quantity = $Item_Quantity_Query->rowCount();
-						if ($Item_Quantity>=1)
+						if ($_SESSION['Gold'] >= $Item_Price)
 						{
-							$Add_Item = $bdd->prepare("UPDATE Caranille_Inventory SET Inventory_Item_Quantity = Inventory_Item_Quantity + 1
-								WHERE Inventory_Item_ID= :Item_ID
-								AND Inventory_Account_ID = :ID");
-							$Add_Item->execute(array('Item_ID'=> $Item_ID, 'ID'=> $ID));
+							$Gold = htmlspecialchars(addslashes($_SESSION['Gold'])) - htmlspecialchars(addslashes($Item_Price));
 						
-							$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
-							$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							$Item_Quantity_Query = $bdd->prepare("SELECT * FROM Caranille_Inventory
+							WHERE Inventory_Item_ID= ?
+							AND Inventory_Account_ID= ?");
+							$Item_Quantity_Query->execute(array($Item_ID, $ID));
+						
+							$Item_Quantity = $Item_Quantity_Query->rowCount();
+							if ($Item_Quantity>=1)
+							{
+								$Add_Item = $bdd->prepare("UPDATE Caranille_Inventory SET Inventory_Item_Quantity = Inventory_Item_Quantity + 1
+									WHERE Inventory_Item_ID= :Item_ID
+									AND Inventory_Account_ID = :ID");
+								$Add_Item->execute(array('Item_ID'=> $Item_ID, 'ID'=> $ID));
+							
+								$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
+								$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							}
+							else
+							{
+								$Add_Item = $bdd->prepare("INSERT INTO Caranille_Inventory VALUES('', :ID, :Item_ID, '1', 'No')");
+								$Add_Item->execute(array('ID'=> $ID, 'Item_ID'=> $Item_ID));
+							
+								$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
+								$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							}
+							echo "$Accessory_Shop_22 $Item_Name<br /><br />";
+							echo '<form method="POST" action="Accessory_Shop.php">';
+							echo "<input type=\"submit\" name=\"Cancel\" value=\"$Accessory_Shop_23\">";
+							echo '</form>';
 						}
 						else
 						{
-							$Add_Item = $bdd->prepare("INSERT INTO Caranille_Inventory VALUES('', :ID, :Item_ID, '1', 'No')");
-							$Add_Item->execute(array('ID'=> $ID, 'Item_ID'=> $Item_ID));
-						
-							$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
-							$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							echo "$Accessory_Shop_24";
 						}
-						echo "$Accessory_Shop_22 $Item_Name<br /><br />";
-						echo '<form method="POST" action="Accessory_Shop.php">';
-						echo "<input type=\"submit\" name=\"Cancel\" value=\"$Accessory_Shop_23\">";
-						echo '</form>';
 					}
-					else
-					{
-						echo "$Accessory_Shop_24";
-					}
+					$Item_Query->closeCursor();
 				}
-
-				$Item_Query->closeCursor();
 			}
 		}
 		if ($_SESSION['Town'] == 0)

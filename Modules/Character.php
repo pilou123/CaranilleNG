@@ -38,32 +38,40 @@
 		}
 		if (isset($_POST['Change_Password']))
 		{
-			echo "$Character_23<br /><br />";
-			echo '<form method="POST" action="Character.php"><br />';
-			echo "$Character_24<input type=\"password\" name=\"New_Password\"><br />";
-			echo "$Character_25<input type=\"password\" name=\"New_Password_Confirmation\"><br />";
-			echo "<input type=\"submit\" name=\"Finish\" value=\"$Character_26\">";
-			echo '</form>';
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Character.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
+			{
+				echo "$Character_23<br /><br />";
+				echo '<form method="POST" action="Character.php"><br />';
+				echo "$Character_24<input type=\"password\" name=\"New_Password\"><br />";
+				echo "$Character_25<input type=\"password\" name=\"New_Password_Confirmation\"><br />";
+				echo "<input type=\"submit\" name=\"Finish\" value=\"$Character_26\">";
+				echo '</form>';
+			}
 		}
 		if (isset($_POST['Finish']))
 		{
-			$New_Password = md5(htmlspecialchars(addslashes($_POST['New_Password'])));
-			$New_Password_Confirmation = md5(htmlspecialchars(addslashes($_POST['New_Password_Confirmation'])));
-			if ($New_Password == $New_Password_Confirmation)
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Character.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 			{
-				echo "$Character_27";
-				$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Password= :New_Password WHERE Account_ID= :ID");
-				$Update_Account->execute(array('New_Password'=> $New_Password, 'ID'=> $ID));
-				echo '<form method="POST" action="Character.php"><br />';
-				echo "<input type=\"submit\" name=\"Cancel\" value=\"$Character_28\">";
-				echo '</form>';
-			}
-			else
-			{
-				echo "$Character_29";
-				echo '<form method="POST" action="Character.php"><br />';
-				echo "<input type=\"submit\" name=\"Cancel\" value=\"$Character_28\">";
-				echo '</form>';
+				$New_Password = md5(htmlspecialchars(addslashes($_POST['New_Password'])));
+				$New_Password_Confirmation = md5(htmlspecialchars(addslashes($_POST['New_Password_Confirmation'])));
+				if ($New_Password == $New_Password_Confirmation)
+				{
+					echo "$Character_27";
+					$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Password= :New_Password WHERE Account_ID= :ID");
+					$Update_Account->execute(array('New_Password'=> $New_Password, 'ID'=> $ID));
+					echo '<form method="POST" action="Character.php"><br />';
+					echo "<input type=\"submit\" name=\"Cancel\" value=\"$Character_28\">";
+					echo '</form>';
+				}
+				else
+				{
+					echo "$Character_29";
+					echo '<form method="POST" action="Character.php"><br />';
+					echo "<input type=\"submit\" name=\"Cancel\" value=\"$Character_28\">";
+					echo '</form>';
+				}
 			}
 		}
 	}

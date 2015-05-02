@@ -980,154 +980,162 @@
 		}
 		if (isset($_POST['Sale']))
 		{	
-			$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
-			$Inventory_ID = htmlspecialchars(addslashes($_POST['Inventory_ID']));
-			$Item_Query_List = $bdd->prepare("SELECT * FROM Caranille_Inventory, Caranille_Items
-			WHERE Item_ID = ?
-			AND Inventory_ID = ?
-			AND Inventory_Account_ID = ?");
-			$Item_Query_List->execute(array($Item_ID, $Inventory_ID, $ID));
-			while ($Item_Query = $Item_Query_List->fetch())
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Inventory.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 			{
-				$_SESSION['Item_ID'] = $Item_Query['Item_ID'];
-				$_SESSION['Item_Level_Required'] = $Item_Query['Item_Level_Required'];
-				$_SESSION['Item_Quantity'] = $Item_Query['Inventory_Item_Quantity'];
-				$_SESSION['Item_Sale_Price'] = $Item_Query['Item_Sale_Price'];
-			}
-			$Item_ID = $_SESSION['Item_ID'];
-			$Item_Level_Required = $_SESSION['Item_Level_Required'];
-			$Item_Quantity = $_SESSION['Item_Quantity'];
-			$Item_Sale_Price = $_SESSION['Item_Sale_Price'];
-
-			if ($Item_Quantity >=2)
-			{
-				$Update_Account =  $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds = Account_Golds + :Item_Sale_Price
-				WHERE Account_ID = :ID");
-				$Update_Account ->execute(array('Item_Sale_Price'=> $Item_Sale_Price, 'ID'=> $ID));
-
-				$Update_Account = $bdd->prepare("UPDATE Caranille_Inventory
-				SET Inventory_Item_Quantity = Inventory_Item_Quantity -1
-				WHERE Inventory_ID = :Inventory_ID");
-
-				$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
-				echo "$Inventory_38";
-			}
-			else
-			{
-				if ($Inventory_ID == $_SESSION['Armor_Inventory_ID'] || $Inventory_ID == $_SESSION['Boots_Inventory_ID'] ||$Inventory_ID == $_SESSION['Gloves_Inventory_ID'] || $Inventory_ID == $_SESSION['Helmet_Inventory_ID'] || $Inventory_ID == $_SESSION['Weapon_Inventory_ID'])
+				$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
+				$Inventory_ID = htmlspecialchars(addslashes($_POST['Inventory_ID']));
+				$Item_Query_List = $bdd->prepare("SELECT * FROM Caranille_Inventory, Caranille_Items
+				WHERE Item_ID = ?
+				AND Inventory_ID = ?
+				AND Inventory_Account_ID = ?");
+				$Item_Query_List->execute(array($Item_ID, $Inventory_ID, $ID));
+				while ($Item_Query = $Item_Query_List->fetch())
 				{
-					echo "$Inventory_39<br />";
+					$_SESSION['Item_ID'] = $Item_Query['Item_ID'];
+					$_SESSION['Item_Level_Required'] = $Item_Query['Item_Level_Required'];
+					$_SESSION['Item_Quantity'] = $Item_Query['Inventory_Item_Quantity'];
+					$_SESSION['Item_Sale_Price'] = $Item_Query['Item_Sale_Price'];
 				}
-				else
+				$Item_ID = $_SESSION['Item_ID'];
+				$Item_Level_Required = $_SESSION['Item_Level_Required'];
+				$Item_Quantity = $_SESSION['Item_Quantity'];
+				$Item_Sale_Price = $_SESSION['Item_Sale_Price'];
+
+				if ($Item_Quantity >=2)
 				{
 					$Update_Account =  $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds = Account_Golds + :Item_Sale_Price
 					WHERE Account_ID = :ID");
 					$Update_Account ->execute(array('Item_Sale_Price'=> $Item_Sale_Price, 'ID'=> $ID));
 
-					$Update_Account = $bdd->prepare("DELETE FROM Caranille_Inventory
+					$Update_Account = $bdd->prepare("UPDATE Caranille_Inventory
+					SET Inventory_Item_Quantity = Inventory_Item_Quantity -1
 					WHERE Inventory_ID = :Inventory_ID");
+
 					$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
-					echo "$Inventory_40 $Item_Sale_Price PO";
+					echo "$Inventory_38";
 				}
+				else
+				{
+					if ($Inventory_ID == $_SESSION['Armor_Inventory_ID'] || $Inventory_ID == $_SESSION['Boots_Inventory_ID'] ||$Inventory_ID == $_SESSION['Gloves_Inventory_ID'] || $Inventory_ID == $_SESSION['Helmet_Inventory_ID'] || $Inventory_ID == $_SESSION['Weapon_Inventory_ID'])
+					{
+						echo "$Inventory_39<br />";
+					}
+					else
+					{
+						$Update_Account =  $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds = Account_Golds + :Item_Sale_Price
+						WHERE Account_ID = :ID");
+						$Update_Account ->execute(array('Item_Sale_Price'=> $Item_Sale_Price, 'ID'=> $ID));
+
+						$Update_Account = $bdd->prepare("DELETE FROM Caranille_Inventory
+						WHERE Inventory_ID = :Inventory_ID");
+						$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
+						echo "$Inventory_40 $Item_Sale_Price PO";
+					}
+				}
+				echo '<form method="POST" action="Inventory.php">';
+				echo "<input type=\"submit\" name=\"Cancel\" value=\"$Inventory_24\">";
+				echo '</form>';
 			}
-			echo '<form method="POST" action="Inventory.php">';
-			echo "<input type=\"submit\" name=\"Cancel\" value=\"$Inventory_24\">";
-			echo '</form>';
 		}
 		/*
 		Module of Parchement
 		*/
 		if (isset($_POST['Use']))
 		{
-			$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
-			$Inventory_ID = htmlspecialchars(addslashes($_POST['Inventory_ID']));
-		    
-			$Item_Query_List = $bdd->prepare("SELECT * FROM Caranille_Inventory, Caranille_Items
-			WHERE Item_ID = ?
-			AND Inventory_ID = ?
-			AND Inventory_Account_ID = ?");
-			$Item_Query_List->execute(array($Item_ID, $Inventory_ID, $ID));
-			while ($Item_Query = $Item_Query_List->fetch())
+			$Good_Link = $_SESSION['Link_Root'] . "/Modules/Inventory.php";
+			if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 			{
-				$_SESSION['Inventory_Item_Quantity'] = $Item_Query['Inventory_Item_Quantity'];
-			}
-		    
-			$Item_List_Query = $bdd->prepare("SELECT * FROM Caranille_Items WHERE Item_ID = :Item_ID");
-			$Item_List_Query->execute(array('Item_ID' => $Item_ID));
-			while ($Item_List = $Item_List_Query->fetch())
-			{
-				$_SESSION['Item_HP_Effect'] = $Item_List['Item_HP_Effect'];
-				$_SESSION['Item_MP_Effect'] = $Item_List['Item_MP_Effect'];
-				$_SESSION['Item_Strength_Effect'] = $Item_List['Item_Strength_Effect'];
-				$_SESSION['Item_Magic_Effect'] = $Item_List['Item_Magic_Effect'];
-				$_SESSION['Item_Agility_Effect'] = $Item_List['Item_Agility_Effect'];
-				$_SESSION['Item_Defense_Effect'] = $Item_List['Item_Defense_Effect'];
-				$_SESSION['Item_Sagesse_Effect'] = $Item_List['Item_Sagesse_Effect'];
-			}
-				$Item_HP_Effect = $_SESSION['Item_HP_Effect'];
-				$Item_MP_Effect = $_SESSION['Item_MP_Effect'];
-				$Item_Strength_Effect = $_SESSION['Item_Strength_Effect'];
-				$Item_Magic_Effect = $_SESSION['Item_Magic_Effect'];
-				$Item_Agility_Effect = $_SESSION['Item_Agility_Effect'];
-				$Item_Defense_Effect = $_SESSION['Item_Agility_Effect'];
-				$Item_Sagesse_Effect = $_SESSION['Item_Sagesse_Effect'];
-				$Item_Quantity = $_SESSION['Inventory_Item_Quantity'];
-		
-			if ($Item_Quantity >= 2)
-			{
-		       		$Update_Account = $bdd->prepare("UPDATE Caranille_Inventory
-				SET Inventory_Item_Quantity = Inventory_Item_Quantity -1
-				WHERE Inventory_ID = :Inventory_ID");
-				$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
+				$Item_ID = htmlspecialchars(addslashes($_POST['Item_ID']));
+				$Inventory_ID = htmlspecialchars(addslashes($_POST['Inventory_ID']));
+				
+				$Item_Query_List = $bdd->prepare("SELECT * FROM Caranille_Inventory, Caranille_Items
+				WHERE Item_ID = ?
+				AND Inventory_ID = ?
+				AND Inventory_Account_ID = ?");
+				$Item_Query_List->execute(array($Item_ID, $Inventory_ID, $ID));
+				while ($Item_Query = $Item_Query_List->fetch())
+				{
+					$_SESSION['Inventory_Item_Quantity'] = $Item_Query['Inventory_Item_Quantity'];
+				}
+				
+				$Item_List_Query = $bdd->prepare("SELECT * FROM Caranille_Items WHERE Item_ID = :Item_ID");
+				$Item_List_Query->execute(array('Item_ID' => $Item_ID));
+				while ($Item_List = $Item_List_Query->fetch())
+				{
+					$_SESSION['Item_HP_Effect'] = $Item_List['Item_HP_Effect'];
+					$_SESSION['Item_MP_Effect'] = $Item_List['Item_MP_Effect'];
+					$_SESSION['Item_Strength_Effect'] = $Item_List['Item_Strength_Effect'];
+					$_SESSION['Item_Magic_Effect'] = $Item_List['Item_Magic_Effect'];
+					$_SESSION['Item_Agility_Effect'] = $Item_List['Item_Agility_Effect'];
+					$_SESSION['Item_Defense_Effect'] = $Item_List['Item_Defense_Effect'];
+					$_SESSION['Item_Sagesse_Effect'] = $Item_List['Item_Sagesse_Effect'];
+				}
+					$Item_HP_Effect = $_SESSION['Item_HP_Effect'];
+					$Item_MP_Effect = $_SESSION['Item_MP_Effect'];
+					$Item_Strength_Effect = $_SESSION['Item_Strength_Effect'];
+					$Item_Magic_Effect = $_SESSION['Item_Magic_Effect'];
+					$Item_Agility_Effect = $_SESSION['Item_Agility_Effect'];
+					$Item_Defense_Effect = $_SESSION['Item_Agility_Effect'];
+					$Item_Sagesse_Effect = $_SESSION['Item_Sagesse_Effect'];
+					$Item_Quantity = $_SESSION['Inventory_Item_Quantity'];
 			
-		    		$Update_Stats = $bdd->prepare("UPDATE Caranille_Accounts SET 
-				Account_HP_Bonus = Account_HP_Bonus + :Item_HP_Effect, 
-				Account_MP_Bonus = Account_MP_Bonus + :Item_MP_Effect, 
-				Account_Strength_Bonus = Account_Strength_Bonus + :Item_Strength_Effect, 
-				Account_Magic_Bonus = Account_Magic_Bonus + :Item_Magic_Effect, 
-				Account_Agility_Bonus = Account_Agility_Bonus + :Item_Agility_Effect, 
-				Account_Defense_Bonus = Account_Defense_Bonus + :Item_Defense_Effect, 
-				Account_Sagesse_Bonus = Account_Sagesse_Bonus + :Item_Sagesse_Effect
-				WHERE Account_ID = :ID");
+				if ($Item_Quantity >= 2)
+				{
+						$Update_Account = $bdd->prepare("UPDATE Caranille_Inventory
+					SET Inventory_Item_Quantity = Inventory_Item_Quantity -1
+					WHERE Inventory_ID = :Inventory_ID");
+					$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
+				
+						$Update_Stats = $bdd->prepare("UPDATE Caranille_Accounts SET 
+					Account_HP_Bonus = Account_HP_Bonus + :Item_HP_Effect, 
+					Account_MP_Bonus = Account_MP_Bonus + :Item_MP_Effect, 
+					Account_Strength_Bonus = Account_Strength_Bonus + :Item_Strength_Effect, 
+					Account_Magic_Bonus = Account_Magic_Bonus + :Item_Magic_Effect, 
+					Account_Agility_Bonus = Account_Agility_Bonus + :Item_Agility_Effect, 
+					Account_Defense_Bonus = Account_Defense_Bonus + :Item_Defense_Effect, 
+					Account_Sagesse_Bonus = Account_Sagesse_Bonus + :Item_Sagesse_Effect
+					WHERE Account_ID = :ID");
 
-				$Update_Stats->execute(array(
-				'Item_HP_Effect' => $Item_HP_Effect, 
-				'Item_MP_Effect' => $Item_MP_Effect, 
-				'Item_Strength_Effect' => $Item_Strength_Effect, 
-				'Item_Magic_Effect' => $Item_Magic_Effect, 
-				'Item_Agility_Effect' => $Item_Agility_Effect, 
-				'Item_Defense_Effect' => $Item_Defense_Effect, 
-				'Item_Sagesse_Effect' => $Item_Sagesse_Effect, 
-				'ID' => $ID));
-				echo "$Inventory_41";
-			
-			}
-			else
-			{
-				$Update_Account = $bdd->prepare("DELETE FROM Caranille_Inventory
-				WHERE Inventory_ID = :Inventory_ID");
-				$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
-			
-		    		$Update_Stats = $bdd->prepare("UPDATE Caranille_Accounts SET 
-				Account_HP_Bonus = Account_HP_Bonus + :Item_HP_Effect, 
-				Account_MP_Bonus = Account_MP_Bonus + :Item_MP_Effect, 
-				Account_Strength_Bonus = Account_Strength_Bonus + :Item_Strength_Effect, 
-				Account_Magic_Bonus = Account_Magic_Bonus + :Item_Magic_Effect, 
-				Account_Agility_Bonus = Account_Agility_Bonus + :Item_Agility_Effect, 
-				Account_Defense_Bonus = Account_Defense_Bonus + :Item_Defense_Effect, 
-				Account_Sagesse_Bonus = Account_Sagesse_Bonus + :Item_Sagesse_Effect 
-				WHERE Account_ID = :ID");
+					$Update_Stats->execute(array(
+					'Item_HP_Effect' => $Item_HP_Effect, 
+					'Item_MP_Effect' => $Item_MP_Effect, 
+					'Item_Strength_Effect' => $Item_Strength_Effect, 
+					'Item_Magic_Effect' => $Item_Magic_Effect, 
+					'Item_Agility_Effect' => $Item_Agility_Effect, 
+					'Item_Defense_Effect' => $Item_Defense_Effect, 
+					'Item_Sagesse_Effect' => $Item_Sagesse_Effect, 
+					'ID' => $ID));
+					echo "$Inventory_41";
+				
+				}
+				else
+				{
+					$Update_Account = $bdd->prepare("DELETE FROM Caranille_Inventory
+					WHERE Inventory_ID = :Inventory_ID");
+					$Update_Account->execute(array('Inventory_ID'=> $Inventory_ID));
+				
+						$Update_Stats = $bdd->prepare("UPDATE Caranille_Accounts SET 
+					Account_HP_Bonus = Account_HP_Bonus + :Item_HP_Effect, 
+					Account_MP_Bonus = Account_MP_Bonus + :Item_MP_Effect, 
+					Account_Strength_Bonus = Account_Strength_Bonus + :Item_Strength_Effect, 
+					Account_Magic_Bonus = Account_Magic_Bonus + :Item_Magic_Effect, 
+					Account_Agility_Bonus = Account_Agility_Bonus + :Item_Agility_Effect, 
+					Account_Defense_Bonus = Account_Defense_Bonus + :Item_Defense_Effect, 
+					Account_Sagesse_Bonus = Account_Sagesse_Bonus + :Item_Sagesse_Effect 
+					WHERE Account_ID = :ID");
 
-				$Update_Stats->execute(array(
-				'Item_HP_Effect' => $Item_HP_Effect, 
-				'Item_MP_Effect' => $Item_MP_Effect, 
-				'Item_Strength_Effect' => $Item_Strength_Effect, 
-				'Item_Magic_Effect' => $Item_Magic_Effect, 
-				'Item_Agility_Effect' => $Item_Agility_Effect, 
-				'Item_Defense_Effect' => $Item_Defense_Effect, 
-				'Item_Sagesse_Effect' => $Item_Sagesse_Effect, 
-				'ID' => $ID));
-				echo "$Inventory_41";
+					$Update_Stats->execute(array(
+					'Item_HP_Effect' => $Item_HP_Effect, 
+					'Item_MP_Effect' => $Item_MP_Effect, 
+					'Item_Strength_Effect' => $Item_Strength_Effect, 
+					'Item_Magic_Effect' => $Item_Magic_Effect, 
+					'Item_Agility_Effect' => $Item_Agility_Effect, 
+					'Item_Defense_Effect' => $Item_Defense_Effect, 
+					'Item_Sagesse_Effect' => $Item_Sagesse_Effect, 
+					'ID' => $ID));
+					echo "$Inventory_41";
+				}
 			}
 		}
 	}

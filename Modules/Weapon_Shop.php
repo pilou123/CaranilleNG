@@ -107,65 +107,69 @@
 			}
 			if (isset($_POST['Buy']))
 			{
-				$Weapon_ID = htmlspecialchars(addslashes($_POST['Weapon_ID']));
-				$Town = htmlspecialchars(addslashes($_SESSION['Town_ID']));
-				$Weapon_Query = $bdd->prepare("SELECT * FROM Caranille_Items
-				WHERE Item_ID= ?
-				AND Item_Town= ?");
-				$Weapon_Query->execute(array($Weapon_ID, $Town));
-				while ($Weapon = $Weapon_Query->fetch())
+				$Good_Link = $_SESSION['Link_Root'] . "/Modules/Weapon_Shop.php";
+				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 				{
-					$_SESSION['Weapon_ID'] = stripslashes($Weapon['Item_ID']);
-					$_SESSION['Weapon_Image'] = stripslashes($Weapon['Item_Image']);
-					$_SESSION['Weapon_Name'] = stripslashes($Weapon['Item_Name']);
-					$_SESSION['Weapon_Description'] = stripslashes(nl2br($Weapon['Item_Description']));
-					$_SESSION['Weapon_Price'] = stripslashes($Weapon['Item_Purchase_Price']);
-					$_SESSION['Weapon_Type'] = stripslashes($Weapon['Item_Type']);
-					$_SESSION['Weapon_Town'] = stripslashes($Weapon['Item_Town']);
-					$_SESSION['Item'] = 0;
-				
-					if ($_SESSION['Gold'] >= $_SESSION['Weapon_Price'])
+					$Weapon_ID = htmlspecialchars(addslashes($_POST['Weapon_ID']));
+					$Town = htmlspecialchars(addslashes($_SESSION['Town_ID']));
+					$Weapon_Query = $bdd->prepare("SELECT * FROM Caranille_Items
+					WHERE Item_ID= ?
+					AND Item_Town= ?");
+					$Weapon_Query->execute(array($Weapon_ID, $Town));
+					while ($Weapon = $Weapon_Query->fetch())
 					{
-						$Weapon_ID = htmlspecialchars(addslashes($_SESSION['Weapon_ID']));
-						$Gold = htmlspecialchars(addslashes($_SESSION['Gold'])) - htmlspecialchars(addslashes($_SESSION['Weapon_Price']));
-						$Weapon = htmlspecialchars(addslashes($_SESSION['Weapon_Name']));
-						$Weapon_Effect = htmlspecialchars(addslashes($_SESSION['Weapon_Effect']));
+						$_SESSION['Weapon_ID'] = stripslashes($Weapon['Item_ID']);
+						$_SESSION['Weapon_Image'] = stripslashes($Weapon['Item_Image']);
+						$_SESSION['Weapon_Name'] = stripslashes($Weapon['Item_Name']);
+						$_SESSION['Weapon_Description'] = stripslashes(nl2br($Weapon['Item_Description']));
+						$_SESSION['Weapon_Price'] = stripslashes($Weapon['Item_Purchase_Price']);
+						$_SESSION['Weapon_Type'] = stripslashes($Weapon['Item_Type']);
+						$_SESSION['Weapon_Town'] = stripslashes($Weapon['Item_Town']);
+						$_SESSION['Item'] = 0;
 					
-						$Item_Quantity_Query = $bdd->prepare("SELECT * FROM Caranille_Inventory
-						WHERE Inventory_Item_ID= ?
-						AND Inventory_Account_ID= ?");
-						$Item_Quantity_Query->execute(array($Weapon_ID, $ID));
-					
-						$Item_Quantity = $Item_Quantity_Query->rowCount();
-						if ($Item_Quantity>=1)
+						if ($_SESSION['Gold'] >= $_SESSION['Weapon_Price'])
 						{
-							$Add_Item = $bdd->prepare("UPDATE Caranille_Inventory SET Inventory_Item_Quantity = Inventory_Item_Quantity + 1
-								WHERE Inventory_Item_ID= :Weapon_ID
-								AND Inventory_Account_ID = :ID");
-							$Add_Item->execute(array('Weapon_ID'=> $Weapon_ID, 'ID'=> $ID));
+							$Weapon_ID = htmlspecialchars(addslashes($_SESSION['Weapon_ID']));
+							$Gold = htmlspecialchars(addslashes($_SESSION['Gold'])) - htmlspecialchars(addslashes($_SESSION['Weapon_Price']));
+							$Weapon = htmlspecialchars(addslashes($_SESSION['Weapon_Name']));
+							$Weapon_Effect = htmlspecialchars(addslashes($_SESSION['Weapon_Effect']));
 						
-							$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
-							$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							$Item_Quantity_Query = $bdd->prepare("SELECT * FROM Caranille_Inventory
+							WHERE Inventory_Item_ID= ?
+							AND Inventory_Account_ID= ?");
+							$Item_Quantity_Query->execute(array($Weapon_ID, $ID));
+						
+							$Item_Quantity = $Item_Quantity_Query->rowCount();
+							if ($Item_Quantity>=1)
+							{
+								$Add_Item = $bdd->prepare("UPDATE Caranille_Inventory SET Inventory_Item_Quantity = Inventory_Item_Quantity + 1
+									WHERE Inventory_Item_ID= :Weapon_ID
+									AND Inventory_Account_ID = :ID");
+								$Add_Item->execute(array('Weapon_ID'=> $Weapon_ID, 'ID'=> $ID));
+							
+								$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
+								$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							}
+							else
+							{
+								$Add_Item = $bdd->prepare("INSERT INTO Caranille_Inventory VALUES('', :ID, :Weapon_ID, '1', 'No')");
+								$Add_Item->execute(array('ID'=> $ID, 'Weapon_ID'=> $Weapon_ID));
+							
+								$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
+								$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							}
+							echo "$Weapon_Shop_16 $Weapon<br /><br />";
+							echo '<form method="POST" action="Weapon_Shop.php">';
+							echo "<input type=\"submit\" name=\"Cancel\" value=\"$Weapon_Shop_17\">";
+							echo '</form>';
 						}
 						else
 						{
-							$Add_Item = $bdd->prepare("INSERT INTO Caranille_Inventory VALUES('', :ID, :Weapon_ID, '1', 'No')");
-							$Add_Item->execute(array('ID'=> $ID, 'Weapon_ID'=> $Weapon_ID));
-						
-							$Update_Account = $bdd->prepare("UPDATE Caranille_Accounts SET Account_Golds= :Gold WHERE Account_ID= :ID");
-							$Update_Account->execute(array('Gold'=> $Gold, 'ID'=> $ID));
+							echo "$Weapon_Shop_18";
 						}
-						echo "$Weapon_Shop_16 $Weapon<br /><br />";
-						echo '<form method="POST" action="Weapon_Shop.php">';
-						echo "<input type=\"submit\" name=\"Cancel\" value=\"$Weapon_Shop_17\">";
-						echo '</form>';
 					}
-					else
-					{
-						echo "$Weapon_Shop_18";
-					}
+					$Weapon_Query->closeCursor();
 				}
-				$Weapon_Query->closeCursor();
 			}
 		}
 		if ($_SESSION['Town'] == 0)
