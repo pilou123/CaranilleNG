@@ -34,8 +34,11 @@
 				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 				{
 					$Town_ID = htmlspecialchars(addslashes($_POST['Town_ID']));
-					$recherche_information_Town = $bdd->prepare("SELECT * FROM Caranille_Towns WHERE Town_ID= ?");
-					$recherche_information_Town->execute(array($Town_ID));
+					$Account_Chapter = $_SESSION['Chapter'];
+					$recherche_information_Town = $bdd->prepare("SELECT * FROM Caranille_Towns 
+					WHERE Town_ID= ?
+					AND Town_Chapter <= ?");
+					$recherche_information_Town->execute(array($Town_ID, $Account_Chapter));
 					while ($information_Town = $recherche_information_Town->fetch())
 					{
 						$_SESSION['Town_ID'] = stripslashes($information_Town['Town_ID']);
