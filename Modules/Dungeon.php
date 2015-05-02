@@ -12,12 +12,12 @@
 			if (empty($_POST['Battle']))
 			{	
 				echo "$Dungeon_0";
-				$ville_actuel = htmlspecialchars(addslashes($_SESSION['Town_ID']));
+				$Town_ID = htmlspecialchars(addslashes($_SESSION['Town_ID']));
 
 				$recherche_monstre = $bdd->prepare("SELECT * FROM Caranille_Monsters
 				WHERE Monster_Town = ?
 				AND Monster_Access = 'Battle'");
-				$recherche_monstre->execute(array($ville_actuel));
+				$recherche_monstre->execute(array($Town_ID));
 
 				while ($monstre = $recherche_monstre->fetch())
 				{
@@ -43,12 +43,15 @@
 			}
 			if (isset($_POST['Battle']))
 			{
-				$ville_actuel = htmlspecialchars(addslashes($_SESSION['Town_ID']));
 				$Monster_ID = htmlspecialchars(addslashes($_POST['Monster_ID']));
+				$Town_ID = htmlspecialchars(addslashes($_SESSION['Town_ID']));
+				$Monster_Access = "Battle";
 
 				$recherche_monstre = $bdd->prepare("SELECT * FROM Caranille_Monsters 
-				WHERE Monster_ID= ?");
-				$recherche_monstre->execute(array($Monster_ID));
+				WHERE Monster_ID = ?
+				AND Monster_Town = ?
+				AND Monster_Access = ?");
+				$recherche_monstre->execute(array($Monster_ID, $Town_ID, $Monster_Access));
 
 				while ($monstre = $recherche_monstre->fetch())
 				{
