@@ -8,10 +8,33 @@
 	$ID = htmlspecialchars(addslashes($_SESSION['ID']));
 	if (isset($_SESSION['ID']))
 	{
-		//Si le joueur est dans une ville, on regarde si il est actuellement en combat
 		if ($_SESSION['Battle'] == 1)
 		{
-			//Si attaquer et fuir n'ont pas été choisir on affiche le menu de combat
+			//PUBLIC VARIABLE
+			$MIN_Strength = htmlspecialchars(addslashes($_SESSION['Strength_Total'])) / 1.1;
+			$MAX_Strength = htmlspecialchars(addslashes($_SESSION['Strength_Total'])) * 1.1;
+			
+			$MIN_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) / 1.1;
+			$MAX_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) * 1.1;
+			
+			$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) / 1.1;
+			$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) * 1.1;
+
+			$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
+			$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
+			
+			$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
+			$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
+			
+			$Positive_Damage_Player = mt_rand($MIN_Strength, $MAX_Strength);
+			$Negative_Damage_Player = mt_rand($Monster_MIN_Defense, $Monster_MAX_Defense);
+			$Total_Damage_Player = htmlspecialchars(addslashes($Positive_Damage_Player)) - htmlspecialchars(addslashes($Negative_Damage_Player));
+			
+			$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
+			$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
+			$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
+			// END OF PUBLIC VARIABLE
+			
 			if (empty($_POST['Attack']) && empty($_POST['Magics']) && empty($_POST['End_Magics']) && empty($_POST['Invocations']) && empty($_POST['End_Invocations']) && empty($_POST['Items']) && empty($_POST['End_Items']) && (empty($_POST['Escape'])))
 			{
 				//Si la HP du monstre est supérieur à 0 et que la HP du personnage est supérieur à zero le combat commence ou continue
@@ -45,23 +68,6 @@
 				$Good_Link = $_SESSION['Link_Root'] . "/Modules/Battle.php";
 				if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 				{
-					$MIN_Strength = htmlspecialchars(addslashes($_SESSION['Strength_Total'])) / 1.1;
-					$MAX_Strength = htmlspecialchars(addslashes($_SESSION['Strength_Total'])) * 1.1;
-					$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) / 1.1;
-					$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) * 1.1;
-
-					$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
-					$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
-					$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
-					$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
-
-					$Positive_Damage_Player = mt_rand($MIN_Strength, $MAX_Strength);
-					$Negative_Damage_Player = mt_rand($Monster_MIN_Defense, $Monster_MAX_Defense);
-					$Total_Damage_Player = htmlspecialchars(addslashes($Positive_Damage_Player)) - htmlspecialchars(addslashes($Negative_Damage_Player));
-
-					$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
-					$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
-					$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
 					//Si les dégats du joueurs ou du monstre sont égal ou inférieur à zero
 					if ($Total_Damage_Monster <=0)	
 					{
@@ -149,24 +155,10 @@
 
 						if ($Magic_Type == "Attack")
 						{
-							$MIN_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) / 1.1;
-							$MAX_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) * 1.1;
-							$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) / 1.1;
-							$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) * 1.1;
-
-							$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
-							$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
-							$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
-							$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
-
 							$Positive_Magic_Damage_Player = mt_rand($MIN_Magic, $MAX_Magic) + $Magic_Effect;
 							$Negative_Magic_Damage_Player = mt_rand($Monster_MIN_Defense, $Monster_MAX_Defense);
 							$Player_Total_Magic_Damage = htmlspecialchars(addslashes($Positive_Magic_Damage_Player)) - htmlspecialchars(addslashes($Negative_Magic_Damage_Player));
-							
-							$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
-							$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
-							$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
-							//Si les dégats du joueurs ou du monstre sont égal ou inférieur à zero
+
 							if ($Total_Damage_Monster <=0)	
 							{
 								$Total_Damage_Monster = 0;
@@ -193,22 +185,8 @@
 						}
 						elseif ($Magic_Type == "Health")
 						{
-							$MIN_Magic = htmlspecialchars(addslashes($_SESSION['Magic'])) / 1.1;
-							$MAX_Magic = htmlspecialchars(addslashes($_SESSION['Magic'])) * 1.1;
-							$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense'])) / 1.1;
-							$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense'])) * 1.1;
-
-							$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
-							$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
-							$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
-							$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
-
 							$Player_Health = mt_rand($MIN_Magic, $MAX_Magic) + $Magic_Effect;
-
-							$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
-							$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
-							$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
-							//Si les dégats du monstre sont en dessous de 0, on applique 0 de dégat pour éviter de soigner le personnage
+							
 							if ($Total_Damage_Monster <=0)	
 							{
 								$Total_Damage_Monster = 0;
@@ -309,17 +287,6 @@
 							$Invocation_Damage = $Invocations_List['Invocation_Damage'];
 						}
 						$Invocations_List_Query->closeCursor();
-						$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) / 1.1;
-						$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) * 1.1;
-
-						$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
-						$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
-						$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
-						$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
-
-						$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
-						$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
-						$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
 
 						$Invocation_Total_Damage = htmlspecialchars(addslashes($Invocation_Damage)) * htmlspecialchars(addslashes($MP_Choice));
 						//Si les dégats du monstre sont en dessous de 0, on applique 0 de dégat pour éviter de soigner le personnage
@@ -451,16 +418,6 @@
 					}
 					if ($Item_Type == "Health")
 					{
-						$MIN_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) / 1.1;
-						$MAX_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) * 1.1;
-						$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) / 1.1;
-						$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) * 1.1;
-
-						$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
-						$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
-						$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
-						$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
-						
 						$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
 						$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
 						$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
@@ -507,19 +464,6 @@
 					}
 					if ($Item_Type == "Magic")
 					{
-						$MIN_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) / 1.1;
-						$MAX_Magic = htmlspecialchars(addslashes($_SESSION['Magic_Total'])) * 1.1;
-						$MIN_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) / 1.1;
-						$MAX_Defense = htmlspecialchars(addslashes($_SESSION['Defense_Total'])) * 1.1;
-
-						$Monster_MIN_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) / 1.1;
-						$Monster_MAX_Strength = htmlspecialchars(addslashes($_SESSION['Monster_Strength'])) * 1.1;
-						$Monster_MIN_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) / 1.1;
-						$Monster_MAX_Defense = htmlspecialchars(addslashes($_SESSION['Monster_Defense'])) * 1.1;
-						
-						$Monster_Positive_Damage = mt_rand($Monster_MIN_Strength, $Monster_MAX_Strength);
-						$Monster_Negative_Damage = mt_rand($MIN_Defense, $MAX_Defense);
-						$Total_Damage_Monster = htmlspecialchars(addslashes($Monster_Positive_Damage)) - htmlspecialchars(addslashes($Monster_Negative_Damage));
 						if ($Total_Damage_Monster <=0)
 						{
 							$Total_Damage_Monster = 0;
