@@ -10,7 +10,7 @@
 			.groupe_lien_MH{display : inline;margin-left:0px;}
 			.sublien_MH{height : 37px;width : 120px;}
 		</style> <![endif]-->
-		<script src="<?php echo $_SESSION['Link_Root'] ."/Design/jquery-1.7.1.min.js"; ?>" type="text/javascript"></script>
+		<script src="<?php echo $_SESSION['Link_Root'] ."/Design/jquery-2.1.4.min.js"; ?>" type="text/javascript"></script>
 		<!--[if IE 6]>
 			<script type="text/javascript">
 				$(function()
