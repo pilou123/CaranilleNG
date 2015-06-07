@@ -5,31 +5,7 @@
 		<title>CaranilleNG</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $_SESSION['Link_Root'] ."/Design/style.css"; ?>" />
-		<!--[if IE 6]><link rel="stylesheet" media="screen" type="text/css" title="Design" href="design/ie6.css" /> <![endif]-->
-		<!--[if IE 7]> <style type="text/css">
-			.groupe_lien_MH{display : inline;margin-left:0px;}
-			.sublien_MH{height : 37px;width : 120px;}
-		</style> <![endif]-->
 		<script src="<?php echo $_SESSION['Link_Root'] ."/Design/jquery-2.1.4.min.js"; ?>" type="text/javascript"></script>
-		<!--[if IE 6]>
-			<script type="text/javascript">
-				$(function()
-				{
-					$('.groupe_lien_MH').hover
-					(
-						function()
-						{
-							$(this).addClass('groupe_lien_MH_hover');
-						},
-						function()
-						{
-							$(this).removeClass('groupe_lien_MH_hover');
-						}
-					);
-				}
-				);
-			</script>
-		<![endif]-->
 		<script type="text/javascript">
 			animation_complete=function(){jQuery(this).hide();}
 			jquery_MH_deroulant=function()
