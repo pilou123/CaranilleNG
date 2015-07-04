@@ -2,73 +2,73 @@
 //TRADUCTION OF /TEMPLATES/ DIRECTORY
 
 	//TRADUCTION OF LEFT
-	$Left_0 = "L'actualitée";
-	$Left_1 = "L'histoire";
-	$Left_2 = "La carte";
-	$Left_3 = "Mon Compte";
-	$Left_4 = "Mon personnage";
-	$Left_5 = "Mon inventaire";
-	$Left_6 = "La Communauté";
+	$Left_0 = "News";
+	$Left_1 = "Story";
+	$Left_2 = "Map World";
+	$Left_3 = "Account";
+	$Left_4 = "Character";
+	$Left_5 = "Inventory";
+	$Left_6 = "Community";
 	$Left_7 = "Top 100";
-	$Left_8 = "Message privé";
-	$Left_9 = "Le chat";
-	$Left_10 = "Déconnexion";
-	$Left_11 = "Modération";
+	$Left_8 = "Private Message";
+	$Left_9 = "Chat";
+	$Left_10 = "Logout";
+	$Left_11 = "Moderation";
 	$Left_12 = "Administration";
-	$Left_13 = "Accueil";
-	$Left_14 = "Présentation";
-	$Left_15 = "Espace Joueurs";
-	$Left_16 = "Inscription";
+	$Left_13 = "Main";
+	$Left_14 = "Presentation";
+	$Left_15 = "Players space";
+	$Left_16 = "Register";
 	$Left_17 = "Connexion";
 	$Left_18 = "Informations";
-	$Left_19 = "Supprimer mon compte";
+	$Left_19 = "Delete my Account";
 	
 	//TRADUCTION OF RIGHT
 	$Right_0 = "Pseudo";
-	$Right_1 = "Niveau";
-	$Right_2 = "Force";
-	$Right_3 = "Magie";
-	$Right_4 = "Agilité";
-	$Right_5 = "Défense";
+	$Right_1 = "Level";
+	$Right_2 = "Strength";
+	$Right_3 = "Magic";
+	$Right_4 = "Agility";
+	$Right_5 = "Defense";
 	$Right_6 = "Sagesse";
 	$Right_7 = "HP";
 	$Right_8 = "MP";
-	$Right_9 = "Pièces d'or (PO)";
+	$Right_9 = "Golds (PO)";
 	$Right_10 = "Experience (XP)";
-	$Right_11 = "Prochain niveau";
+	$Right_11 = "Next Level";
 	
 //END OF THE /TEMPLATES/ TRADUCTION
 
 //TRADUCTION OF THE /MODULES/ DIRECTORY
 
 	//TRADUCTION OF ACESSORY_SHOP
-	$Accessory_Shop_0 = "Voici toutes les armures<br />";
+	$Accessory_Shop_0 = "This is your armor<br />";
 	$Accessory_Shop_1 = "Image";
-	$Accessory_Shop_2 = "Niveau requis";
-	$Accessory_Shop_3 = "Nom";
+	$Accessory_Shop_2 = "Level Required";
+	$Accessory_Shop_3 = "Name";
 	$Accessory_Shop_4 = "Description";
-	$Accessory_Shop_5 = "Effet";
-	$Accessory_Shop_6 = "Prix (PO)";
+	$Accessory_Shop_5 = "Effect";
+	$Accessory_Shop_6 = "Price (PO)";
 	$Accessory_Shop_7 = "Action";
 	$Accessory_Shop_8 = "HP<br />";
 	$Accessory_Shop_9 = "MP<br />";
-	$Accessory_Shop_10 = "Force<br />";
-	$Accessory_Shop_11 = "Magie<br />";
-	$Accessory_Shop_12 = "Agilité<br />";
-	$Accessory_Shop_13 = "Défense<br />";
-	$Accessory_Shop_14 = "Acheter";
-	$Accessory_Shop_15 = "Il n'y a actuellement aucune Armure en vente, revenez plus tard<br />";
-	$Accessory_Shop_16 = "Voici toutes les bottes en ventes<br />";
-	$Accessory_Shop_17 = "Il n'y a actuellement aucune bottes en vente, revenez plus tard<br />";
-	$Accessory_Shop_18 = "Voici tous les gants en ventes<br />";
-	$Accessory_Shop_19 = "Il n'y a actuellement aucun gants en vente, revenez plus tard<br />";
-	$Accessory_Shop_20 = "Voici tous les casques en ventes<br />";
-	$Accessory_Shop_21 = "Il n'y a actuellement aucun casque en vente, revenez plus tard<br />";
-	$Accessory_Shop_22 = "Vous avez acheté";
-	$Accessory_Shop_23 = "Retourner en ville";
-	$Accessory_Shop_24 = "Vous n'avez pas assez d'argent";
-	$Accessory_Shop_25 = "Vous n'êtes dans aucune ville";
-	$Accessory_Shop_26 = "Vous devez être connecté pour accèder à cette page";
+	$Accessory_Shop_10 = "Strength<br />";
+	$Accessory_Shop_11 = "Magic<br />";
+	$Accessory_Shop_12 = "Agility<br />";
+	$Accessory_Shop_13 = "Defense<br />";
+	$Accessory_Shop_14 = "Buy";
+	$Accessory_Shop_15 = "There is no armor, please come back later<br />";
+	$Accessory_Shop_16 = "Here are all the bottles sales<br />";
+	$Accessory_Shop_17 = "There is no bottles, please come back later<br />";
+	$Accessory_Shop_18 = "Here are all the gloves sales<br />";
+	$Accessory_Shop_19 = "There is no gloves, please come back later<br />";
+	$Accessory_Shop_20 = "Here are all the helmets sales<br />";
+	$Accessory_Shop_21 = "There is no helmets, please come back later<br />";
+	$Accessory_Shop_22 = "you bought ";
+	$Accessory_Shop_23 = "Return to Town";
+	$Accessory_Shop_24 = "You have no money";
+	$Accessory_Shop_25 = "You are not in Town";
+	$Accessory_Shop_26 = "You must be logged in to access this page";
 
 	//TRADUCTION OF BATTLE
 	$Battle_0 = "Combat de";
