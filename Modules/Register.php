@@ -34,7 +34,7 @@
 				{
 					if (isset($_POST['Licence']))
 					{
-						$Account_Password = md5(htmlspecialchars(addslashes($_POST['Account_Password'])));
+						$Account_Password = sha1(htmlspecialchars(addslashes($_POST['Account_Password'])));
 						$Pseudo_List_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ?");
 						$Pseudo_List_Query->execute(array($Account_Pseudo));
 						
@@ -46,7 +46,6 @@
 						
 							$Add_Account = $bdd->prepare("INSERT INTO Caranille_Accounts VALUES(
 							'', 
-							'0', 
 							:Pseudo, 
 							:Password, 
 							:Email, 
@@ -100,17 +99,17 @@
 					}
 					else
 					{
-						echo "$Register_10";
+						echo $Register_10;
 					}
 				}
 				else
 				{
-					echo "$Register_11";
+					echo $Register_11;
 				}
 			}
 			else
 			{
-				echo "$Register_12";
+				echo $Register_12;
 			}
 		}
 	}

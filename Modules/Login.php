@@ -20,7 +20,7 @@
 		if ($_SERVER['HTTP_REFERER'] == $Good_Link)
 		{
 			$Pseudo = htmlspecialchars(addslashes($_POST['Pseudo']));
-			$Password =  md5(htmlspecialchars(addslashes($_POST['Password'])));
+			$Password =  sha1(htmlspecialchars(addslashes($_POST['Password'])));
 			
 			$Login_Query = $bdd->prepare("SELECT * FROM Caranille_Accounts WHERE Account_Pseudo= ? AND Account_Password= ?");
 			$Login_Query->execute(array($Pseudo, $Password));
